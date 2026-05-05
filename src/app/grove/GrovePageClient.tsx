@@ -38,9 +38,13 @@ export const GrovePageClient = () => (
     name={groveData.name}
     tagline={groveData.tagline}
     description={groveData.description}
-    npmPackage={groveData.npm}
-    dockerImage={groveData.docker}
-    installCommands={groveData.installCommands}
+    client={
+      groveData.client ? { ...groveData.client, label: "Client" } : undefined
+    }
+    server={
+      groveData.server ? { ...groveData.server, label: "Server" } : undefined
+    }
+    links={groveData.links}
     tags={groveData.techStack}
     sectionTitle="Why Grove?"
   >

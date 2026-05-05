@@ -27,6 +27,11 @@
   { "name": "Laravel", "category": "Backend", "variant": "muted_olive" },
   { "name": "Django", "category": "Backend", "variant": "muted_olive" },
   { "name": "Flask", "category": "Backend", "variant": "muted_olive" },
+  {
+    "name": "Go (gin, echo, encore)",
+    "category": "Backend",
+    "variant": "muted_olive"
+  },
   { "name": "PostgreSQL", "category": "Databases", "variant": "muted_olive" },
   { "name": "MySQL", "category": "Databases", "variant": "muted_olive" },
   { "name": "DB2 for I", "category": "Databases", "variant": "muted_olive" },
@@ -63,6 +68,8 @@
     "variant": "muted_olive"
   },
   { "name": "SaaS", "category": "Architecture", "variant": "muted_olive" },
+  { "name": "DDD", "category": "Architecture", "variant": "muted_olive" },
+  { "name": "Agile", "category": "Architecture", "variant": "muted_olive" },
   { "name": "AMD ROCm", "category": "AI/ML", "variant": "muted_olive" },
   {
     "name": "Retrieval-Augmented Generation (RAG)",

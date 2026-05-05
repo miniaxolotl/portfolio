@@ -35,7 +35,7 @@ export const DropdownMenuContent = forwardRef<
       <MenuBase.Popup
         ref={ref}
         className={cn(
-          "z-50 max-h-[var(--available-height)] min-w-[8rem] overflow-y-auto overflow-x-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-lg outline-none transition-[transform,scale,opacity] data-[ending-style]:scale-95 data-[ending-style]:opacity-0 data-[starting-style]:scale-95 data-[starting-style]:opacity-0",
+          "z-[100] max-h-[var(--available-height)] min-w-[8rem] overflow-y-auto overflow-x-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-lg outline-none transition-[transform,scale,opacity] data-[ending-style]:scale-95 data-[ending-style]:opacity-0 data-[starting-style]:scale-95 data-[starting-style]:opacity-0",
           className,
         )}
         {...props}
@@ -80,3 +80,30 @@ export const DropdownMenuSeparator = ({
 }) => (
   <MenuBase.Separator className={cn("-mx-1 my-1 h-px bg-muted", className)} />
 );
+
+export const DropdownMenuGroup = forwardRef<
+  HTMLDivElement,
+  React.ComponentPropsWithoutRef<"div">
+>(({ className, children, ...props }, ref) => (
+  <MenuBase.Group ref={ref} className={cn(className)} {...props}>
+    {children}
+  </MenuBase.Group>
+));
+DropdownMenuGroup.displayName = "DropdownMenuGroup";
+
+export const DropdownMenuLabel = forwardRef<
+  HTMLDivElement,
+  React.ComponentPropsWithoutRef<"div">
+>(({ className, children, ...props }, ref) => (
+  <MenuBase.GroupLabel
+    ref={ref}
+    className={cn(
+      "px-2 py-1.5 text-xs font-semibold text-muted-foreground uppercase tracking-wider",
+      className,
+    )}
+    {...props}
+  >
+    {children}
+  </MenuBase.GroupLabel>
+));
+DropdownMenuLabel.displayName = "DropdownMenuLabel";

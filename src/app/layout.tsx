@@ -21,6 +21,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: profile.name, url: profile.website }],
   creator: profile.name,
+  icons: {
+    icon: "/img/masthead/slime-front-idle.gif",
+  },
   openGraph: {
     type: "website",
     locale: "en_CA",

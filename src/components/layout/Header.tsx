@@ -1,6 +1,6 @@
 "use client";
 
-import { Menu, Moon, Sun } from "lucide-react";
+import { ArrowRight, Menu, Moon, Sun } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,7 +15,9 @@ import {
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
+  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
@@ -92,7 +94,7 @@ export const Header = observer(() => {
           </Link>
 
           <nav
-            className="hidden md:flex items-center gap-0"
+            className="hidden md:flex items-center gap-1"
             aria-label="Main navigation"
           >
             {navItems.map((item) => (
@@ -137,35 +139,51 @@ export const Header = observer(() => {
               </DropdownMenuTrigger>
               <DropdownMenuContent
                 align="start"
-                className="w-64 p-2"
+                className="w-72 p-2"
                 sideOffset={8}
               >
-                <div className="grid gap-1">
+                <DropdownMenuGroup className="grid gap-0.5">
+                  <DropdownMenuLabel>Projects</DropdownMenuLabel>
                   {dropdownProjects.map((project) => (
                     <DropdownMenuItem
                       key={project.slug}
                       href={`/projects/${project.slug}`}
                       className={cn(
-                        "flex items-center justify-between gap-3 rounded-md px-3 py-2.5 text-sm cursor-pointer",
+                        "flex flex-col items-start gap-1 rounded-md px-3 py-2.5 text-sm cursor-pointer",
                         pathname === `/projects/${project.slug}` &&
                           "bg-muted text-foreground",
                       )}
                     >
-                      <span className="font-medium">{project.title}</span>
-                      {project.year && (
-                        <span className="text-xs text-muted-foreground font-mono">
-                          {project.year}
-                        </span>
+                      <div className="flex w-full items-center justify-between">
+                        <span className="font-medium">{project.title}</span>
+                        {project.year && (
+                          <span className="text-xs text-muted-foreground font-mono">
+                            {project.year}
+                          </span>
+                        )}
+                      </div>
+                      {project.tags && project.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-1">
+                          {project.tags.slice(0, 3).map((tag) => (
+                            <span
+                              key={tag}
+                              className="inline-flex items-center rounded-sm bg-muted px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
                       )}
                     </DropdownMenuItem>
                   ))}
-                </div>
+                </DropdownMenuGroup>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
                   href="/projects"
-                  className="flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm text-muted-foreground hover:text-foreground cursor-pointer"
+                  className="flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground cursor-pointer"
                 >
                   View all projects
+                  <ArrowRight size={14} aria-hidden="true" />
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

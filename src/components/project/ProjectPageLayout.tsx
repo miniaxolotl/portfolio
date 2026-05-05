@@ -1,16 +1,29 @@
 "use client";
 
+import { ExternalLink } from "lucide-react";
 import { PageShell } from "@/components/layout/PageShell";
 import { PackageInstall } from "@/components/project/PackageInstall";
 import { ProjectTag } from "@/components/project/ProjectTag";
+
+interface InstallConfig {
+  npmPackage?: string | null;
+  dockerImage?: string;
+  commands?: Record<string, string>;
+  label: string;
+}
+
+interface ProjectLink {
+  label: string;
+  url: string;
+}
 
 interface ProjectPageLayoutProps {
   name: string;
   tagline: string;
   description: string;
-  npmPackage?: string | null;
-  dockerImage?: string;
-  installCommands?: Record<string, string>;
+  client?: InstallConfig;
+  server?: InstallConfig;
+  links?: ProjectLink[];
   tags?: string[];
   sectionTitle: string;
   children?: React.ReactNode;
@@ -20,9 +33,9 @@ export const ProjectPageLayout = ({
   name,
   tagline,
   description,
-  npmPackage,
-  dockerImage,
-  installCommands,
+  client,
+  server,
+  links,
   tags,
   sectionTitle,
   children,
@@ -45,11 +58,54 @@ export const ProjectPageLayout = ({
           <p className="text-base leading-relaxed mb-10 max-w-2xl">
             {description}
           </p>
-          <PackageInstall
-            npmPackage={npmPackage}
-            dockerImage={dockerImage}
-            commands={installCommands}
-          />
+
+          <div className="space-y-6">
+            {client && (
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                    {client.label}
+                  </span>
+                </div>
+                <PackageInstall
+                  npmPackage={client.npmPackage}
+                  dockerImage={client.dockerImage}
+                  commands={client.commands}
+                />
+              </div>
+            )}
+            {server && (
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                    {server.label}
+                  </span>
+                </div>
+                <PackageInstall
+                  npmPackage={server.npmPackage}
+                  dockerImage={server.dockerImage}
+                  commands={server.commands}
+                />
+              </div>
+            )}
+          </div>
+
+          {links && links.length > 0 && (
+            <div className="flex flex-wrap gap-3 mt-6">
+              {links.map((link) => (
+                <a
+                  key={link.url}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium bg-muted hover:bg-muted/80 transition-colors"
+                >
+                  {link.label}
+                  <ExternalLink size={12} />
+                </a>
+              ))}
+            </div>
+          )}
         </div>
 
         <section>

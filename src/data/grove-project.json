@@ -2,14 +2,34 @@
   "name": "Grove",
   "tagline": "Never lose context in your AI coding sessions",
   "description": "Grove is a self-hosted memory server that gives AI coding tools long-term memory. It combines semantic vector search with knowledge graphs to let AI assistants remember everything about your projects, tasks, and preferences across sessions.",
-  "npm": "@miniaxolotl/grove",
-  "docker": "miniaxolotl/grove",
-  "github": "miniaxolotl/grove",
-  "registry": {
-    "npm": "https://www.npmjs.com/package/grove",
-    "docker": "https://hub.docker.com/r/miniaxolotl/grove",
-    "github": "https://github.com/miniaxolotl/grove"
+  "client": {
+    "npmPackage": "@miniaxolotl/grove",
+    "commands": {
+      "bun": "bun add -g @miniaxolotl/grove",
+      "npm": "npm i -g @miniaxolotl/grove",
+      "pnpm": "pnpm add -g @miniaxolotl/grove"
+    }
   },
+  "server": {
+    "dockerImage": "miniaxolotl/grove",
+    "commands": {
+      "docker": "docker run -p 5262:5262 miniaxolotl/grove"
+    }
+  },
+  "links": [
+    {
+      "label": "GitHub",
+      "url": "https://github.com/miniaxolotl/grove"
+    },
+    {
+      "label": "npm",
+      "url": "https://www.npmjs.com/package/@miniaxolotl/grove"
+    },
+    {
+      "label": "OpenCode Plugin",
+      "url": "https://www.npmjs.com/package/@miniaxolotl/grove-opencode-plugin"
+    }
+  ],
   "features": [
     "MCP-compatible - works with OpenCode, Cursor, and any MCP client",
     "Semantic search powered by Qdrant vector database",
@@ -51,12 +71,6 @@
   "commands": {
     "serve": "grove serve",
     "stdio": "grove"
-  },
-  "installCommands": {
-    "bun": "bun add -g @miniaxolotl/grove",
-    "npm": "npm i -g @miniaxolotl/grove",
-    "pnpm": "pnpm add -g @miniaxolotl/grove",
-    "docker": "docker run -p 5262:5262 miniaxolotl/grove"
   },
   "guides": [
     "Installation",

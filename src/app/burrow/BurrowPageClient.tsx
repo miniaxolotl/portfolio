@@ -39,9 +39,13 @@ export const BurrowPageClient = () => (
     name={burrowData.name}
     tagline={burrowData.tagline}
     description={burrowData.description}
-    npmPackage={burrowData.npm}
-    dockerImage={burrowData.docker}
-    installCommands={burrowData.installCommands}
+    client={
+      burrowData.client ? { ...burrowData.client, label: "Client" } : undefined
+    }
+    server={
+      burrowData.server ? { ...burrowData.server, label: "Server" } : undefined
+    }
+    links={burrowData.links}
     tags={burrowData.techStack}
     sectionTitle="Why Burrow?"
   >

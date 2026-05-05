@@ -2,14 +2,30 @@
   "name": "Burrow",
   "tagline": "Permanent, secure URLs for local development",
   "description": "Burrow is an open-source tunneling tool that gives you stable, HTTPS-accessible URLs for your local development environment. No more unreliable free tiers or expensive subscriptions - just run one command and share your localhost with the world.",
-  "npm": "@miniaxolotl/burrowctl",
-  "docker": "miniaxolotl/burrowd",
-  "github": "miniaxolotl/burrow",
-  "registry": {
-    "npm": "https://www.npmjs.com/package/@miniaxolotl/burrowctl",
-    "docker": "https://hub.docker.com/r/miniaxolotl/burrowd",
-    "github": "https://github.com/miniaxolotl/burrow"
+  "client": {
+    "npmPackage": "@miniaxolotl/burrowctl",
+    "commands": {
+      "bun": "bun add -g @miniaxolotl/burrowctl",
+      "npm": "npm i -g @miniaxolotl/burrowctl",
+      "pnpm": "pnpm add -g @miniaxolotl/burrowctl"
+    }
   },
+  "server": {
+    "dockerImage": "miniaxolotl/burrowd",
+    "commands": {
+      "docker": "docker compose up -d"
+    }
+  },
+  "links": [
+    {
+      "label": "GitHub",
+      "url": "https://github.com/miniaxolotl/burrow"
+    },
+    {
+      "label": "npm",
+      "url": "https://www.npmjs.com/package/@miniaxolotl/burrowctl"
+    }
+  ],
   "features": [
     "HTTPS subdomains with automatic certificate management via Let's Encrypt",
     "TCP tunnel support for databases, SSH, and non-HTTP services",
@@ -26,11 +42,5 @@
     "client": "burrowctl tunnel create --port 3000"
   },
   "guides": ["Installation", "Configuration", "Deployment", "Troubleshooting"],
-  "mcpTools": null,
-  "installCommands": {
-    "bun": "bun add -g @miniaxolotl/burrowctl",
-    "npm": "npm i -g @miniaxolotl/burrowctl",
-    "pnpm": "pnpm add -g @miniaxolotl/burrowctl",
-    "docker": "docker compose up -d"
-  }
+  "mcpTools": null
 }
