@@ -11,34 +11,22 @@ tags:
 gitLink: github.com/miniaxolotl/grove
 ---
 
-## The Goal
+## The Problem I Wanted to Solve
 
-AI coding tools forget everything between sessions. You explain your project architecture, your preferences, your decisions. Then you close the chat and it is all gone. I wanted to give AI tools long-term memory that persists across conversations. A self-hosted solution with no rate limits or privacy concerns.
+AI coding tools forget everything between sessions. You explain your project architecture and your preferences and your decisions. Then you close the chat and it is all gone. I wanted to explore what it would take to give AI tools long-term memory that persists across conversations. A self-hosted solution with no rate limits and no privacy concerns.
 
-## The Hard Part
-
-Memory is not just storage. It is retrieval. A system that stores everything but cannot find the right thing at the right time is useless. The real challenge was designing recall patterns that feel natural to both humans and AI agents.
-
-I also needed to keep latency low enough that the AI does not stall waiting for context. Every millisecond of round trip time adds up when you are making multiple memory calls per conversation turn.
+Memory is not just storage. It is retrieval. A system that saves everything but cannot find the right thing at the right time is useless. The real challenge was designing recall patterns that feel natural.
 
 ## How I Built It
 
-Grove is a self-hosted MCP server. Any compatible client like OpenCode or Cursor connects to it and gains access to memory operations as standard tool calls. You save notes, context, and decisions. The AI retrieves relevant memories when it needs them.
+Grove is a self-hosted MCP server. Any compatible client connects to it and gains memory operations as standard tool calls. The system uses two storage layers. Qdrant handles semantic vector search, finding memories by meaning rather than keywords. A knowledge graph stores structured information about entities and their relationships.
 
-The system combines two storage layers. Qdrant handles semantic vector search, finding relevant memories by meaning rather than keywords. A knowledge graph stores structured information about entities and their relationships. People, projects, concepts, and how they connect.
+Not all memories matter equally. Grove scores each memory based on recency and access frequency and explicit user signals. Important facts stay within reach. Noise fades over time. The compaction system periodically prunes low-importance memories and merges related ones. Storage stays under control without losing critical information.
 
-Not all memories are equal. Grove assigns importance scores to each memory based on recency, frequency of access, and explicit user signals. Important facts stay accessible. Noise fades away. This keeps the context window focused on what actually matters.
+Grove runs ONNX embeddings locally. No external API calls. No network latency. The embedding model loads once and serves all vector operations from the same process. This keeps the round trip fast enough that the AI does not stall waiting for context.
 
-The compaction system periodically prunes low-importance memories and merges related ones. Storage stays under control without losing critical information. It is the difference between a system that grows bloated over time and one that stays sharp.
+## What This Exploration Taught Me
 
-Grove runs ONNX embeddings locally. No external API calls, no latency from network requests, no dependency on third-party services. The embedding model loads once and serves all vector operations from the same process. This matters for a tool that sits between you and your AI assistant. Local embeddings keep the round trip fast enough that the AI does not stall waiting for context.
+I started out thinking I needed separate services for every memory task. What I actually needed was a tight stack with local embeddings and two complementary storage layers. The semantic search and the knowledge graph work together to approximate how human memory associates ideas.
 
-## What Disrupted My Thinking
-
-I started thinking I needed complex ML models and separate services for different tasks. What I actually needed was better data structures and smarter retrieval patterns. The database itself became the recommendation engine through pgvector and careful schema design.
-
-I also learned that self-hosted infrastructure gives you something cloud services cannot. Control over data, latency, and reliability. No rate limits, no outages, no privacy concerns. When your memory server runs on your machine, you own the entire stack.
-
-## The Takeaway
-
-Grove taught me that memory systems live or die by their retrieval patterns. Storing information is easy. Finding the right piece at the right time is hard. The best systems feel like an extension of your own thinking rather than a separate tool you have to manage.
+Self-hosted infrastructure gives you something cloud services cannot. Control over data and latency and reliability. When your memory server runs on your machine, you own the entire stack. Grove taught me that memory systems live or die by their retrieval patterns. Storing information is easy. Finding the right piece at the right time is hard.

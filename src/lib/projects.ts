@@ -19,10 +19,7 @@ export const getTagColorIndex = (tag: string): number => {
   return Math.abs(hash) % tagColors.length;
 };
 
-export const getTagColorClass = (tag: string): string =>
-  tagColors[getTagColorIndex(tag)];
+export const getTagColorClass = (tag: string): string => tagColors[getTagColorIndex(tag)];
 
 export const getProjectHref = (project: Project) =>
-  blogSlugs.has(project.slug)
-    ? `/projects/${project.slug}`
-    : `/${project.slug}`;
+  blogSlugs.has(project.slug) ? `/projects/${project.slug}` : `/${project.slug}`;

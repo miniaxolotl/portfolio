@@ -6,12 +6,9 @@ interface ResumeDownloadLinkProps {
   className?: string;
 }
 
-export const ResumeDownloadLink = ({
-  onClick,
-  className,
-}: ResumeDownloadLinkProps) => (
+export const ResumeDownloadLink = ({ onClick, className }: ResumeDownloadLinkProps) => (
   <a
-    href="/mawa-2026-05-C.pdf"
+    href="/mawa-2026-05-v2c.pdf"
     download
     onClick={onClick}
     className={cn(

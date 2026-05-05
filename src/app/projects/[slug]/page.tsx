@@ -8,8 +8,13 @@ interface ProjectPageProps {
   params: Promise<{ slug: string }>;
 }
 
-export const generateStaticParams = () =>
-  [{ slug: "burrow" }, { slug: "grove" }, { slug: "fitr" }, { slug: "fashion-vision" }, { slug: "inkbyte" }];
+export const generateStaticParams = () => [
+  { slug: "burrow" },
+  { slug: "grove" },
+  { slug: "fitr" },
+  { slug: "fashion-vision" },
+  { slug: "inkbyte" },
+];
 
 const ProjectPage = async ({ params }: ProjectPageProps) => {
   const { slug } = await params;

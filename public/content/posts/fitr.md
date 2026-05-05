@@ -14,15 +14,11 @@ tags:
 gitLink: github.com/miniaxolotl/fitr
 ---
 
-## The Goal
+## The Question Behind the Project
 
-Style is personal. I wanted to build an app that understood your style identity the way a good friend does. Not "you like black", but something closer to "you dress like someone who reads first editions and drinks their coffee too hot." The question was whether software could close the gap between who you are and what you wear.
+Style is personal. I wanted to explore whether software could understand your aesthetic the way a good friend does. Not "you like black" but something closer to "you dress like someone who reads first editions and drinks their coffee too hot."
 
-## The Hard Part
-
-Building an AI that recommends clothes is straightforward. Building one that recommends clothes for you is harder. The challenge is context. Weather, occasion, what you wore last week, what you are trying to become. All of this needs to factor into recommendations without turning the app into a surveillance apparatus.
-
-I also struggled with how to represent style without reducing it to a label. "Minimalist" erases the days someone wants to be loud. The system needed to capture mood as much as aesthetic.
+Building an AI that recommends clothes is easy. Building one that recommends clothes for you is hard. The challenge is context. Weather and occasion and what you wore last week all need to factor in. I also struggled with how to represent style without flattening it. "Minimalist" erases the days someone wants to be loud.
 
 <div class="flex flex-col sm:flex-row gap-4 my-8">
   <span class="flex-1">
@@ -33,30 +29,20 @@ I also struggled with how to represent style without reducing it to a label. "Mi
   </span>
 </div>
 
-## How I Built It
+## How I Explored the Answer
 
-The core concept was Style DNA. A profile built from behavior, not questionnaires. What you save, what you linger on, what you return to. The system learns patterns like color affinities and silhouette preferences. It notices the tension between what someone says they like and what they actually wear.
+The core idea was Style DNA. A profile built from behavior rather than questionnaires. The system learns patterns like color affinities and silhouette preferences from what you save and linger on and return to. I chose spectrums over categories. Primary and secondary traits written in natural language capture the fluidity of style better than rigid labels.
 
-I settled on spectrums over categories. Primary and secondary traits expressed in natural language descriptions. This captures the fluidity of style better than rigid labels.
+For recommendations, I explored embeddings. Wardrobe items and preferences become vectors that can be compared by meaning inside PostgreSQL with pgvector. No separate ML service required. I also looked at how a machine sees clothing. A photo is just pixels. For software to understand it, those pixels need to be separated into body from background and upper from lower and garment from skin. The segmentation strategy mirrors human perception.
 
-For recommendations, I explored the idea of a named stylist persona with continuity. Someone who remembers that you hated that jacket and learned from it. The technical solution was embeddings. Converting wardrobe items, preferences, and history into vectors that could be compared semantically. PostgreSQL with pgvector turned the database itself into a recommendation engine. No separate ML service needed.
+Running models locally changes the math. A compressed model on-device answers in milliseconds. The tradeoff is precision, but sometimes "this looks like a blue jacket" is more useful than a high-dimensional vector. The backend is Go. The mobile frontend is Flutter. The design system needed to feel editorial. More magazine than marketplace.
 
 ![Personalized recommendations feed showing AI-curated outfit suggestions](/img/projects/fitr/for-you-page.png)
 
-One thread I found interesting was how a system sees clothing. When you photograph an outfit, the image is just pixels. For software to understand it, those pixels need to be segmented. Body from background, upper from lower, garment from skin. The segmentation strategy mirrors human perception. We do not see a shirt. We see a shape against a body against a background, and our brain separates those layers automatically.
+## What I Learned About AI and Style
 
-Cloud APIs are convenient but come with tradeoffs. Latency, cost, privacy, dependency. Running models locally changes the calculus. A quantized model running on-device gives you an answer in milliseconds. Fast enough to feel like the app is thinking with you rather than at you. The tradeoff is precision, but precision is not always what you need. Sometimes "this looks like a blue jacket" is more useful than a high-dimensional embedding vector.
+I started this project thinking I needed complex ML models. What I actually needed was better data structures and a clearer idea of what style means. The hardest part of building intelligent systems is not the intelligence. It is the framing.
 
-The backend is built in Go. The mobile frontend uses Flutter because it expresses a visual language consistently across platforms. The design system needed to feel editorial. More magazine than marketplace.
+I also learned how much of AI product design is about restraint. The best systems learn from behavior without demanding explanations. They leave room for people to change their minds and surprise themselves.
 
 ![User profile page showing wardrobe and style identity](/img/projects/fitr/profile-page.png)
-
-## What Disrupted My Thinking
-
-Fitr taught me that the hardest part of building intelligent systems is not the intelligence. It is the framing. How you define the problem determines what kind of solution is possible. I started thinking I needed complex ML models. What I actually needed was better data structures and a clearer understanding of what "style" means.
-
-The project also revealed how much of AI product design is about restraint. Sometimes the most powerful thing software can do is ask a good question rather than provide a definitive answer.
-
-## The Takeaway
-
-Building Fitr showed me that understanding users is harder than predicting them. The best systems learn from behavior without demanding explanations. They leave room for people to change their minds and surprise themselves.

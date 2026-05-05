@@ -2,11 +2,11 @@
 
 import { ArrowLeft, ArrowUpRight, Calendar, X } from "lucide-react";
 import Link from "next/link";
+import { useCallback, useEffect, useState } from "react";
 import { LuGithub } from "react-icons/lu";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
-import { useCallback, useEffect, useState } from "react";
 import { PageShell } from "@/components/layout/PageShell";
 import { ProjectTag } from "@/components/project/ProjectTag";
 import { cn, ensureProtocol } from "@/lib/utils";
@@ -203,7 +203,10 @@ export const BlogProjectPage = ({
   content,
   hasSidebar,
 }: BlogProjectPageProps) => {
-  const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string } | null>(null);
+  const [selectedImage, setSelectedImage] = useState<{
+    src: string;
+    alt: string;
+  } | null>(null);
 
   const handleImageClick = useCallback((src: string, alt: string) => {
     setSelectedImage({ src, alt });
