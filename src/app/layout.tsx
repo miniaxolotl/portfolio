@@ -1,4 +1,5 @@
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import profile from "@/data/profile.json";
 import "./globals.css";
@@ -84,6 +85,7 @@ const RootLayout = ({
       </a>
       {children}
       <Analytics />
+      <SpeedInsights />
     </body>
   </html>
 );
