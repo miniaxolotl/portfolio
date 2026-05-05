@@ -24,7 +24,7 @@ Routing turned out to be much harder than I expected. Every request needs to res
 
 Custom domains broke my initial design. I had assumed a single domain, but users needed their own domains. The routing logic had to become multi-tenant from the ground up. It needed to distinguish between the platform's domain and user-owned domains, then resolve the correct link based on both hostname and path.
 
-<img src="/img/projects/inkbyte/logo.png" alt="InkByte logo - a hand-drawn squid" class="inline-block" />
+<img src="/img/projects/inkbyte/logo.png" alt="InkByte logo - a hand-drawn squid" />
 
 ## How I Built It
 

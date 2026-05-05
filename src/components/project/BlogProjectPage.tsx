@@ -156,7 +156,6 @@ const createMarkdownComponents = (onImageClick: (src: string, alt: string) => vo
   img: ({ src, alt, className, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => {
     const hasWrapper = className && className.includes("flex-1");
     const isInline = className && className.includes("inline-only");
-    const isInlineBlock = className && className.includes("inline-block");
     const handleClick = () => {
       if (src && typeof src === "string") onImageClick(src, alt ?? "");
     };
@@ -177,17 +176,6 @@ const createMarkdownComponents = (onImageClick: (src: string, alt: string) => vo
           src={src}
           alt={alt ?? ""}
           className="inline align-middle rounded h-6 w-auto cursor-zoom-in"
-          onClick={handleClick}
-          {...props}
-        />
-      );
-    }
-    if (isInlineBlock) {
-      return (
-        <img
-          src={src}
-          alt={alt ?? ""}
-          className="inline-block align-middle rounded max-h-80 object-contain cursor-zoom-in"
           onClick={handleClick}
           {...props}
         />
