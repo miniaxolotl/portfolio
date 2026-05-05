@@ -16,7 +16,7 @@ export interface ProjectMarkdown {
   content: string;
 }
 
-const contentDir = path.join(process.cwd(), "public", "content", "projects");
+const contentDir = path.join(process.cwd(), "public", "content", "posts");
 
 export const loadProjectMarkdown = (slug: string): ProjectMarkdown => {
   const filePath = path.join(contentDir, `${slug}.md`);

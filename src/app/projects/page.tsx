@@ -3,13 +3,13 @@ import { Section } from "@/components/layout/Section";
 import { OtherProjectsList } from "@/components/project/OtherProjectsList";
 import { ProjectsList } from "@/components/project/ProjectsList";
 
-const ProjectsPage = () => (
+const BlogPage = () => (
   <PageShell hasSidebar>
-    <Section id="projects" title="Projects">
+    <Section id="blog" title="Blog">
       <div className="space-y-12">
         <div>
           <p className="text-sm text-muted-foreground leading-relaxed mb-6 max-w-2xl">
-            Selected work across systems programming, distributed services, and full-stack development.
+            Technical explorations and deep dives into systems, AI, and full-stack development.
           </p>
           <ProjectsList />
         </div>
@@ -24,4 +24,4 @@ const ProjectsPage = () => (
   </PageShell>
 );
 
-export default ProjectsPage;
+export default BlogPage;

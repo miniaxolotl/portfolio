@@ -125,7 +125,7 @@ export const Header = observer(() => {
                   ) && activeNavLink,
                 )}
               >
-                projects
+                blog
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="12"
@@ -173,7 +173,7 @@ export const Header = observer(() => {
                   href="/projects"
                   className="flex items-center justify-between rounded-md px-2.5 py-2 text-sm text-muted-foreground hover:text-foreground cursor-pointer"
                 >
-                  <span>View all projects</span>
+                  <span>View all posts</span>
                   <ArrowRight size={12} aria-hidden="true" />
                 </DropdownMenuItem>
               </DropdownMenuContent>

@@ -17,9 +17,17 @@ Every developer has needed to show someone their localhost. Ngrok works until it
 
 Run one command, get a stable HTTPS URL. The server assigns a subdomain, provisions a TLS certificate through Let's Encrypt, and opens a WebSocket tunnel back to your machine. The connection stays alive. The URL does not change.
 
+![Burrow main interface showing active tunnels](/img/projects/burrow/ui_main_1.png)
+
 Under the hood, the protocol multiplexes multiple TCP streams over a single WebSocket connection using yamux. This means you can expose HTTP services, databases, SSH sessions, anything that speaks TCP, through one tunnel. The WebSocket framing was designed to avoid head-of-line blocking, so a slow stream does not stall the others.
 
+![Burrow secondary interface view](/img/projects/burrow/ui_main_2.png)
+
+![Burrow tunnel logs showing real-time connection activity](/img/projects/burrow/ui_logs.png)
+
 Redis tracks active tunnels and persists state across server restarts. If the server goes down and comes back, tunnels reconnect automatically. A token-based auth layer keeps the admin interface locked down for team environments.
+
+![Burrow help screen showing available commands](/img/projects/burrow/ui_help.png)
 
 ## The Hard Parts
 

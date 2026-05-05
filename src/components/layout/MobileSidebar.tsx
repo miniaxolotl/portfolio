@@ -32,7 +32,7 @@ const pageNavItems = [
   { href: "/", label: "Portfolio", icon: Home },
   { href: "/burrow", label: "Burrow", icon: ArrowDownUp },
   { href: "/grove", label: "Grove", icon: TreePine },
-  { href: "/projects", label: "Projects", icon: FolderOpen },
+  { href: "/projects", label: "Blog", icon: FolderOpen },
 ];
 
 export const MobileSidebar = observer(({ onNavigate }: MobileSidebarProps) => {
@@ -139,7 +139,7 @@ export const MobileSidebar = observer(({ onNavigate }: MobileSidebarProps) => {
           </p>
           <div className="flex flex-col gap-0.5">
             <a
-              href="/mawa-2026-05-02b.pdf"
+              href="/mawa-2026-05-C.pdf"
               download
               onClick={onNavigate}
               className="group flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground"

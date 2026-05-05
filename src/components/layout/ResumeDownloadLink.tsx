@@ -11,7 +11,7 @@ export const ResumeDownloadLink = ({
   className,
 }: ResumeDownloadLinkProps) => (
   <a
-    href="/mawa-2026-05-02b.pdf"
+    href="/mawa-2026-05-C.pdf"
     download
     onClick={onClick}
     className={cn(

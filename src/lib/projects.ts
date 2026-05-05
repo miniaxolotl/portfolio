@@ -2,7 +2,7 @@ import type { Project } from "@/types";
 
 export const featuredSlugs = new Set(["burrow", "grove"]);
 
-export const blogSlugs = new Set(["fitr", "fashion-vision", "inkbyte"]);
+export const blogSlugs = new Set(["burrow", "grove", "fitr", "fashion-vision", "inkbyte"]);
 
 export const tagColors = [
   "bg-[var(--badge-olive-bg)] text-[var(--badge-olive-text)]",
@@ -23,6 +23,6 @@ export const getTagColorClass = (tag: string): string =>
   tagColors[getTagColorIndex(tag)];
 
 export const getProjectHref = (project: Project) =>
-  featuredSlugs.has(project.slug)
-    ? `/${project.slug}`
-    : `/projects/${project.slug}`;
+  blogSlugs.has(project.slug)
+    ? `/projects/${project.slug}`
+    : `/${project.slug}`;
