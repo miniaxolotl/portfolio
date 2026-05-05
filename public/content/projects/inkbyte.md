@@ -1,6 +1,6 @@
 ---
 title: InkByte
-description: Link management platform with URL shortening, custom domains, QR codes, and geolocation analytics. Monorepo with Koa API, SSR React frontend, MySQL + MongoDB + Meilisearch, and Apple/Google OAuth via Appwrite.
+description: A link management platform built from the ground up. Routing, databases, and the architecture of services that handle millions of redirects.
 year: "2021"
 tags:
   - TypeScript
@@ -14,68 +14,56 @@ tags:
 gitLink: github.com/miniaxolotl/inkbyte
 ---
 
-## What it does
+## The Simplicity of a Short Link
 
-InkByte is a full-featured link management platform combining URL shortening, QR code generation, link-in-bio pages, and click analytics. Users create short links with custom slugs and branded domains, attach QR codes for offline sharing, and build customizable landing pages. The analytics engine tracks clicks with geographic breakdown, referrer analysis, and device detection — all without invasive tracking methods.
+A URL shortener seems like the simplest possible web service. Take a long URL, assign it a short code, redirect when someone visits. It is the "Hello World" of production software. Which is exactly why it is a good test of whether you actually understand how systems work.
 
-## Architecture
+InkByte started as that simple service and grew as I asked better questions. Not just "how do I redirect?" but "how do I redirect well?" Fast, reliably, with analytics that respect privacy, on custom domains, at scale.
 
-Yarn 3 monorepo with workspaces spanning two packages and thirteen shared libraries:
+<img src="/img/projects/inkbyte/logo.png" alt="InkByte logo - a hand-drawn squid" class="inline-block" />
 
-| Package | Purpose |
-|---------|---------|
-| `packages/api` | Koa REST API server with WebSocket support |
-| `packages/web` | React frontend with SSR (Vite + vite-plugin-ssr) |
-| `lib/database` | Prisma client wrapper for MySQL |
-| `lib/services` | Business logic layer |
-| `lib/components` | Shared React component library |
-| `lib/quikk` | HTTP client utility |
-| `lib/crypt` | Cryptography utilities |
-| `lib/stores` | Valtio reactive state stores |
-| `lib/hook-form` | Form handling with Yup validation |
-| `lib/schema-validator` | Runtime schema validation |
-| `lib/shared` | Shared types and constants |
-| `lib/config` | Environment configuration |
-| `lib/hooks` | React hooks |
-| `lib/data` | Data fetching utilities |
-| `lib/utility` | General utilities |
+## Routing
 
-Rollup bundles all shared libraries for consumption by both packages. The web SSR server runs Express (via vite-plugin-ssr) while the API uses Koa.
+The core challenge is routing. Every request to a short URL needs to be resolved to its destination, logged, and redirected. All in a few milliseconds. The routing layer sits between the user and the internet, which means it cannot afford to be slow or wrong.
 
-## Features
+The API runs on Koa, chosen for its lightweight middleware model. Each request flows through a chain. CORS handling, body parsing, authentication for dashboard routes, and finally the redirect handler. The redirect itself is a database lookup followed by a 301 or 302 response.
 
-### Link Shortening
+Custom domains add complexity. The routing middleware must distinguish between the platform's own domain and user-owned domains, resolving the correct link based on both hostname and path. The routing logic cannot assume a single domain. It needs to be multi-tenant from the ground up.
 
-Custom slugs, branded domains, and CTA overlays that display before redirecting. Links support tags, archiving, and soft deletes. Users bring their own domains or use the default InkByte domain.
+On the web server side, nginx handles reverse proxying, TLS termination, and static asset serving. The SSR frontend runs behind it, with vite-plugin-ssr rendering pages server-side so redirects work before JavaScript loads. A server-side redirect is instant. A client-side redirect requires a fetch, a parse, and a navigation.
 
-### QR Codes
+![InkByte login page](/img/projects/inkbyte/login-page.png)
 
-Dynamic QR codes tied to short links — changing the destination URL doesn't require reprinting. Brand color customization and logo embedding. QR scans tracked separately from web clicks.
+## Database Design
 
-### Link-in-Bio
+MySQL is the primary database, managed through Prisma. The schema decisions reflect operational requirements.
 
-Mobile-optimized landing pages aggregating multiple links into a single shareable URL. Theme customization and per-link click tracking.
+UUIDs for primary keys. Auto-incrementing IDs are a security problem in a link service. They let people enumerate and discover links by iterating through sequential numbers.
 
-### Analytics
+Soft deletes across all models. Nothing is truly deleted. Links are marked inactive, users are flagged, sessions are expired. This preserves referential integrity and enables audit trails.
 
-Click tracking with session-based deduplication. Geographic breakdown by country, city, and region with lat/long coordinates. Referrer analysis, user agent parsing, and time-series data with delta tracking. No cookies, fingerprints, or PII collected.
+Composite keys for analytics. The link log table uses a composite primary key of link ID and session ID, enabling upserts that increment view counts without creating duplicate records.
 
-### Authentication
+Full-text search indexes. Prisma's full-text search lets users find links by title, tag, or destination URL without a separate search engine for basic queries. Meilisearch handles the advanced stuff. Fuzzy matching, typo tolerance, faceted filtering.
 
-Role-based access control with granular permissions. Email verification with token-based confirmation. Social authentication via Apple and Google OAuth through Appwrite. Session management with refresh token rotation.
+## Analytics
 
-## Database
+Tracking clicks sounds simple until you think about what a click actually means. Is it a page load? A redirect? A unique visitor? How do you count without double-counting?
 
-MySQL with Prisma ORM. Core models: `User` (with social auth tokens), `Role`/`UserRole` (RBAC), `Session`, `Link` (short URLs with CTA fields), `Domain` (custom domains), `LinkLog` (analytics with geographic and referrer data), and `Image` (avatar and QR storage). Full-text search on Prisma for link discovery. Soft deletes across all models.
+The analytics pipeline captures IP address for deduplication, user agent for device detection, referrer for traffic source analysis, and timestamps for time-series data. Geographic fields exist in the schema but the implementation deliberately stops short of full geo-IP resolution. The principle was to collect enough data to be useful but not enough to be invasive.
 
-Meilisearch provides additional full-text search capabilities. MongoDB is used for supplementary data storage.
+Session-based deduplication prevents inflated counts. If the same session clicks the same link multiple times within a window, it increments the counter rather than creating a new record. The difference between "this link was clicked 1,000 times" and "this link was clicked by 1,000 people."
 
-## Challenges
+![InkByte main page showing the link shortener interface](/img/projects/inkbyte/main-page.png)
 
-The multi-tenant domain system required careful routing logic to distinguish between InkByte's default domain and user-owned custom domains at the middleware level. The analytics pipeline needed to aggregate geographic data from IP addresses while maintaining privacy — storing only coarse location data without retaining IPs long-term.
+## Monorepo Architecture
 
-Session-based deduplication in `LinkLog` prevents inflated click counts from repeated visits. The monorepo setup with thirteen shared libraries required configuring Rollup to bundle internal packages so both API and web could import from a single source of truth. TypeScript path aliases and build ordering had to be coordinated across all library packages.
+The project is a Yarn workspaces monorepo with two packages and thirteen shared libraries. The API and frontend share types, components, validation schemas, and utilities. Duplicating that code would create a maintenance nightmare.
 
-## Tech stack
+Rollup bundles the shared libraries so both packages import from a single source of truth. The build pipeline coordinates TypeScript path aliases and compilation order across all library packages. A dependency graph that, if misconfigured, produces errors that only appear in production.
 
-Koa powers the API with koa-router, koa-body, koa-jwt, and koa-websocket. React 18 with Vite and vite-plugin-ssr for server-side rendering. Mantine UI provides the component library with Emotion for styling. Valtio handles reactive state management. Prisma manages MySQL schema and migrations. Yarn 3 workspaces orchestrate the monorepo with Rollup bundling shared libraries. Appwrite provides social authentication. Docker containers for MariaDB and Meilisearch services.
+## What I Learned
+
+InkByte was my education in production software. The kind where you learn that routing is hard, that database migrations are terrifying, that "simple" features like custom domains require rethinking your entire routing layer.
+
+The project taught me to think about systems in terms of failure modes. What happens when the database is slow? What happens when a custom domain DNS is misconfigured? What happens when someone creates a million links in an hour? Designing for these scenarios is what separates a project that works on your laptop from one that works in the world.

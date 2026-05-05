@@ -11,18 +11,30 @@ tags:
 gitLink: github.com/miniaxolotl/grove
 ---
 
-## What it does
+## The Problem
 
-Grove is a self-hosted memory server that gives AI coding tools long-term memory. It combines semantic vector search with knowledge graphs to let AI assistants remember everything about your projects, tasks, and preferences across sessions.
+AI coding tools forget everything between sessions. You explain your project architecture, your preferences, your decisions. Then you close the chat and it is all gone. Grove solves this by giving AI tools long-term memory that persists across conversations.
 
-## Features
+## How It Works
 
-MCP-compatible architecture works with OpenCode, Cursor, and any MCP client out of the box. Semantic search powered by Qdrant vector database finds relevant memories by meaning, not just keywords. Entity and relation knowledge graphs store structured information about people, projects, and concepts. Importance-based memory management keeps key facts accessible while noise fades away. Optional reranking improves search relevance for complex queries. Fast local ONNX embeddings eliminate external API dependencies.
+Grove is a self-hosted MCP server. Any compatible client like OpenCode or Cursor connects to it and gains access to memory operations as standard tool calls. You save notes, context, and decisions. The AI retrieves relevant memories when it needs them.
 
-## Challenges
+The system combines two storage layers. Qdrant handles semantic vector search, finding relevant memories by meaning rather than keywords. A knowledge graph stores structured information about entities and their relationships. People, projects, concepts, and how they connect.
 
-Designing a memory system that feels natural to AI agents required balancing recall precision with context window limits. Building knowledge graphs from unstructured conversation meant extracting entities and relations reliably without hallucination. Managing vector storage efficiently meant implementing compaction and pruning strategies that preserve important memories while controlling storage growth.
+## Importance-Based Memory
 
-## Tech stack
+Not all memories are equal. Grove assigns importance scores to each memory based on recency, frequency of access, and explicit user signals. Important facts stay accessible. Noise fades away. This keeps the context window focused on what actually matters.
 
-TypeScript and Node.js power the MCP server, protocol handlers, and embedding pipelines. Qdrant provides vector search and storage. ONNX Runtime runs local embedding models (Xenova/all-MiniLM-L6-v2). The MCP layer, built with fastmcp, exposes memory operations as standard tool calls that any compatible client can invoke.
+The compaction system periodically prunes low-importance memories and merges related ones. Storage stays under control without losing critical information. It is the difference between a system that grows bloated over time and one that stays sharp.
+
+## Local Embeddings
+
+Grove runs ONNX embeddings locally. No external API calls, no latency from network requests, no dependency on third-party services. The embedding model loads once and serves all vector operations from the same process.
+
+This matters for a tool that sits between you and your AI assistant. Every millisecond of latency in memory retrieval adds up. Local embeddings keep the round trip fast enough that the AI does not stall waiting for context.
+
+## What I Learned
+
+Grove taught me that memory is not just storage. It is retrieval. A system that stores everything but cannot find the right thing at the right time is useless. The real engineering challenge is designing recall patterns that feel natural to both humans and AI agents.
+
+It also reinforced the value of self-hosted infrastructure. When your memory server runs on your machine, you control the data, the latency, and the reliability. No rate limits, no outages, no privacy concerns.

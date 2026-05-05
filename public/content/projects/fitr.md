@@ -1,6 +1,6 @@
 ---
 title: Fitr
-description: Design exploration for an AI-backed personal style engine. Identity-driven wardrobe intelligence with Style DNA analysis, AI stylist chat, computer vision clothing detection, and social fit sharing.
+description: A design exploration into identity-driven style. What happens when software tries to understand who you are before telling you what to wear.
 year: "2024"
 tags:
   - System Design
@@ -14,69 +14,51 @@ tags:
 gitLink: github.com/miniaxolotl/fitr
 ---
 
-## What it is
+## The Question
 
-Fitr is a design exploration for a personal style engine and identity platform — not just a fashion app, but a system that understands your style, evolves it, and helps you act on it daily. The project documents the architecture, UX flows, and AI integration patterns for an identity-driven wardrobe intelligence platform.
+Style is personal. Fitr started as an attempt to close the gap between who you are and what you wear, using software. What if an app understood your style identity the way a good friend does? Not "you like black", but something closer to "you dress like someone who reads first editions and drinks their coffee too hot."
 
-Positioned as "This is you & your DNA" — the core idea is that style is an expression of identity, and an app should understand who you are before suggesting what to wear.
+## Style as Identity
 
-## Core Concepts
+The core concept was Style DNA. A profile built from behavior, not questionnaires. What you save, what you linger on, what you return to. The system learns patterns: color affinities, silhouette preferences, the tension between what someone says they like and what they actually wear.
 
-### Style DNA
+The design challenge was representing style without reducing it to a label. "Minimalist" erases the days someone wants to be loud. The answer was spectrums over categories. Primary and secondary traits, natural language descriptions that capture mood as much as aesthetic.
 
-A comprehensive breakdown of the user's style personality — not just color analysis, but a full identity profile with a primary identity, secondary trait, and natural language description. Examples of style labels: "Soft autumn librarian", "Soft power icon", "The off duty rapper", "Tailored and dangerous".
+<div class="flex flex-col sm:flex-row gap-4 my-8">
+  <span class="flex-1">
+    <img src="/img/projects/fitr/style-dna.PNG" alt="Style DNA profile showing identity-driven style analysis" />
+  </span>
+  <span class="flex-1">
+    <img src="/img/projects/fitr/style-graph.png" alt="Style graph visualization showing identity-driven style profiling" />
+  </span>
+</div>
 
-Style DNA tracks most-liked clothing types, top colors, and wearing patterns to build a evolving profile of who the user is stylistically.
+## The AI Stylist Problem
 
-### AI Stylist
+Building an AI that recommends clothes is straightforward. Building one that recommends clothes for you is harder. The challenge is context. Weather, occasion, what you wore last week, what you are trying to become.
 
-A named AI assistant ("Celine", "Véra", "Maëlle", "Élan", or "SŌEN") with full context about the user and their wardrobe. Provides daily fit recommendations based on weather, trends, wardrobe inventory, and wearing history. The stylist page — called "Atelier", "Studio", or "Maison" — serves as the engine of the app.
+I explored the idea of a named stylist persona with continuity. Someone who remembers that you hated that jacket and learned from it. The technical question was maintaining context across sessions without building a surveillance apparatus. The answer was embeddings. Converting wardrobe items, preferences, and history into vectors that could be compared semantically. PostgreSQL with pgvector turned the database itself into a recommendation engine.
 
-### Inspiration Orbit
+![Personalized recommendations feed showing AI-curated outfit suggestions](/img/projects/fitr/for-you-page.png)
 
-A node graph showing similar users and their fits, with a similarity rank and AI-generated explanations for why certain clothing would work well on you. Discovery through visual connections rather than traditional social feeds.
+## Segmentation as Understanding
 
-## Planned Pages
+One of the most interesting threads was how a system sees clothing. When you photograph an outfit, the image is just pixels. For software to understand it, those pixels need to be segmented. Body from background, upper from lower, garment from skin.
 
-| Page           | Purpose                                                                                                 |
-| -------------- | ------------------------------------------------------------------------------------------------------- |
-| Flow / Home    | TikTok-style feed of fits and inspiration (branded like "FYP" or "Pulse")                               |
-| Notifications  | Split into activity (interactions, events, sales) and messages (DMs)                                    |
-| Drops / Create | Post creation combined with wardrobe management — track purchases, receipts, fabrics, wash instructions |
-| Stylist (AI)   | AI chat, daily recommendations, color analysis, similar user suggestions                                |
-| Profile        | Public/private wardrobe, posts, saved items. Users can hide whole wardrobe or specific items            |
-| Search         | Multi-entity search across posts, users, clothes, brands, and stores with page-specific filters         |
+The segmentation strategy mirrors human perception. We do not see a shirt. We see a shape against a body against a background, and our brain separates those layers automatically. The fashion vision pipeline processes images through multiple stages. Body detection, face analysis, garment classification. Each one peeling back another layer.
 
-## Additional Features
+## Local Intelligence
 
-**Year-End Wrapped** — Spotify Wrapped-style annual style report. Naming options: "Maison: YOU", "The ERA", "The Style Report".
+Cloud APIs are convenient, but they come with tradeoffs. Latency, cost, privacy, dependency. Running models locally changes the calculus.
 
-**Style This Album/Photo** — curate outfits to match music albums, songs, or photos. Take a photo of anything (a plant, a building) and get a fit recommendation that matches the aesthetic.
+Different inference modes balance speed against quality. A quantized model running on-device gives you an answer in milliseconds. Fast enough to feel like the app is thinking with you rather than at you. The tradeoff is precision, but precision is not always what you need. Sometimes "this looks like a blue jacket" is more useful than a high-dimensional embedding vector.
 
-**Style Challenges** — weekly or monthly community challenges. Users submit fits matching a theme or vibe, community votes, winners get featured.
+## Architecture
 
-**Wardrobe Management** — extensive clothing tracking: purchase location, receipts, fabrics, wash instructions, wearing history, and item-level privacy controls.
+The backend is built in Go. The database layer uses PostgreSQL with pgvector, so recommendations emerge from how the data is structured rather than requiring a separate ML service. The mobile frontend was designed in Flutter, chosen for its ability to express a visual language consistently across platforms. The design system needed to feel editorial. More magazine than marketplace.
 
-## Architecture (Planned)
+![User profile page showing wardrobe and style identity](/img/projects/fitr/profile-page.png)
 
-The technical architecture centers on computer vision for clothing detection and pgvector for semantic style matching:
+## What I Learned
 
-- **Go API** — handles image processing pipelines, recommendation engine, and user data
-- **Flutter mobile app** — cross-platform iOS/Android client
-- **PostgreSQL + pgvector** — stores clothing embeddings for semantic similarity search ("find items similar to this jacket")
-- **Redis** — caches user sessions, recommendation results, and Style DNA profiles
-- **Computer Vision** — garment detection, color extraction, pattern recognition from smartphone photos
-
-The recommendation engine would combine Style DNA profiles with weather data, trend signals, and collaborative filtering from similar users in the Inspiration Orbit.
-
-## Challenges (Design Phase)
-
-The core design challenge is making style feel personal rather than prescriptive. Style DNA needs to capture nuance — someone might love minimalist aesthetics but occasionally want bold statement pieces. The AI stylist must balance learning from past behavior while suggesting evolution, not repetition.
-
-The Inspiration Orbit raises interesting UX questions: how do you explain to a user why another person's style is similar to theirs? AI-generated descriptions need to be specific and insightful, not generic. The node graph visualization must feel intuitive, not overwhelming.
-
-Privacy is a major consideration — wardrobes are personal. The system needs granular controls: public vs private wardrobe, hide specific items, control who sees your Style DNA profile.
-
-## Tech stack (Planned)
-
-Go for the API and image processing pipelines. Flutter for the mobile app. PostgreSQL with pgvector for clothing embeddings and semantic search. Redis for caching recommendations and sessions. Computer vision models for automatic clothing detection and classification from photos.
+Fitr taught me that the hardest part of building intelligent systems is not the intelligence. It is the framing. How you define the problem determines what kind of solution is possible. The project also revealed how much of AI product design is about restraint. Sometimes the most powerful thing software can do is ask a good question rather than provide a definitive answer.

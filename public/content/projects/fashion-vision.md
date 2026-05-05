@@ -1,6 +1,6 @@
 ---
 title: Fashion Vision
-description: Computer vision microservice for real-time fashion analysis. Four ML models running concurrently in a 7-stage pipeline — classification, body segmentation, face parsing, and background removal — with three inference modes from ~50ms realtime to high-quality deep analysis.
+description: A computer vision pipeline that learns to see clothing the way humans do. Layers of segmentation, classification, and context.
 year: "2024"
 tags:
   - TypeScript
@@ -12,78 +12,73 @@ tags:
 gitLink: github.com/miniaxolotl/fashion-vision
 ---
 
-## What it does
+## Teaching Machines to See
 
-Fashion Vision is a computer vision microservice that powers Fitr's clothing detection pipeline. It runs four ML models through a 7-stage processing pipeline to analyze fashion images — classifying garments, segmenting body regions, parsing faces for skin tone, and removing backgrounds. The API serves both the inference backend and a real-time webcam demo. Everything runs locally with Transformers.js and ONNX Runtime, no external ML APIs required.
+When you look at a photograph of someone wearing clothes, you do not think about the process. Your brain does the work invisibly. Separating body from background, identifying garments, noting colors and textures, understanding how pieces relate to each other.
 
-## Architecture
+Fashion Vision was an attempt to replicate that process in code. Not to build a product, but to understand what it actually takes to teach a machine to look at an image and say something meaningful about what is in it.
 
-The project is a pnpm monorepo with Turbo orchestration. Two main packages share seven libraries:
+## The Pipeline
 
-| Package           | Purpose                               |
-| ----------------- | ------------------------------------- |
-| `packages/api`    | Hono inference API server (port 7920) |
-| `packages/demo`   | Next.js webcam demo (port 7922)       |
-| `lib/inference`   | ML model pipeline (Transformers.js)   |
-| `lib/shared`      | Zod schemas, TypeScript types, enums  |
-| `lib/database`    | PostgreSQL layer                      |
-| `lib/environment` | Environment configuration             |
-| `lib/hooks`       | React hooks                           |
+The system works in stages, each one building on the last.
 
-Request flow: Hono Route → Controller → Service → Inference Pipeline → ML Models → Response Builder → JSON Response.
+First, find the body. A segmentation model classifies every pixel into categories. Upper body, lower body, face, hair, accessories. The output is a mask, a grayscale map where brightness corresponds to confidence. From that mask, bounding boxes emerge, defining the regions where clothing actually lives.
 
-## The 7-Stage Pipeline
+![Segmentation output showing body region detection and bounding boxes](/img/projects/fashion-vision/segmentation/segmentation_example_1.png)
 
-Each image passes through seven processing stages:
+Then the face. A second segmentation model isolates skin, hair, eyes, lips. The face region is cropped and analyzed separately, because skin tone is context. It affects which colors work, which contrasts read as intentional. The Fitzpatrick scale classification that emerges is not about categorizing people. It is about understanding the canvas the outfit is displayed on.
 
-1. **Body Segmentation** — segformer_b2_clothes detects upper/lower body regions and clothing boundaries
-2. **Face Crop & Background Removal** — extracts face region, optionally removes background
-3. **Face Segmentation** — face-parsing model isolates skin, hair, eyes, mouth regions
-4. **Skin Tone Analysis** — Fitzpatrick scale classification (0–5) from segmented skin regions
-5. **Body Section Classification** — marqo-fashionSigLIP classifies each body section in parallel (garments, colors, styles, materials, patterns)
-6. **Hat & Glasses Detection** — accessory classification for head region
-7. **VL Description** — optional vision-language model generates natural language outfit descriptions
+![Segmentation output showing face and skin region isolation](/img/projects/fashion-vision/segmentation/segmentation_example_2.png)
 
-All stages are non-fatal — the pipeline always returns partial results even if some models fail.
+## Segmentation Strategies
 
-## Inference Modes
+The body segmentation model recognizes seventeen classes. The challenge is grouping them into something useful. Upper body is not a single class. It is a composite of upper clothes, arms, scarf, and the face region that needs to be subtracted out. Lower body combines legs, shoes, skirts, and pants.
 
-Three modes balance speed against quality:
+![Segmentation output showing multi-region detection across full body](/img/projects/fashion-vision/segmentation/segmentation_example_3.png)
 
-| Mode       | Precision    | Description                                              |
-| ---------- | ------------ | -------------------------------------------------------- |
-| `realtime` | Q8 quantized | Continuous polling at ~50ms intervals, lightest models   |
-| `fast`     | Mixed        | Balanced speed and quality — default mode                |
-| `deep`     | FP16         | Full precision with background removal, highest accuracy |
+The strategy was masks and subtraction. The upper body mask includes the face, so the face mask gets subtracted. Hat regions are validated by size. Anything smaller than a threshold is noise, not a hat. This validation layer separates a model that works in theory from one that works on real photographs with bad lighting and cluttered backgrounds.
 
-Models are downloaded on first use from Hugging Face and cached locally in the `models/` directory.
+<div class="flex flex-col sm:flex-row gap-3 my-8">
+  <span class="flex-1">
+    <img src="/img/projects/fashion-vision/pipeline-stages/body-upper-crop.png" alt="Pipeline debug: upper body crop" />
+  </span>
+  <span class="flex-1">
+    <img src="/img/projects/fashion-vision/pipeline-stages/body-upper-mask.png" alt="Pipeline debug: upper body mask extraction" />
+  </span>
+  <span class="flex-1">
+    <img src="/img/projects/fashion-vision/pipeline-stages/body-upper-crop-transparent.png" alt="Pipeline debug: upper body crop with transparent background" />
+  </span>
+</div>
 
-## API
+Clothing classification happens on masked crops. Each section is cropped to its bounding box with the background made transparent. A classifier trained to recognize a denim jacket gives a better answer when it sees the jacket on a transparent background than when it sees the jacket on a person standing in front of a brick wall at golden hour.
 
-The API exposes two endpoints:
+## Zero-Shot Classification
 
-| Endpoint               | Method | Description                                              |
-| ---------------------- | ------ | -------------------------------------------------------- |
-| `/api/v1/classify`     | POST   | Classify fashion items in an image (multipart/form-data) |
-| `/api/v1/health_check` | GET    | Server health and model status                           |
+The classifier uses a SigLIP model pre-trained on fashion data. Instead of predicting from a fixed set of categories, it compares the image against text embeddings of label definitions. "Denim jacket" is not a class ID. It is a vector in the same space as the image, and similarity is measured by cosine distance.
 
-The classify endpoint accepts JPEG, PNG, or WebP images with an optional `mode` query parameter. Response includes per-garment analysis (colors, materials, styles, patterns), body regions with bounding boxes, skin tone, hat/glasses detection, and optional AI-generated descriptions.
+<div class="flex flex-col sm:flex-row gap-4 my-8">
+  <span class="flex-1">
+    <img src="/img/projects/fashion-vision/segmentation/segmentation_example_1.png" alt="Segmentation output showing body region detection and bounding boxes" />
+  </span>
+  <span class="flex-1">
+    <img src="/img/projects/fashion-vision/segmentation/segmentation_example_1-classification.png" alt="Classification output with bounding boxes, garment labels, and confidence scores" />
+  </span>
+</div>
 
-## ML Models
+![Upgraded classification output showing colours, garments, materials, styles, and patterns](/img/projects/fashion-vision/classification/classification_example_1.png)
 
-| Model                | Purpose                          | Source                      |
-| -------------------- | -------------------------------- | --------------------------- |
-| marqo-fashionSigLIP  | Zero-shot fashion classification | Marqo/marqo-fashionSigLIP   |
-| segformer_b2_clothes | Body segmentation                | Xenova/segformer_b2_clothes |
-| face-parsing         | Face/skin region parsing         | Xenova/face-parsing         |
-| RMBG-2.0             | Background removal (deep mode)   | briaai/RMBG-2.0             |
+Adding a new category does not require retraining. It requires a text description. Label definitions include multiple phrases per category, averaged into a single embedding. Categories are classified in parallel. Garments, colors, styles, materials, patterns, occasions. Results are merged with a priority system where upper body classifications take precedence over full-body ones.
 
-## Challenges
+## Running Models Locally
 
-Running four ML models concurrently pushed WebGL memory limits and required careful model quantization and scheduling. The pipeline had to handle partial failures gracefully — if body segmentation succeeds but face parsing fails, the response should still include garment classification and skin tone data.
+Everything runs locally. No cloud APIs, no external ML services. Models load from disk via Transformers.js with WebGPU acceleration. The entire pipeline, four models and seven processing stages, executes in the browser or on a local server.
 
-Keeping inference latency low meant optimizing tensor operations and offloading work efficiently to the GPU. Model loading times required progressive loading strategies with caching so the demo felt responsive from the first visit. The monorepo setup with seven shared libraries needed careful TypeScript path alias configuration and build ordering across packages.
+The tradeoffs are real. Model loading takes time. Memory is limited. WebGL will crash if you are not careful about tensor sizes. But the benefits are significant. Zero latency after warmup, no API costs, complete privacy, and no dependency on anyone else's infrastructure.
 
-## Tech stack
+Different inference modes balance these tradeoffs. Quantized models run faster with less precision. Full-precision models give better results but take longer. The system chooses based on context.
 
-Hono powers the API server running on Bun. Transformers.js loads and runs Hugging Face models via ONNX Runtime Web with WebGL acceleration. Next.js 16 provides the webcam demo frontend. Zod handles runtime validation across the shared type system. Turbo orchestrates the monorepo build pipeline.
+## What I Learned
+
+Building this pipeline was an education in how much we take for granted about our own perception. Every stage, segmentation, cropping, classification, merging, corresponds to something your brain does without effort. The fact that it takes four ML models and seven processing stages to approximate what happens in a few hundred milliseconds of neural processing is humbling.
+
+It also taught me about the gap between model capability and product usefulness. A model that classifies garments with 90% accuracy is impressive on paper. But the last 10% is where the real engineering lives. Unusual poses, layered clothing, poor lighting. Those edge cases are not bugs. They are the texture of the real world.
