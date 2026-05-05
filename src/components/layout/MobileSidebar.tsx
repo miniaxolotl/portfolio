@@ -50,7 +50,10 @@ export const MobileSidebar = observer(({ onNavigate }: MobileSidebarProps) => {
       role="dialog"
       aria-label="Mobile navigation"
     >
-      <div className="flex-1 overflow-y-auto">
+      <div
+        className="flex-1 overflow-y-auto overscroll-y-contain"
+        style={{ WebkitOverflowScrolling: "touch" }}
+      >
         {/* Profile Header */}
         <div className="relative px-6 pt-6 pb-4">
           <DrawerClose className="absolute top-4 right-4 inline-flex items-center justify-center h-8 w-8 rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-colors">

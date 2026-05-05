@@ -62,7 +62,7 @@ export const DrawerContent = forwardRef<
       <DrawerBase.Popup
         ref={ref}
         className={cn(
-          "flex h-full w-[min(85vw,360px)] flex-col rounded-r-2xl bg-background shadow-2xl border-r border-border/50",
+          "flex h-dvh w-[min(85vw,360px)] flex-col rounded-r-2xl bg-background shadow-2xl border-r border-border/50",
           "data-[ending-style]:-translate-x-full data-[starting-style]:-translate-x-full",
           "transition-[transform] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]",
           className,
