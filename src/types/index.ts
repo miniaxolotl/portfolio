@@ -11,6 +11,11 @@ export interface Skill {
   variant: string;
 }
 
+export interface ProjectLink {
+  label: string;
+  url: string;
+}
+
 export interface Project {
   title: string;
   slug: string;
@@ -19,4 +24,6 @@ export interface Project {
   year?: string;
   liveLink?: string;
   gitLink?: string | string[];
+  links?: ProjectLink[];
+  featured?: boolean;
 }

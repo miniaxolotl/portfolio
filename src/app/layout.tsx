@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import profile from "@/data/profile.json";
 import "./globals.css";
@@ -82,6 +83,7 @@ const RootLayout = ({
         Skip to main content
       </a>
       {children}
+      <Analytics />
     </body>
   </html>
 );

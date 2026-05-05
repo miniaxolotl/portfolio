@@ -7,7 +7,8 @@ export interface ProjectFrontmatter {
   description: string;
   year?: string;
   tags?: string[];
-  gitLink?: string;
+  gitLink?: string | string[];
+  links?: { label: string; url: string }[];
 }
 
 export interface ProjectMarkdown {

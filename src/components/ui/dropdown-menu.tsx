@@ -30,12 +30,12 @@ export const DropdownMenuContent = forwardRef<
     <MenuBase.Positioner
       align={align}
       sideOffset={sideOffset}
-      className="outline-none"
+      className="z-[100] outline-none"
     >
       <MenuBase.Popup
         ref={ref}
         className={cn(
-          "z-[100] max-h-[var(--available-height)] min-w-[8rem] overflow-y-auto overflow-x-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-lg outline-none transition-[transform,scale,opacity] data-[ending-style]:scale-95 data-[ending-style]:opacity-0 data-[starting-style]:scale-95 data-[starting-style]:opacity-0",
+          "z-[100] max-h-[var(--available-height)] min-w-[8rem] overflow-y-auto overflow-x-hidden rounded-lg border border-border/80 bg-popover p-1.5 text-popover-foreground shadow-xl outline-none transition-[transform,scale,opacity] data-[ending-style]:scale-95 data-[ending-style]:opacity-0 data-[starting-style]:scale-95 data-[starting-style]:opacity-0",
           className,
         )}
         {...props}

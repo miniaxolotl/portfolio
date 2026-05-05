@@ -8,6 +8,8 @@ tags:
 gitLink: github.com/celestialstag/gobox-server-v1
 ---
 
+![Fashion Vision Logo](/img/logo/gobox.png)
+
 ## What it does
 
 GoBox is a lightweight file sharing daemon built for quick, local-network file transfers. It lets you share files via drag-and-drop, generates short links automatically, and supports password protection and configurable expiration times. The goal was to create a zero-dependency, single-binary solution that just works on any LAN without complex setup.

@@ -29,6 +29,7 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
       tags={frontmatter.tags ?? []}
       year={frontmatter.year}
       gitLink={frontmatter.gitLink}
+      links={frontmatter.links}
       content={content}
     />
   );

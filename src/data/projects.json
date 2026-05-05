@@ -5,7 +5,8 @@
     "description": "MCP-compatible agentic memory service that maintains context continuity across multi-tool AI sessions. RAG pipeline using Qdrant for low-latency semantic retrieval and persistent cross-agent state management.",
     "tags": ["Go", "Qdrant", "MCP", "RAG"],
     "gitLink": "github.com/miniaxolotl/grove",
-    "year": "2025"
+    "year": "2025",
+    "featured": true
   },
   {
     "title": "Fitr",
@@ -20,7 +21,8 @@
       "Computer Vision"
     ],
     "gitLink": "github.com/miniaxolotl/fitr",
-    "year": "2024"
+    "year": "2024",
+    "featured": true
   },
   {
     "title": "Burrow",
@@ -28,14 +30,17 @@
     "description": "Self-hosted reverse proxy alternative to Ngrok for secure local service exposure via HTTPS subdomains and TCP tunnels. Dynamic routing, connection multiplexing, and Redis-backed session caching for fast reconnections.",
     "tags": ["Go", "Nginx", "Redis", "WebSocket"],
     "gitLink": "github.com/miniaxolotl/burrow",
-    "year": "2024"
+    "year": "2024",
+    "featured": true
   },
   {
     "title": "Fashion Vision",
     "slug": "fashion-vision",
-    "description": "Real-time fashion analysis API and webcam demo powered by Hugging Face Transformers.js. Four ML models for fashion classification, body segmentation, face analysis, and background removal.",
+    "description": "Computer vision microservice powering Fitr's clothing detection. Real-time fashion analysis API and webcam demo with four ML models for classification, body segmentation, face analysis, and background removal.",
     "tags": ["TypeScript", "React", "Transformers.js", "Computer Vision"],
-    "gitLink": "github.com/miniaxolotl/fashion-vision"
+    "gitLink": "github.com/miniaxolotl/fashion-vision",
+    "year": "2024",
+    "featured": true
   },
   {
     "title": "InkByte",
@@ -43,7 +48,8 @@
     "description": "End-to-end link shortener with server-side rendering, REST APIs, and database-driven routing. Privacy-first analytics with edge functions for global low-latency and custom branded domains.",
     "tags": ["TypeScript", "Next.js", "PostgreSQL", "SSR"],
     "gitLink": "github.com/miniaxolotl/inkbyte",
-    "year": "2021"
+    "year": "2021",
+    "featured": true
   },
   {
     "title": "GoBox",
@@ -58,6 +64,34 @@
     "slug": "paint-opengl",
     "description": "Interactive paint application built with modern OpenGL. Layer-based editing, brush system, and real-time rendering.",
     "tags": ["C++", "OpenGL", "GLSL"],
-    "gitLink": "github.com/miniaxolotl/paint-opengl"
+    "gitLink": "github.com/miniaxolotl/paint-opengl",
+    "year": "2019"
+  },
+  {
+    "title": "Sorbet",
+    "slug": "sorbet",
+    "description": "Lightweight 2D game engine written in C with SDL2. Scene management, entity component system, and hardware-accelerated rendering for rapid game prototyping.",
+    "tags": ["C", "SDL2", "Game Engine"],
+    "gitLink": "github.com/miniaxolotl/sorbet",
+    "year": "2019"
+  },
+  {
+    "title": "Shrymp",
+    "slug": "shrymp",
+    "description": "Original link shortener that evolved into InkByte. REST API with database-driven routing, custom domain support, and a minimal web dashboard.",
+    "tags": ["TypeScript", "Express.js", "MongoDB"],
+    "links": [
+      { "label": "Server", "url": "github.com/theluckyegg/shrymp-server" },
+      { "label": "Client", "url": "github.com/miniaxolotl/shrymp-web" }
+    ],
+    "year": "2020"
+  },
+  {
+    "title": "Snake Game",
+    "slug": "snake-game",
+    "description": "Arduino-based snake game with microcontroller input handling, LED matrix display, and real-time game loop. Hardware-level embedded programming project.",
+    "tags": ["C", "Arduino", "Embedded"],
+    "gitLink": "github.com/miniaxolotl/snake-game",
+    "year": "2022"
   }
 ]

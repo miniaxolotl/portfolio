@@ -1,6 +1,7 @@
 "use client";
 
 import { Box, Container, Network, Shield, Zap } from "lucide-react";
+import { BurrowSetupSection } from "@/components/project/BurrowSetupSection";
 import { CompactFeatureCard } from "@/components/project/CompactFeatureCard";
 import { ProjectPageLayout } from "@/components/project/ProjectPageLayout";
 import burrowData from "@/data/burrow-project.json";
@@ -39,14 +40,7 @@ export const BurrowPageClient = () => (
     name={burrowData.name}
     tagline={burrowData.tagline}
     description={burrowData.description}
-    client={
-      burrowData.client ? { ...burrowData.client, label: "Client" } : undefined
-    }
-    server={
-      burrowData.server ? { ...burrowData.server, label: "Server" } : undefined
-    }
-    links={burrowData.links}
-    tags={burrowData.techStack}
+    installContent={<BurrowSetupSection />}
     sectionTitle="Why Burrow?"
   >
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

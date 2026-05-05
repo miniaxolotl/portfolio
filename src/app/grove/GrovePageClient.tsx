@@ -2,6 +2,7 @@
 
 import { Boxes, Brain, Database, Link2, Sparkles } from "lucide-react";
 import { CompactFeatureCard } from "@/components/project/CompactFeatureCard";
+import { GroveSetupSection } from "@/components/project/GroveSetupSection";
 import { ProjectPageLayout } from "@/components/project/ProjectPageLayout";
 import groveData from "@/data/grove-project.json";
 
@@ -38,14 +39,7 @@ export const GrovePageClient = () => (
     name={groveData.name}
     tagline={groveData.tagline}
     description={groveData.description}
-    client={
-      groveData.client ? { ...groveData.client, label: "Client" } : undefined
-    }
-    server={
-      groveData.server ? { ...groveData.server, label: "Server" } : undefined
-    }
-    links={groveData.links}
-    tags={groveData.techStack}
+    installContent={<GroveSetupSection />}
     sectionTitle="Why Grove?"
   >
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

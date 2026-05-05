@@ -1,7 +1,7 @@
 ---
 title: Paint OpenGL
 description: Interactive paint application built with modern OpenGL. Layer-based editing, brush system, and real-time rendering.
-year: "2017"
+year: "2019"
 tags:
   - C++
   - OpenGL

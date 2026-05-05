@@ -1,19 +1,18 @@
 ---
 title: Fashion Vision
-description: Real-time fashion analysis API and webcam demo powered by Hugging Face Transformers.js. Four ML models for fashion classification, body segmentation, face analysis, and background removal.
+description: Computer vision microservice powering Fitr's clothing detection. Real-time fashion analysis API and webcam demo with four ML models for classification, body segmentation, face analysis, and background removal.
 year: "2024"
 tags:
   - TypeScript
   - React
   - Transformers.js
+  - Computer Vision
 gitLink: github.com/miniaxolotl/fashion-vision
 ---
 
 ## What it does
 
-Fashion Vision runs multiple ML models directly in the browser to analyze fashion in real time. It classifies clothing items, segments body regions, analyzes facial attributes, and removes backgrounds from webcam input. Everything happens client-side with no server inference, making it private and instant.
-
-![Fashion Vision Logo](/img/logo/gobox.png)
+Fashion Vision is a computer vision microservice that powers Fitr's clothing detection pipeline. It runs multiple ML models directly in the browser to analyze fashion in real time — classifying clothing items, segmenting body regions, analyzing facial attributes, and removing backgrounds from webcam input. Everything happens client-side with no server inference, making it private and instant.
 
 ## Features
 

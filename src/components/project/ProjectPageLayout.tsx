@@ -1,6 +1,7 @@
 "use client";
 
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Package } from "lucide-react";
+import { LuGithub } from "react-icons/lu";
 import { PageShell } from "@/components/layout/PageShell";
 import { PackageInstall } from "@/components/project/PackageInstall";
 import { ProjectTag } from "@/components/project/ProjectTag";
@@ -17,12 +18,20 @@ interface ProjectLink {
   url: string;
 }
 
+const LinkIcon = ({ label }: { label: string }) => {
+  if (label === "GitHub") return <LuGithub size={14} />;
+  if (label === "npm" || label === "OpenCode Plugin")
+    return <Package size={14} />;
+  return <ExternalLink size={12} />;
+};
+
 interface ProjectPageLayoutProps {
   name: string;
   tagline: string;
   description: string;
   client?: InstallConfig;
   server?: InstallConfig;
+  installContent?: React.ReactNode;
   links?: ProjectLink[];
   tags?: string[];
   sectionTitle: string;
@@ -35,6 +44,7 @@ export const ProjectPageLayout = ({
   description,
   client,
   server,
+  installContent,
   links,
   tags,
   sectionTitle,
@@ -59,36 +69,40 @@ export const ProjectPageLayout = ({
             {description}
           </p>
 
-          <div className="space-y-6">
-            {client && (
-              <div>
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                    {client.label}
-                  </span>
+          {installContent ? (
+            <div className="space-y-6">{installContent}</div>
+          ) : (
+            <div className="space-y-6">
+              {client && (
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                      {client.label}
+                    </span>
+                  </div>
+                  <PackageInstall
+                    npmPackage={client.npmPackage}
+                    dockerImage={client.dockerImage}
+                    commands={client.commands}
+                  />
                 </div>
-                <PackageInstall
-                  npmPackage={client.npmPackage}
-                  dockerImage={client.dockerImage}
-                  commands={client.commands}
-                />
-              </div>
-            )}
-            {server && (
-              <div>
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                    {server.label}
-                  </span>
+              )}
+              {server && (
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                      {server.label}
+                    </span>
+                  </div>
+                  <PackageInstall
+                    npmPackage={server.npmPackage}
+                    dockerImage={server.dockerImage}
+                    commands={server.commands}
+                  />
                 </div>
-                <PackageInstall
-                  npmPackage={server.npmPackage}
-                  dockerImage={server.dockerImage}
-                  commands={server.commands}
-                />
-              </div>
-            )}
-          </div>
+              )}
+            </div>
+          )}
 
           {links && links.length > 0 && (
             <div className="flex flex-wrap gap-3 mt-6">
@@ -100,8 +114,8 @@ export const ProjectPageLayout = ({
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium bg-muted hover:bg-muted/80 transition-colors"
                 >
+                  <LinkIcon label={link.label} />
                   {link.label}
-                  <ExternalLink size={12} />
                 </a>
               ))}
             </div>

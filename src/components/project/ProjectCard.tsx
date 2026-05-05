@@ -31,7 +31,19 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
             </span>
           )}
         </div>
-        <div className="flex items-center gap-1 shrink-0">
+        <div className="flex items-center gap-1.5 shrink-0">
+          {project.links?.map((link) => (
+            <a
+              key={link.url}
+              href={ensureProtocol(link.url)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+            >
+              <LuGithub size={12} />
+              {link.label}
+            </a>
+          ))}
           {gitLinks.map((link) => (
             <a
               key={link}
