@@ -48,6 +48,26 @@ Read `node_modules/next/dist/docs/` before writing code.
 - Icons: `lucide-react` (standard), `react-icons/lu` (brands), `react-icons/rx` (Discord)
 - Use `className` not `class`, named exports for components
 
+## Commit Style
+
+All commits MUST follow this format. Prefix with type and optional scope.
+
+```
+feature: add dark mode toggle
+feature(blog): rewrite inkbyte post
+chore: update dependencies
+chore(lint): fix biome warnings
+chore(deps): bump next to 16.2.4
+bug: fix drawer close on escape
+bug(test): stabilize flaky a11y test
+style: format with biome
+refactor: extract sidebar component
+docs: update workspace readme
+```
+
+Types: `feature`, `bug`, `chore`, `style`, `refactor`, `docs`, `test`
+Scopes (optional): `blog`, `lint`, `deps`, `test`, `ui`, `layout`, `api`
+
 ## Planning Protocol
 
 ### Requirement: Plan Before Implementing
