@@ -219,6 +219,28 @@ Every plan file MUST be verbose and descriptive. Do not write bare bullet lists.
 6. Update `plans/status.md` as status changes.
 7. On completion, update both the plan file and `status.md` to `Completed`.
 
+## Commit Style
+
+All commits MUST follow this format. Prefix with type and optional scope.
+
+```
+feature: add dark mode toggle
+feature(blog): rewrite inkbyte post
+chore: update dependencies
+chore(lint): fix biome warnings
+chore(deps): bump next to 16.2.4
+bug: fix drawer close on escape
+bug(test): stabilize flaky a11y test
+style: format with biome
+refactor: extract sidebar component
+docs: update workspace readme
+```
+
+Types: `feature`, `bug`, `chore`, `style`, `refactor`, `docs`, `test`
+Scopes (optional): `blog`, `lint`, `deps`, `test`, `ui`, `layout`, `api`
+
+---
+
 ## Next.js Agent Warning
 
 > This is **NOT** the Next.js you know. APIs and conventions may differ from training data. Read `node_modules/next/dist/docs/` before writing code. Heed deprecation notices.
