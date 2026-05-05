@@ -2,6 +2,8 @@ import type { Project } from "@/types";
 
 export const featuredSlugs = new Set(["burrow", "grove"]);
 
+export const blogSlugs = new Set(["fitr", "fashion-vision", "inkbyte"]);
+
 export const tagColors = [
   "bg-[var(--badge-olive-bg)] text-[var(--badge-olive-text)]",
   "bg-[var(--badge-copper-bg)] text-[var(--badge-copper-text)]",

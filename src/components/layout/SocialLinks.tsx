@@ -1,9 +1,7 @@
 "use client";
 
 import { SocialIcon } from "@/components/layout/SocialIcon";
-import profile from "@/data/profile.json";
 import socials from "@/data/socials.json";
-import { useClipboard } from "@/hooks/useClipboard";
 import { cn } from "@/lib/utils";
 
 interface SocialLinksProps {
@@ -12,14 +10,7 @@ interface SocialLinksProps {
 }
 
 export const SocialLinks = ({ variant, className }: SocialLinksProps) => {
-  const { copied, copy } = useClipboard();
-
-  const handleClick = (e: React.MouseEvent, copyToClipboard?: boolean) => {
-    if (copyToClipboard) {
-      e.preventDefault();
-      copy(profile.discord);
-    }
-  };
+  const nonDiscordSocials = socials.filter((s) => !s.copyToClipboard);
 
   return (
     <div className={cn("pt-4", className)}>
@@ -28,11 +19,10 @@ export const SocialLinks = ({ variant, className }: SocialLinksProps) => {
       </p>
       {variant === "icon-only" ? (
         <div className="flex flex-wrap gap-2">
-          {socials.map((social) => (
+          {nonDiscordSocials.map((social) => (
             <a
               key={social.label}
-              href={social.copyToClipboard ? "#" : social.href}
-              onClick={(e) => handleClick(e, social.copyToClipboard)}
+              href={social.href}
               className="flex items-center justify-center w-9 h-9 rounded-lg bg-muted hover:bg-accent hover:text-accent-foreground transition-colors"
               aria-label={social.label}
               title={social.label}
@@ -43,22 +33,17 @@ export const SocialLinks = ({ variant, className }: SocialLinksProps) => {
         </div>
       ) : (
         <div className="flex flex-col gap-1">
-          {socials.map((social) => (
+          {nonDiscordSocials.map((social) => (
             <a
               key={social.label}
-              href={social.copyToClipboard ? "#" : social.href}
-              onClick={(e) => handleClick(e, social.copyToClipboard)}
+              href={social.href}
               className="group flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-muted transition-colors"
-              aria-label={
-                social.copyToClipboard ? `Copy ${social.label}` : social.label
-              }
+              aria-label={social.label}
             >
               <span className="flex items-center justify-center w-8 h-8 rounded-md bg-muted text-muted-foreground group-hover:bg-background group-hover:text-foreground transition-colors">
                 <SocialIcon iconName={social.iconName} size={16} />
               </span>
-              <span className="text-sm font-medium">
-                {social.copyToClipboard && copied ? "Copied!" : social.label}
-              </span>
+              <span className="text-sm font-medium">{social.label}</span>
             </a>
           ))}
         </div>

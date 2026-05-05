@@ -3,9 +3,11 @@ title: Grove
 description: MCP-compatible memory server for AI coding tools. Semantic search, entity graphs, and importance-based recall to solve context window fatigue.
 year: "2025"
 tags:
-  - Go
+  - TypeScript
+  - Node.js
   - Qdrant
   - MCP
+  - ONNX
 gitLink: github.com/miniaxolotl/grove
 ---
 
@@ -23,4 +25,4 @@ Designing a memory system that feels natural to AI agents required balancing rec
 
 ## Tech stack
 
-Go powers the server, MCP protocol handlers, and embedding pipelines. Qdrant provides vector search and storage. ONNX Runtime runs local embedding models. The MCP layer exposes memory operations as standard tool calls that any compatible client can invoke.
+TypeScript and Node.js power the MCP server, protocol handlers, and embedding pipelines. Qdrant provides vector search and storage. ONNX Runtime runs local embedding models (Xenova/all-MiniLM-L6-v2). The MCP layer, built with fastmcp, exposes memory operations as standard tool calls that any compatible client can invoke.

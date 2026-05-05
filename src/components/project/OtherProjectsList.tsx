@@ -3,7 +3,13 @@ import projects from "@/data/projects.json";
 import { ensureProtocol } from "@/lib/utils";
 
 export const OtherProjectsList = () => {
-  const other = projects.filter((p) => !p.featured);
+  const other = projects
+    .filter((p) => !p.featured)
+    .sort((a, b) => {
+      const yearA = a.year ? parseInt(a.year, 10) : 0;
+      const yearB = b.year ? parseInt(b.year, 10) : 0;
+      return yearB - yearA;
+    });
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">

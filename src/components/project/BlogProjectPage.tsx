@@ -17,6 +17,7 @@ interface BlogProjectPageProps {
   gitLink?: string | string[];
   links?: { label: string; url: string }[];
   content: string;
+  hasSidebar?: boolean;
 }
 
 const MarkdownComponents = {
@@ -191,11 +192,12 @@ export const BlogProjectPage = ({
   gitLink,
   links,
   content,
+  hasSidebar,
 }: BlogProjectPageProps) => {
   const gitLinks = Array.isArray(gitLink) ? gitLink : gitLink ? [gitLink] : [];
 
   return (
-    <PageShell>
+    <PageShell hasSidebar={hasSidebar}>
       <article className="px-4 py-10 sm:px-6 sm:py-16 md:py-28 md:px-8 lg:px-12">
         <div className="max-w-3xl mx-auto">
           <header className="mb-12 md:mb-16">

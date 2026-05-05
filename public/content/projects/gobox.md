@@ -8,7 +8,7 @@ tags:
 gitLink: github.com/celestialstag/gobox-server-v1
 ---
 
-![Fashion Vision Logo](/img/logo/gobox.png)
+![GoBox Logo](/img/logo/gobox.png)
 
 ## What it does
 

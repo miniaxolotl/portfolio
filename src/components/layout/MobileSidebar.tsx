@@ -1,10 +1,20 @@
 "use client";
 
-import { Brain, Download, Globe, Home, Moon, Sun, X } from "lucide-react";
+import {
+  ArrowDownUp,
+  Download,
+  FolderOpen,
+  Home,
+  Moon,
+  Sun,
+  TreePine,
+  X,
+} from "lucide-react";
 import { observer } from "mobx-react-lite";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { DiscordCopyButton } from "@/components/layout/DiscordCopyButton";
 import { ProfileSection } from "@/components/layout/ProfileSection";
 import { SidebarNavLink } from "@/components/layout/SidebarNavLink";
 import { SocialLinks } from "@/components/layout/SocialLinks";
@@ -20,8 +30,9 @@ interface MobileSidebarProps {
 
 const pageNavItems = [
   { href: "/", label: "Portfolio", icon: Home },
-  { href: "/burrow", label: "Burrow", icon: Globe },
-  { href: "/grove", label: "Grove", icon: Brain },
+  { href: "/burrow", label: "Burrow", icon: ArrowDownUp },
+  { href: "/grove", label: "Grove", icon: TreePine },
+  { href: "/projects", label: "Projects", icon: FolderOpen },
 ];
 
 export const MobileSidebar = observer(({ onNavigate }: MobileSidebarProps) => {
@@ -100,24 +111,26 @@ export const MobileSidebar = observer(({ onNavigate }: MobileSidebarProps) => {
           </nav>
         </div>
 
-        {/* Sections */}
-        <div className="px-4 py-2">
-          <p className="text-xs font-medium text-muted-foreground/60 uppercase tracking-wider mb-2 px-2">
-            On this page
-          </p>
-          <nav className="flex flex-col gap-0.5" aria-label="Page sections">
-            {navLinks.map((link) => (
-              <SidebarNavLink
-                key={link.href}
-                href={link.href}
-                label={link.label}
-                icon={link.icon}
-                isActive={activeSection === link.href.replace("/#", "")}
-                onClick={onNavigate}
-              />
-            ))}
-          </nav>
-        </div>
+        {/* Sections (home page only) */}
+        {pathname === "/" && (
+          <div className="px-4 py-2">
+            <p className="text-xs font-medium text-muted-foreground/60 uppercase tracking-wider mb-2 px-2">
+              On this page
+            </p>
+            <nav className="flex flex-col gap-0.5" aria-label="Page sections">
+              {navLinks.map((link) => (
+                <SidebarNavLink
+                  key={link.href}
+                  href={link.href}
+                  label={link.label}
+                  icon={link.icon}
+                  isActive={activeSection === link.href.replace("/#", "")}
+                  onClick={onNavigate}
+                />
+              ))}
+            </nav>
+          </div>
+        )}
 
         {/* Actions */}
         <div className="px-4 py-2">
@@ -167,6 +180,9 @@ export const MobileSidebar = observer(({ onNavigate }: MobileSidebarProps) => {
         {/* Socials */}
         <div className="px-4 py-4 mt-2 border-t border-border/50">
           <SocialLinks variant="icon-only" className="pt-0" />
+          <div className="mt-3">
+            <DiscordCopyButton variant="drawer" />
+          </div>
         </div>
       </div>
     </div>

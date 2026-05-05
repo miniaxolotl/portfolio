@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { LuGithub } from "react-icons/lu";
 import { ProjectTag } from "@/components/project/ProjectTag";
-import { getProjectHref } from "@/lib/projects";
+import { blogSlugs, getProjectHref } from "@/lib/projects";
 import { ensureProtocol } from "@/lib/utils";
 import type { Project } from "@/types";
 
@@ -69,17 +69,19 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
         ))}
       </div>
 
-      <div className="pt-1">
-        <Link
-          href={href}
-          className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-        >
-          Read more
-          <span className="ml-1 transition-transform group-hover:translate-x-0.5">
-            &rarr;
-          </span>
-        </Link>
-      </div>
+      {blogSlugs.has(project.slug) && (
+        <div className="pt-1">
+          <Link
+            href={href}
+            className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Read more
+            <span className="ml-1 transition-transform group-hover:translate-x-0.5">
+              &rarr;
+            </span>
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

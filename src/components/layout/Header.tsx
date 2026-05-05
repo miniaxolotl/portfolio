@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import profile from "@/data/profile.json";
 import projects from "@/data/projects.json";
-import { featuredSlugs } from "@/lib/projects";
+import { blogSlugs, featuredSlugs, getProjectHref } from "@/lib/projects";
 import { cn } from "@/lib/utils";
 import { drawerStore, themeStore } from "@/stores";
 import { MobileSidebar } from "./MobileSidebar";
@@ -33,7 +33,13 @@ const navItems = [
   { href: "/grove", label: "grove" },
 ];
 
-const dropdownProjects = projects.filter((p) => !featuredSlugs.has(p.slug));
+const dropdownProjects = projects
+  .filter((p) => blogSlugs.has(p.slug))
+  .sort((a, b) => {
+    const yearA = a.year ? parseInt(a.year, 10) : 0;
+    const yearB = b.year ? parseInt(b.year, 10) : 0;
+    return yearB - yearA;
+  });
 
 const navLinkBase =
   "inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors outline-none hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50";
@@ -115,7 +121,7 @@ export const Header = observer(() => {
                 className={cn(
                   navLinkBase,
                   dropdownProjects.some(
-                    (p) => pathname === `/projects/${p.slug}`,
+                    (p) => pathname === getProjectHref(p),
                   ) && activeNavLink,
                 )}
               >
@@ -145,10 +151,10 @@ export const Header = observer(() => {
                   {dropdownProjects.map((project) => (
                     <DropdownMenuItem
                       key={project.slug}
-                      href={`/projects/${project.slug}`}
+                      href={getProjectHref(project)}
                       className={cn(
                         "flex items-center justify-between rounded-md px-2.5 py-2 text-sm cursor-pointer",
-                        pathname === `/projects/${project.slug}`
+                        pathname === getProjectHref(project)
                           ? "bg-muted font-medium text-foreground"
                           : "text-popover-foreground",
                       )}
