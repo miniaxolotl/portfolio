@@ -11,15 +11,11 @@ test.describe("Theme Mode Switch", () => {
     await expect(themeToggle).toBeVisible();
 
     const html = page.locator("html");
-    const initiallyDark = await html.evaluate((el) =>
-      el.classList.contains("dark"),
-    );
+    const initiallyDark = await html.evaluate((el) => el.classList.contains("dark"));
 
     await themeToggle.click();
 
-    const afterClickDark = await html.evaluate((el) =>
-      el.classList.contains("dark"),
-    );
+    const afterClickDark = await html.evaluate((el) => el.classList.contains("dark"));
     expect(afterClickDark).not.toBe(initiallyDark);
   });
 
@@ -30,9 +26,7 @@ test.describe("Theme Mode Switch", () => {
     await page.reload();
 
     const html = page.locator("html");
-    const hasDarkClass = await html.evaluate((el) =>
-      el.classList.contains("dark"),
-    );
+    const hasDarkClass = await html.evaluate((el) => el.classList.contains("dark"));
     expect(hasDarkClass).toBe(false);
   });
 
@@ -44,29 +38,18 @@ test.describe("Theme Mode Switch", () => {
     await page.reload();
 
     const themeToggle = page.getByRole("button", { name: /toggle theme/i });
-    await expect(themeToggle).toHaveAttribute(
-      "aria-label",
-      /currently dark mode/,
-    );
+    await expect(themeToggle).toHaveAttribute("aria-label", /currently dark mode/);
   });
 
   test("should show moon icon in light mode", async ({ page }) => {
     const themeToggle = page.getByRole("button", { name: /toggle theme/i });
     await themeToggle.click();
 
-    await expect(themeToggle).toHaveAttribute(
-      "aria-label",
-      /currently light mode/,
-    );
+    await expect(themeToggle).toHaveAttribute("aria-label", /currently light mode/);
   });
 
-  test("should have accessible aria-label describing current mode", async ({
-    page,
-  }) => {
+  test("should have accessible aria-label describing current mode", async ({ page }) => {
     const themeToggle = page.getByRole("button", { name: /toggle theme/i });
-    await expect(themeToggle).toHaveAttribute(
-      "aria-label",
-      /currently (dark|light) mode/,
-    );
+    await expect(themeToggle).toHaveAttribute("aria-label", /currently (dark|light) mode/);
   });
 });
