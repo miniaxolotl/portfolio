@@ -17,11 +17,17 @@ export const Section = ({
 }: SectionProps) => (
   <section
     id={id}
-    className={cn("px-8 py-20 md:py-28 md:px-16 lg:px-24", className)}
+    className={cn(
+      "px-4 py-12 sm:px-6 sm:py-16 md:py-28 md:px-8 lg:px-12",
+      className,
+    )}
   >
-    <div className="max-w-4xl">
+    <div className="max-w-4xl mx-auto">
       <h2
-        className={cn("text-3xl md:text-4xl font-bold mb-10", titleClassName)}
+        className={cn(
+          "text-2xl sm:text-3xl md:text-4xl font-bold mb-8 sm:mb-10",
+          titleClassName,
+        )}
       >
         {title}
       </h2>

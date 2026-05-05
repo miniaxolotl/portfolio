@@ -1,44 +1,56 @@
 [
   {
     "title": "Grove",
+    "slug": "grove",
     "description": "MCP-compatible memory server for AI coding tools. Semantic search, entity graphs, and importance-based recall to solve context window fatigue.",
     "tags": ["Go", "Qdrant", "MCP"],
-    "gitLink": "github.com/miniaxolotl/grove"
-  },
-  {
-    "title": "Burrow",
-    "description": "Open-source tunneling tool for permanent, secure URLs. HTTPS subdomains, TCP tunnels, and WebSocket multiplexing. No ngrok limits or pro fees.",
-    "tags": ["Go", "WebSocket", "Redis"],
-    "gitLink": "github.com/miniaxolotl/burrow"
+    "gitLink": "github.com/miniaxolotl/grove",
+    "year": "2025"
   },
   {
     "title": "Fitr",
+    "slug": "fitr",
     "description": "AI wardrobe intelligence. Computer vision detects clothing, learns your style, and suggests capsule wardrobes with outfit tracking.",
     "tags": ["Go", "Flutter", "Postgres", "pgvector", "Redis"],
-    "gitLink": "github.com/miniaxolotl/fitr"
+    "gitLink": "github.com/miniaxolotl/fitr",
+    "year": "2024"
+  },
+  {
+    "title": "Burrow",
+    "slug": "burrow",
+    "description": "Open-source tunneling tool for permanent, secure URLs. HTTPS subdomains, TCP tunnels, and WebSocket multiplexing. No ngrok limits or pro fees.",
+    "tags": ["Go", "WebSocket", "Redis"],
+    "gitLink": "github.com/miniaxolotl/burrow",
+    "year": "2024"
   },
   {
     "title": "Fashion Vision",
+    "slug": "fashion-vision",
     "description": "Real-time fashion analysis API and webcam demo powered by Hugging Face Transformers.js. Four ML models for fashion classification, body segmentation, face analysis, and background removal.",
     "tags": ["TypeScript", "React", "Transformers.js"],
     "gitLink": "github.com/miniaxolotl/fashion-vision"
   },
   {
-    "title": "Paint OpenGL",
-    "description": "Interactive paint application built with modern OpenGL. Layer-based editing, brush system, and real-time rendering.",
-    "tags": ["C++", "OpenGL", "GLSL"],
-    "gitLink": "github.com/miniaxolotl/paint-opengl"
-  },
-  {
     "title": "InkByte",
+    "slug": "inkbyte",
     "description": "Minimal, fast link shortener with privacy-first analytics. Edge functions for global low-latency, custom branded domains, no tracking pixels.",
     "tags": ["TypeScript", "Next.js", "PostgreSQL"],
-    "gitLink": "github.com/miniaxolotl/inkbyte"
+    "gitLink": "github.com/miniaxolotl/inkbyte",
+    "year": "2021"
   },
   {
     "title": "GoBox",
+    "slug": "gobox",
     "description": "Lightweight file sharing daemon with resumable uploads. Drag-and-drop sharing, password-protected links, configurable expiration on LAN.",
     "tags": ["Go", "JavaScript"],
-    "gitLink": "github.com/celestialstag/gobox-server-v1"
+    "gitLink": "github.com/celestialstag/gobox-server-v1",
+    "year": "2017"
+  },
+  {
+    "title": "Paint OpenGL",
+    "slug": "paint-opengl",
+    "description": "Interactive paint application built with modern OpenGL. Layer-based editing, brush system, and real-time rendering.",
+    "tags": ["C++", "OpenGL", "GLSL"],
+    "gitLink": "github.com/miniaxolotl/paint-opengl"
   }
 ]

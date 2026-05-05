@@ -1,7 +1,3 @@
-import { ThemeMode } from "@/enums/theme";
-
-export { ThemeMode };
-
 export interface Social {
   label: string;
   href: string;
@@ -17,8 +13,10 @@ export interface Skill {
 
 export interface Project {
   title: string;
+  slug: string;
   description: string;
   tags: string[];
+  year?: string;
   liveLink?: string;
   gitLink?: string | string[];
 }

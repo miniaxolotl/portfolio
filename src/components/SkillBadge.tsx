@@ -5,25 +5,23 @@ interface SkillBadgeProps {
   variant?: string;
 }
 
+const badgeStyles: Record<string, string> = {
+  muted_olive: "bg-[var(--badge-olive-bg)] text-[var(--badge-olive-text)]",
+  faded_copper: "bg-[var(--badge-copper-bg)] text-[var(--badge-copper-text)]",
+  ash_brown: "bg-[var(--badge-brown-bg)] text-[var(--badge-brown-text)]",
+  vanilla_cream: "bg-[var(--badge-cream-bg)] text-[var(--badge-cream-text)]",
+};
+
 export const SkillBadge = ({
   children,
   variant = "muted_olive",
-}: SkillBadgeProps) => {
-  return (
-    <span
-      className={cn(
-        "px-3 py-1 text-sm font-medium rounded-full",
-        variant === "muted_olive" &&
-          "bg-muted-olive/15 text-foreground border border-muted-olive/30",
-        variant === "faded_copper" &&
-          "bg-faded-copper/15 text-foreground border border-faded-copper/30",
-        variant === "ash_brown" &&
-          "bg-ash-brown/15 text-foreground border border-ash-brown/30",
-        variant === "vanilla_cream" &&
-          "bg-vanilla-cream/15 text-foreground border border-vanilla-cream/30",
-      )}
-    >
-      {children}
-    </span>
-  );
-};
+}: SkillBadgeProps) => (
+  <span
+    className={cn(
+      "px-2.5 py-1 text-xs font-medium rounded-md",
+      badgeStyles[variant] || badgeStyles.muted_olive,
+    )}
+  >
+    {children}
+  </span>
+);

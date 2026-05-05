@@ -2,6 +2,7 @@ import { expect, test } from "@playwright/test";
 
 test.describe("Theme Mode Switch", () => {
   test.beforeEach(async ({ page }) => {
+    await page.emulateMedia({ colorScheme: "dark" });
     await page.goto("/");
   });
 
@@ -36,8 +37,12 @@ test.describe("Theme Mode Switch", () => {
   });
 
   test("should show sun icon in dark mode", async ({ page }) => {
-    await page.evaluate(() => localStorage.setItem("theme", "dark"));
+    await page.evaluate(() => {
+      // biome-ignore lint/suspicious/noDocumentCookie: Test sets theme cookie
+      document.cookie = "theme=dark;path=/;max-age=31536000";
+    });
     await page.reload();
+
     const themeToggle = page.getByRole("button", { name: /toggle theme/i });
     await expect(themeToggle).toHaveAttribute(
       "aria-label",

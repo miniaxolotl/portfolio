@@ -52,6 +52,12 @@
     "serve": "grove serve",
     "stdio": "grove"
   },
+  "installCommands": {
+    "bun": "bun add -g @miniaxolotl/grove",
+    "npm": "npm i -g @miniaxolotl/grove",
+    "pnpm": "pnpm add -g @miniaxolotl/grove",
+    "docker": "docker run -p 5262:5262 miniaxolotl/grove"
+  },
   "guides": [
     "Installation",
     "Configuration",

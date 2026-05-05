@@ -68,7 +68,7 @@ test.describe("Mobile Drawer", () => {
     const drawer = page.locator("[data-vaul-drawer]");
     await expect(drawer).toBeVisible();
 
-    const aboutLink = drawer.getByRole("link", { name: /about me/i });
+    const aboutLink = drawer.getByRole("link", { name: /about/i });
     const projectsLink = drawer.getByRole("link", { name: /projects/i });
     await expect(aboutLink).toBeVisible();
     await expect(projectsLink).toBeVisible();
@@ -115,12 +115,17 @@ test.describe("Mobile Drawer", () => {
   test("should show nav links on desktop", async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 720 });
 
-    const portfolioLink = page.getByRole("link", { name: /portfolio/i });
-    const burrowLink = page.getByRole("link", { name: /burrow/i });
-    const groveLink = page.getByRole("link", { name: /grove/i });
+    const mainNav = page.locator('nav[aria-label="Main navigation"]');
+    const portfolioLink = mainNav.getByRole("link", { name: /portfolio/i });
+    const burrowLink = mainNav.getByRole("link", { name: /burrow/i });
+    const groveLink = mainNav.getByRole("link", { name: /grove/i });
+    const projectsTrigger = mainNav.getByRole("button", {
+      name: /projects/i,
+    });
 
     await expect(portfolioLink).toBeVisible();
     await expect(burrowLink).toBeVisible();
     await expect(groveLink).toBeVisible();
+    await expect(projectsTrigger).toBeVisible();
   });
 });

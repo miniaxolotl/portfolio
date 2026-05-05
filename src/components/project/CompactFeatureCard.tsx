@@ -15,7 +15,7 @@ export const CompactFeatureCard = ({
   <Card variant="filled" className="h-full">
     <CardContent className="p-5">
       <div className="flex items-start gap-4">
-        <div className="p-2.5 rounded-lg bg-accent/10 shrink-0">
+        <div className="p-2.5 rounded-lg bg-accent shrink-0">
           <Icon className="size-5 text-accent-foreground" />
         </div>
         <div>

@@ -2,7 +2,13 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
-  allowedDevOrigins: ["mawa.dev", "*.mawa.dev", "localhost", "127.0.0.1"],
+  allowedDevOrigins: [
+    "mawa.dev",
+    "*.mawa.dev",
+    "192.168.1.195",
+    "localhost",
+    "127.0.0.1",
+  ],
 };
 
 export default nextConfig;

@@ -61,6 +61,26 @@
   --color-sage-800: #364127;
   --color-sage-900: #1a2114;
 
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 
@@ -90,6 +110,28 @@
   --ring: #8b9a6b;
   --text: #1a1512;
   --text-secondary: #625548;
+  --destructive: #dc2626;
+  --destructive-foreground: #faf8f5;
+
+  --badge-olive-bg: #e4e8da;
+  --badge-olive-text: #37432c;
+  --badge-copper-bg: #ede4dd;
+  --badge-copper-text: #4e3c31;
+  --badge-brown-bg: #e5e0da;
+  --badge-brown-text: #322b24;
+  --badge-cream-bg: #e8e0d0;
+  --badge-cream-text: #383528;
+
+  --terminal-bg: #0d1117;
+  --terminal-header: #161b22;
+  --terminal-text: #e6edf3;
+  --terminal-muted: #8b949e;
+  --terminal-prompt: #3fb950;
+  --terminal-command: #79c0ff;
+  --terminal-tab-active-bg: #21262d;
+  --terminal-close: #ff5f56;
+  --terminal-minimize: #ffbd2e;
+  --terminal-maximize: #27c93f;
 }
 
 .dark {
@@ -112,6 +154,28 @@
   --ring: #8b9a6b;
   --text: #f5f0e6;
   --text-secondary: #b3a896;
+  --destructive: #ef4444;
+  --destructive-foreground: #1a1512;
+
+  --badge-olive-bg: #37432c;
+  --badge-olive-text: #c9d1b5;
+  --badge-copper-bg: #4e3c31;
+  --badge-copper-text: #dcc9be;
+  --badge-brown-bg: #322b24;
+  --badge-brown-text: #ccc4b8;
+  --badge-cream-bg: #383528;
+  --badge-cream-text: #d4c9b5;
+
+  --terminal-bg: #0d1117;
+  --terminal-header: #161b22;
+  --terminal-text: #e6edf3;
+  --terminal-muted: #8b949e;
+  --terminal-prompt: #3fb950;
+  --terminal-command: #79c0ff;
+  --terminal-tab-active-bg: #21262d;
+  --terminal-close: #ff5f56;
+  --terminal-minimize: #ffbd2e;
+  --terminal-maximize: #27c93f;
 }
 
 body {

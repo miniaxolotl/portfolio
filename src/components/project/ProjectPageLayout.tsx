@@ -1,14 +1,8 @@
-import type { LucideIcon } from "lucide-react";
-import { Footer } from "@/components/layout/Footer";
-import { Header } from "@/components/layout/Header";
-import { PackageInstall } from "@/components/project/PackageInstall";
-import { CompactFeatureCard } from "./CompactFeatureCard";
+"use client";
 
-interface ProjectFeature {
-  icon: LucideIcon;
-  title: string;
-  description: string;
-}
+import { PageShell } from "@/components/layout/PageShell";
+import { PackageInstall } from "@/components/project/PackageInstall";
+import { ProjectTag } from "@/components/project/ProjectTag";
 
 interface ProjectPageLayoutProps {
   name: string;
@@ -16,8 +10,10 @@ interface ProjectPageLayoutProps {
   description: string;
   npmPackage?: string | null;
   dockerImage?: string;
-  features: ProjectFeature[];
+  installCommands?: Record<string, string>;
+  tags?: string[];
   sectionTitle: string;
+  children?: React.ReactNode;
 }
 
 export const ProjectPageLayout = ({
@@ -26,39 +22,41 @@ export const ProjectPageLayout = ({
   description,
   npmPackage,
   dockerImage,
-  features,
+  installCommands,
+  tags,
   sectionTitle,
+  children,
 }: ProjectPageLayoutProps) => (
-  <div className="min-h-screen">
-    <Header />
-    <main id="main-content" className="pt-14 md:pt-14" tabIndex={-1}>
-      <div className="px-8 py-20 md:py-28 md:px-16 lg:px-24">
-        <div className="max-w-3xl">
-          <div className="mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">{name}</h1>
-            <p className="text-xl text-muted-foreground mb-6">{tagline}</p>
-            <p className="text-base leading-relaxed mb-10 max-w-2xl">
-              {description}
-            </p>
-            <PackageInstall npmPackage={npmPackage} dockerImage={dockerImage} />
+  <PageShell>
+    <div className="px-4 py-10 sm:px-6 sm:py-16 md:py-28 md:px-8 lg:px-12">
+      <div className="max-w-3xl mx-auto">
+        <div className="mb-12 md:mb-16">
+          <div className="flex flex-wrap gap-1.5 mb-4">
+            {tags?.map((tag) => (
+              <ProjectTag key={tag} tag={tag} />
+            ))}
           </div>
-
-          <section>
-            <h2 className="text-2xl font-bold mb-8">{sectionTitle}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {features.map((feature) => (
-                <CompactFeatureCard
-                  key={feature.title}
-                  icon={feature.icon}
-                  title={feature.title}
-                  description={feature.description}
-                />
-              ))}
-            </div>
-          </section>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4">
+            {name}
+          </h1>
+          <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed mb-6">
+            {tagline}
+          </p>
+          <p className="text-base leading-relaxed mb-10 max-w-2xl">
+            {description}
+          </p>
+          <PackageInstall
+            npmPackage={npmPackage}
+            dockerImage={dockerImage}
+            commands={installCommands}
+          />
         </div>
+
+        <section>
+          <h2 className="text-xl sm:text-2xl font-bold mb-8">{sectionTitle}</h2>
+          {children}
+        </section>
       </div>
-      <Footer />
-    </main>
-  </div>
+    </div>
+  </PageShell>
 );

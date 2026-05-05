@@ -1,9 +1,8 @@
 export { Footer } from "./Footer";
 export { Header } from "./Header";
-export { HeaderIconButton } from "./HeaderIconButton";
 export { MobileSidebar } from "./MobileSidebar";
 export { ProfileSection } from "./ProfileSection";
-export { ResumeButton } from "./ResumeButton";
 export { Section } from "./Section";
 export { Sidebar } from "./Sidebar";
 export { SidebarNavLink } from "./SidebarNavLink";
+export { SocialLinks } from "./SocialLinks";

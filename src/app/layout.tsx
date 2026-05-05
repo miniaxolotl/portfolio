@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
+import profile from "@/data/profile.json";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Elias Mawa | Full-Stack Developer",
-  description:
-    "Experienced Full-Stack Developer with 5+ years specializing in scalable SaaS and financial infrastructure. Skills in Go, React, Next.js, TypeScript, PostgreSQL, AWS, and system design.",
+  title: `${profile.name} | ${profile.role}`,
+  description: profile.description,
   keywords: [
     "Full-Stack Developer",
     "Software Engineer",
@@ -19,23 +19,21 @@ export const metadata: Metadata = {
     "SaaS",
     "API Design",
   ],
-  authors: [{ name: "Elias Mawa", url: "https://mawa.dev" }],
-  creator: "Elias Mawa",
+  authors: [{ name: profile.name, url: profile.website }],
+  creator: profile.name,
   openGraph: {
     type: "website",
     locale: "en_CA",
-    url: "https://mawa.dev",
-    siteName: "Elias Mawa Portfolio",
-    title: "Elias Mawa | Full-Stack Developer",
-    description:
-      "Experienced Full-Stack Developer with 5+ years specializing in scalable SaaS and financial infrastructure.",
+    url: profile.website,
+    siteName: `${profile.name} Portfolio`,
+    title: `${profile.name} | ${profile.role}`,
+    description: profile.description,
   },
   twitter: {
     card: "summary_large_image",
     creator: "@miniaxolotl",
-    title: "Elias Mawa | Full-Stack Developer",
-    description:
-      "Experienced Full-Stack Developer with 5+ years specializing in scalable SaaS and financial infrastructure.",
+    title: `${profile.name} | ${profile.role}`,
+    description: profile.description,
   },
   robots: {
     index: true,
@@ -50,12 +48,29 @@ export const metadata: Metadata = {
   },
 };
 
+const themeScript = `
+  (function(){
+    try{
+      var m=document.cookie.match(/(?:^|; )theme=(dark|light)/);
+      var t=m?m[1]:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+      document.documentElement.classList.toggle('dark',t==='dark');
+    }catch(e){}
+  })();
+`;
+
 const RootLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) => (
-  <html lang="en" className="dark">
+  <html lang="en" suppressHydrationWarning>
+    <head>
+      <script
+        id="theme-script"
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: inline theme script, no user input
+        dangerouslySetInnerHTML={{ __html: themeScript }}
+      />
+    </head>
     <body className="min-h-full flex flex-col">
       <a
         href="#main-content"

@@ -21,19 +21,19 @@ export const SidebarNavLink = ({
     href={href}
     onClick={onClick}
     className={cn(
-      "group flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 text-sm font-medium",
+      "group flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50",
       isActive
-        ? "bg-accent/10 text-accent-foreground"
-        : "text-foreground hover:bg-accent/5 hover:text-foreground",
+        ? "bg-muted text-foreground"
+        : "text-muted-foreground hover:bg-muted hover:text-foreground",
     )}
-    aria-current={isActive ? "true" : undefined}
+    aria-current={isActive ? "page" : undefined}
   >
     <span
       className={cn(
-        "flex items-center justify-center w-8 h-8 rounded-md transition-colors duration-200",
+        "flex items-center justify-center w-8 h-8 rounded-md transition-colors",
         isActive
-          ? "bg-accent/15 text-accent-foreground"
-          : "bg-muted/60 text-muted-foreground group-hover:bg-accent/10 group-hover:text-foreground",
+          ? "bg-background text-foreground"
+          : "bg-background text-muted-foreground group-hover:text-foreground",
       )}
     >
       <Icon size={16} />

@@ -1,44 +1,17 @@
 "use client";
 
-import { FolderOpen, MessageSquare, Wrench } from "lucide-react";
-import { LuGithub, LuLinkedin, LuMail } from "react-icons/lu";
-import { RxDiscordLogo } from "react-icons/rx";
 import { ProfileSection } from "@/components/layout/ProfileSection";
-import { ResumeButton } from "@/components/layout/ResumeButton";
+import { ResumeDownloadLink } from "@/components/layout/ResumeDownloadLink";
 import { SidebarNavLink } from "@/components/layout/SidebarNavLink";
-import socials from "@/data/socials.json";
+import { SocialLinks } from "@/components/layout/SocialLinks";
 import { useActiveSection } from "@/hooks/useActiveSection";
-import { useClipboard } from "@/hooks/useClipboard";
-import { useProfile } from "@/hooks/useProfile";
-
-const navLinks = [
-  { href: "/#about", label: "About", icon: MessageSquare },
-  { href: "/#skills", label: "Skills", icon: Wrench },
-  { href: "/#projects", label: "Projects", icon: FolderOpen },
-];
-
-const sectionIds = navLinks.map((link) => link.href.replace("/#", ""));
-
-const iconMap: Record<string, React.ReactNode> = {
-  LuGithub: <LuGithub size={16} aria-hidden="true" />,
-  LuLinkedin: <LuLinkedin size={16} aria-hidden="true" />,
-  LuMail: <LuMail size={16} aria-hidden="true" />,
-  RxDiscordLogo: <RxDiscordLogo size={16} aria-hidden="true" />,
-};
+import { navLinks, sectionIds } from "@/lib/navigation";
 
 export const Sidebar = () => {
-  const { profile } = useProfile();
-  const { copy } = useClipboard();
   const activeSection = useActiveSection(sectionIds);
 
-  const handleClick = (social: (typeof socials)[0]) => {
-    if (social.copyToClipboard) {
-      copy(profile.discord);
-    }
-  };
-
   return (
-    <aside className="hidden md:block fixed left-0 top-14 w-[280px] h-[calc(100vh-3.5rem)] border-r border-border/50 bg-background/50 backdrop-blur-sm">
+    <aside className="hidden md:block fixed left-0 top-16 z-40 w-72 h-[calc(100vh-4rem)] bg-card border-r border-border">
       <div className="flex flex-col h-full p-6 gap-6 overflow-y-auto">
         <ProfileSection imageSize={88} />
 
@@ -52,36 +25,10 @@ export const Sidebar = () => {
               isActive={activeSection === link.href.replace("/#", "")}
             />
           ))}
+          <ResumeDownloadLink />
         </nav>
 
-        <div className="pt-4 border-t border-border/50">
-          <p className="text-xs font-medium text-muted-foreground/60 uppercase tracking-wider mb-3 px-1">
-            Connect
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {socials.map((social) => (
-              <a
-                key={social.label}
-                href={social.copyToClipboard ? "#" : social.href}
-                onClick={(e) => {
-                  if (social.copyToClipboard) {
-                    e.preventDefault();
-                  }
-                  handleClick(social);
-                }}
-                className="flex items-center justify-center w-9 h-9 rounded-lg bg-muted/50 hover:bg-accent/10 hover:text-accent-foreground hover:scale-105 transition-all duration-200"
-                aria-label={social.label}
-                title={social.label}
-              >
-                {iconMap[social.iconName] ?? null}
-              </a>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-auto pt-4">
-          <ResumeButton />
-        </div>
+        <SocialLinks variant="icon-only" />
       </div>
     </aside>
   );

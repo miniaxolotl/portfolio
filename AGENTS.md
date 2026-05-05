@@ -31,9 +31,9 @@ npx playwright test   # Tests use same port 6681, webServer reuses existing dev 
 
 - **3 pages:** `/`, `/burrow`, `/grove`
 - **Dark mode default:** html uses `dark` class
-- **Mobile drawer:** shadcn UI (vaul-based), controlled state with `open`/`onOpenChange`, close with `Escape`
+- **Mobile drawer:** `@base-ui/react/drawer`, controlled state with `open`/`onOpenChange`, close with `Escape`
 - **Drawer test selector:** `[data-vaul-drawer]`
-- **Header projects dropdown:** shadcn DropdownMenu (`@radix-ui/react-dropdown-menu`)
+- **Header projects dropdown:** `@headlessui/react` Menu component
 
 ## Next.js Warning
 
@@ -47,3 +47,50 @@ Read `node_modules/next/dist/docs/` before writing code.
 - `cn()` from `clsx` + `tailwind-merge` in `src/lib/utils.ts`
 - Icons: `lucide-react` (standard), `react-icons/lu` (brands), `react-icons/rx` (Discord)
 - Use `className` not `class`, named exports for components
+
+## Planning Protocol
+
+### Requirement: Plan Before Implementing
+
+**All non-trivial changes MUST have a written plan before any code is written.** A "non-trivial" change is anything that touches more than one file, adds a new feature, changes architecture, refactors existing patterns, or introduces new dependencies. Bug fixes to single files may be exempted at discretion, but when in doubt, write the plan.
+
+### Plan Location
+
+- All planning documents, design docs, architecture notes, RFCs, and task breakdowns MUST be stored in `plans/`.
+- Create a dedicated `.md` file for each distinct initiative (e.g., `plans/dark-mode-redesign.md`, `plans/add-contact-form.md`).
+- The central tracker is `plans/status.md` — it must be updated every time a plan is created, progresses, or completes.
+
+### Plan Structure
+
+Every plan file MUST be verbose and descriptive. Do not write bare bullet lists. Explain the reasoning, trade-offs, risks, and context. Include at minimum:
+
+1. **Goal** — What this plan achieves, in plain language.
+2. **Status** — One of: `Planned`, `In Progress`, `Blocked`, `Completed`, `Cancelled`.
+3. **Priority** — `high`, `medium`, or `low`.
+4. **Context** — Background, motivation, and why this change is needed now.
+5. **Scope** — Explicitly what is in-scope and what is out-of-scope.
+6. **Approach / Design** — Detailed proposed solution. Include architecture decisions, file changes, new components, API contracts, data flow, and state management. Reference specific files by path.
+7. **Task Checklist** — Granular, actionable checklist with checkboxes (`- [ ]`). Track progress here.
+8. **Dependencies & Risks** — Blockers, prerequisite PRs, unknowns, and mitigation strategies.
+9. **Testing Strategy** — How this will be tested (Playwright tests, manual verification, etc.).
+10. **Notes & References** — Links to docs, related issues, prior art, or decisions made during implementation.
+
+### Status Tracking
+
+- `plans/status.md` is the single source of truth for plan health.
+- When a plan is **created**, add it to `status.md` with status `Planned`.
+- When work **starts**, update the status to `In Progress` and datestamp it.
+- When a plan **advances** (milestones reached, blockers resolved), update `status.md` immediately.
+- When a plan **finishes**, mark `Completed` and move it to the Completed section.
+- When a plan is **abandoned**, mark `Cancelled` and note why.
+- Every status change MUST include a timestamp (ISO-8601 date: `YYYY-MM-DD`).
+
+### Workflow
+
+1. Receive task → Determine if it is non-trivial.
+2. If non-trivial → Create `plans/<descriptive-name>.md` with full structure above.
+3. Update `plans/status.md` with the new entry.
+4. Review the plan (self-check: does it cover scope, approach, risks, tests?).
+5. Implement the plan, checking off tasks in the plan file as you go.
+6. Update `plans/status.md` as status changes.
+7. On completion, update both the plan file and `status.md` to `Completed`.

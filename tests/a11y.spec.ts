@@ -89,8 +89,8 @@ test.describe("Accessibility", () => {
       const drawer = page.locator("[data-vaul-drawer]");
       await expect(drawer).toBeVisible();
 
-      const drawerNav = drawer.getByRole("navigation", { name: /mobile/i });
-      await expect(drawerNav).toBeVisible();
+      const drawerDialog = drawer.getByRole("dialog", { name: /mobile/i });
+      await expect(drawerDialog).toBeVisible();
     });
   });
 
