@@ -1,0 +1,1107 @@
+[93m[1m!  OPENCODE_SERVER_PASSWORD is not set; server is unsecured.
+[0m
+  ⠀                                ▄     
+  █▀▀█ █▀▀█ █▀▀█ █▀▀▄ █▀▀▀ █▀▀█ █▀▀█ █▀▀█
+  █  █ █  █ █▀▀▀ █  █ █    █  █ █  █ █▀▀▀
+  ▀▀▀▀ █▀▀▀ ▀▀▀▀ ▀  ▀ ▀▀▀▀ ▀▀▀▀ ▀▀▀▀ ▀▀▀▀
+[0m
+[94m[1m  Local access:       [0m http://localhost:4096
+[94m[1m  Network access:     [0m http://192.168.1.195:4096
+[94m[1m  mDNS:               [0m opencode.local:4096
+$ next dev
+▲ Next.js 16.2.4 (Turbopack)
+- Local:         http://localhost:6681
+- Network:       http://192.168.1.195:6681
+- Environments: .env
+✓ Ready in 262ms
+
+[?25l[?1049h[2J[H[?25l[?2004h[H [H[2K[?2004l[?25h[?1002l[?1003l[?1006l[?1049l[?25h[?25l[?1049h[2J[H[?25l[?2004h[H [H[2K[?2004l[?25h[?1002l[?1003l[?1006l[?1049l[?25h[?25l[?1049h[2J[H[?25l[?2004h[H [H[2K[?2004l[?25h[?1002l[?1003l[?1006l[?1049l[?25h GET / 200 in 348ms (next.js: 128ms, application-code: 220ms)
+ GET / 200 in 47ms (next.js: 3ms, application-code: 44ms)
+⚠ Blocked cross-origin request to Next.js dev resource /_next/webpack-hmr from "savagely-spectral-icy-phantom.burrow.mawa.dev".
+Cross-origin access to Next.js dev resources is blocked by default for safety.
+
+To allow this host in development, add it to "allowedDevOrigins" in next.config.js and restart the dev server:
+
+// next.config.js
+module.exports = {
+  allowedDevOrigins: ['savagely-spectral-icy-phantom.burrow.mawa.dev'],
+}
+
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+ GET / 200 in 40ms (next.js: 2ms, application-code: 38ms)
+ GET /burrow 200 in 65ms (next.js: 13ms, application-code: 51ms)
+ GET /grove 200 in 66ms (next.js: 13ms, application-code: 53ms)
+⨯ ./src/components/layout/Header.tsx:12:1
+Module not found: Can't resolve './MobileSidebar'
+  [90m10 |[0m   [33mDrawerTrigger[0m,
+  [90m11 |[0m } [36mfrom[0m [32m"@/components/ui/drawer"[0m;
+[31m[1m>[0m [90m12 |[0m [36mimport[0m { [33mMobileSidebar[0m } [36mfrom[0m [32m"./MobileSidebar"[0m;
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m13 |[0m [36mimport[0m { useTheme } [36mfrom[0m [32m"@/hooks/useTheme"[0m;
+  [90m14 |[0m
+  [90m15 |[0m [36mconst[0m [33mNavLink[0m = ({
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/layout/Header.tsx [Client Component Browser]
+    ./src/app/burrow/page.tsx [Client Component Browser]
+    ./src/app/burrow/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/layout/Header.tsx [Client Component SSR]
+    ./src/app/burrow/page.tsx [Client Component SSR]
+    ./src/app/burrow/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/layout/Header.tsx:12:1
+Module not found: Can't resolve './MobileSidebar'
+  [90m10 |[0m   [33mDrawerTrigger[0m,
+  [90m11 |[0m } [36mfrom[0m [32m"@/components/ui/drawer"[0m;
+[31m[1m>[0m [90m12 |[0m [36mimport[0m { [33mMobileSidebar[0m } [36mfrom[0m [32m"./MobileSidebar"[0m;
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m13 |[0m [36mimport[0m { useTheme } [36mfrom[0m [32m"@/hooks/useTheme"[0m;
+  [90m14 |[0m
+  [90m15 |[0m [36mconst[0m [33mNavLink[0m = ({
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/layout/Header.tsx [Client Component Browser]
+    ./src/app/burrow/page.tsx [Client Component Browser]
+    ./src/app/burrow/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/layout/Header.tsx [Client Component SSR]
+    ./src/app/burrow/page.tsx [Client Component SSR]
+    ./src/app/burrow/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/layout/Header.tsx:12:1
+Module not found: Can't resolve './MobileSidebar'
+  [90m10 |[0m   [33mDrawerTrigger[0m,
+  [90m11 |[0m } [36mfrom[0m [32m"@/components/ui/drawer"[0m;
+[31m[1m>[0m [90m12 |[0m [36mimport[0m { [33mMobileSidebar[0m } [36mfrom[0m [32m"./MobileSidebar"[0m;
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m13 |[0m [36mimport[0m { useTheme } [36mfrom[0m [32m"@/hooks/useTheme"[0m;
+  [90m14 |[0m
+  [90m15 |[0m [36mconst[0m [33mNavLink[0m = ({
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/layout/Header.tsx [Client Component Browser]
+    ./src/app/burrow/page.tsx [Client Component Browser]
+    ./src/app/burrow/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/layout/Header.tsx [Client Component SSR]
+    ./src/app/burrow/page.tsx [Client Component SSR]
+    ./src/app/burrow/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/layout/Header.tsx:12:1
+Module not found: Can't resolve './MobileSidebar'
+  [90m10 |[0m   [33mDrawerTrigger[0m,
+  [90m11 |[0m } [36mfrom[0m [32m"@/components/ui/drawer"[0m;
+[31m[1m>[0m [90m12 |[0m [36mimport[0m { [33mMobileSidebar[0m } [36mfrom[0m [32m"./MobileSidebar"[0m;
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m13 |[0m [36mimport[0m { useTheme } [36mfrom[0m [32m"@/hooks/useTheme"[0m;
+  [90m14 |[0m
+  [90m15 |[0m [36mconst[0m [33mNavLink[0m = ({
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/layout/Header.tsx [Client Component Browser]
+    ./src/app/burrow/page.tsx [Client Component Browser]
+    ./src/app/burrow/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/layout/Header.tsx [Client Component SSR]
+    ./src/app/burrow/page.tsx [Client Component SSR]
+    ./src/app/burrow/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/layout/Header.tsx:12:1
+Module not found: Can't resolve './MobileSidebar'
+  [90m10 |[0m   [33mDrawerTrigger[0m,
+  [90m11 |[0m } [36mfrom[0m [32m"@/components/ui/drawer"[0m;
+[31m[1m>[0m [90m12 |[0m [36mimport[0m { [33mMobileSidebar[0m } [36mfrom[0m [32m"./MobileSidebar"[0m;
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m13 |[0m [36mimport[0m { useTheme } [36mfrom[0m [32m"@/hooks/useTheme"[0m;
+  [90m14 |[0m
+  [90m15 |[0m [36mconst[0m [33mNavLink[0m = ({
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/layout/Header.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/layout/Header.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/layout/Header.tsx:12:1
+Module not found: Can't resolve './MobileSidebar'
+  [90m10 |[0m   [33mDrawerTrigger[0m,
+  [90m11 |[0m } [36mfrom[0m [32m"@/components/ui/drawer"[0m;
+[31m[1m>[0m [90m12 |[0m [36mimport[0m { [33mMobileSidebar[0m } [36mfrom[0m [32m"./MobileSidebar"[0m;
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m13 |[0m [36mimport[0m { useTheme } [36mfrom[0m [32m"@/hooks/useTheme"[0m;
+  [90m14 |[0m
+  [90m15 |[0m [36mconst[0m [33mNavLink[0m = ({
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/layout/Header.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/layout/Header.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/layout/Header.tsx:12:1
+Module not found: Can't resolve './MobileSidebar'
+  [90m10 |[0m   [33mDrawerTrigger[0m,
+  [90m11 |[0m } [36mfrom[0m [32m"@/components/ui/drawer"[0m;
+[31m[1m>[0m [90m12 |[0m [36mimport[0m { [33mMobileSidebar[0m } [36mfrom[0m [32m"./MobileSidebar"[0m;
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m13 |[0m [36mimport[0m { useTheme } [36mfrom[0m [32m"@/hooks/useTheme"[0m;
+  [90m14 |[0m
+  [90m15 |[0m [36mconst[0m [33mNavLink[0m = ({
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/layout/Header.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/layout/Header.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/layout/Header.tsx:12:1
+Module not found: Can't resolve './MobileSidebar'
+  [90m10 |[0m   [33mDrawerTrigger[0m,
+  [90m11 |[0m } [36mfrom[0m [32m"@/components/ui/drawer"[0m;
+[31m[1m>[0m [90m12 |[0m [36mimport[0m { [33mMobileSidebar[0m } [36mfrom[0m [32m"./MobileSidebar"[0m;
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m13 |[0m [36mimport[0m { useTheme } [36mfrom[0m [32m"@/hooks/useTheme"[0m;
+  [90m14 |[0m
+  [90m15 |[0m [36mconst[0m [33mNavLink[0m = ({
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/layout/Header.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/layout/Header.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/layout/Header.tsx:12:1
+Module not found: Can't resolve './MobileSidebar'
+  [90m10 |[0m   [33mDrawerTrigger[0m,
+  [90m11 |[0m } [36mfrom[0m [32m"@/components/ui/drawer"[0m;
+[31m[1m>[0m [90m12 |[0m [36mimport[0m { [33mMobileSidebar[0m } [36mfrom[0m [32m"./MobileSidebar"[0m;
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m13 |[0m [36mimport[0m { useTheme } [36mfrom[0m [32m"@/hooks/useTheme"[0m;
+  [90m14 |[0m
+  [90m15 |[0m [36mconst[0m [33mNavLink[0m = ({
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/layout/Header.tsx [Client Component Browser]
+    ./src/app/grove/page.tsx [Client Component Browser]
+    ./src/app/grove/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/layout/Header.tsx [Client Component SSR]
+    ./src/app/grove/page.tsx [Client Component SSR]
+    ./src/app/grove/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/layout/Header.tsx:12:1
+Module not found: Can't resolve './MobileSidebar'
+  [90m10 |[0m   [33mDrawerTrigger[0m,
+  [90m11 |[0m } [36mfrom[0m [32m"@/components/ui/drawer"[0m;
+[31m[1m>[0m [90m12 |[0m [36mimport[0m { [33mMobileSidebar[0m } [36mfrom[0m [32m"./MobileSidebar"[0m;
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m13 |[0m [36mimport[0m { useTheme } [36mfrom[0m [32m"@/hooks/useTheme"[0m;
+  [90m14 |[0m
+  [90m15 |[0m [36mconst[0m [33mNavLink[0m = ({
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/layout/Header.tsx [Client Component Browser]
+    ./src/app/grove/page.tsx [Client Component Browser]
+    ./src/app/grove/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/layout/Header.tsx [Client Component SSR]
+    ./src/app/grove/page.tsx [Client Component SSR]
+    ./src/app/grove/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/layout/Header.tsx:12:1
+Module not found: Can't resolve './MobileSidebar'
+  [90m10 |[0m   [33mDrawerTrigger[0m,
+  [90m11 |[0m } [36mfrom[0m [32m"@/components/ui/drawer"[0m;
+[31m[1m>[0m [90m12 |[0m [36mimport[0m { [33mMobileSidebar[0m } [36mfrom[0m [32m"./MobileSidebar"[0m;
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m13 |[0m [36mimport[0m { useTheme } [36mfrom[0m [32m"@/hooks/useTheme"[0m;
+  [90m14 |[0m
+  [90m15 |[0m [36mconst[0m [33mNavLink[0m = ({
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/layout/Header.tsx [Client Component Browser]
+    ./src/app/grove/page.tsx [Client Component Browser]
+    ./src/app/grove/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/layout/Header.tsx [Client Component SSR]
+    ./src/app/grove/page.tsx [Client Component SSR]
+    ./src/app/grove/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/components/layout/Header.tsx:12:1
+Module not found: Can't resolve './MobileSidebar'
+  [90m10 |[0m   [33mDrawerTrigger[0m,
+  [90m11 |[0m } [36mfrom[0m [32m"@/components/ui/drawer"[0m;
+[31m[1m>[0m [90m12 |[0m [36mimport[0m { [33mMobileSidebar[0m } [36mfrom[0m [32m"./MobileSidebar"[0m;
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m13 |[0m [36mimport[0m { useTheme } [36mfrom[0m [32m"@/hooks/useTheme"[0m;
+  [90m14 |[0m
+  [90m15 |[0m [36mconst[0m [33mNavLink[0m = ({
+
+
+
+Import traces:
+  Client Component Browser:
+    ./src/components/layout/Header.tsx [Client Component Browser]
+    ./src/app/grove/page.tsx [Client Component Browser]
+    ./src/app/grove/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/layout/Header.tsx [Client Component SSR]
+    ./src/app/grove/page.tsx [Client Component SSR]
+    ./src/app/grove/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+✓ Compiled in 74ms
+ GET / 200 in 238ms (next.js: 59ms, application-code: 180ms)
+ GET /grove 200 in 217ms (next.js: 55ms, application-code: 162ms)
+ GET / 200 in 77ms (next.js: 10ms, application-code: 67ms)
+ GET / 200 in 217ms (next.js: 57ms, application-code: 160ms)
+ GET / 200 in 42ms (next.js: 4ms, application-code: 39ms)
+ GET / 200 in 35ms (next.js: 2ms, application-code: 33ms)
+ GET / 200 in 30ms (next.js: 1288µs, application-code: 29ms)
+ GET / 200 in 32ms (next.js: 2ms, application-code: 30ms)
+ GET /burrow 200 in 56ms (next.js: 11ms, application-code: 45ms)
+ GET /grove 200 in 53ms (next.js: 10ms, application-code: 43ms)
+ GET /grove 200 in 42ms (next.js: 2ms, application-code: 40ms)
+ GET / 200 in 35ms (next.js: 2ms, application-code: 33ms)
+ GET /burrow 200 in 32ms (next.js: 2ms, application-code: 30ms)
+ GET /burrow 200 in 32ms (next.js: 2ms, application-code: 30ms)
+ GET / 200 in 43ms (next.js: 3ms, application-code: 41ms)
+[?25h
+$ next dev
+▲ Next.js 16.2.4 (Turbopack)
+- Local:         http://localhost:6681
+- Network:       http://192.168.1.195:6681
+- Environments: .env
+✓ Ready in 264ms
+
+⚠ Blocked cross-origin request to Next.js dev resource /_next/webpack-hmr from "savagely-spectral-icy-phantom.burrow.mawa.dev".
+Cross-origin access to Next.js dev resources is blocked by default for safety.
+
+To allow this host in development, add it to "allowedDevOrigins" in next.config.js and restart the dev server:
+
+// next.config.js
+module.exports = {
+  allowedDevOrigins: ['savagely-spectral-icy-phantom.burrow.mawa.dev'],
+}
+
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+ GET / 200 in 373ms (next.js: 141ms, application-code: 231ms)
+ GET / 200 in 44ms (next.js: 2ms, application-code: 42ms)
+ GET / 200 in 434ms (next.js: 3ms, application-code: 431ms)
+ GET / 200 in 379ms (next.js: 4ms, application-code: 375ms)
+ GET / 200 in 380ms (next.js: 32ms, application-code: 348ms)
+ GET / 200 in 353ms (next.js: 34ms, application-code: 319ms)
+ GET / 200 in 323ms (next.js: 34ms, application-code: 289ms)
+ GET / 200 in 294ms (next.js: 32ms, application-code: 263ms)
+ GET / 200 in 268ms (next.js: 34ms, application-code: 234ms)
+ GET / 200 in 240ms (next.js: 35ms, application-code: 206ms)
+ GET / 200 in 212ms (next.js: 36ms, application-code: 176ms)
+ GET / 200 in 182ms (next.js: 30ms, application-code: 152ms)
+ GET / 200 in 158ms (next.js: 29ms, application-code: 129ms)
+ GET / 200 in 140ms (next.js: 35ms, application-code: 105ms)
+⚠ The requested resource "/img/masthead/player-front-idle.gif" is an animated image so it will not be optimized. Consider adding the "unoptimized" property to the <Image>.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+ GET / 200 in 61ms (next.js: 2ms, application-code: 59ms)
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+ GET / 200 in 39ms (next.js: 2ms, application-code: 37ms)
+ GET / 200 in 165ms (next.js: 1971µs, application-code: 163ms)
+ GET / 200 in 137ms (next.js: 3ms, application-code: 135ms)
+ GET / 200 in 139ms (next.js: 25ms, application-code: 114ms)
+ GET / 200 in 120ms (next.js: 25ms, application-code: 95ms)
+ GET / 200 in 104ms (next.js: 32ms, application-code: 72ms)
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+ GET / 200 in 34ms (next.js: 1678µs, application-code: 33ms)
+ GET / 200 in 31ms (next.js: 1422µs, application-code: 29ms)
+ GET / 200 in 38ms (next.js: 1611µs, application-code: 36ms)
+ GET / 200 in 33ms (next.js: 1084µs, application-code: 31ms)
+ GET / 200 in 347ms (next.js: 3ms, application-code: 345ms)
+ GET / 200 in 362ms (next.js: 8ms, application-code: 354ms)
+ GET / 200 in 361ms (next.js: 47ms, application-code: 314ms)
+ GET / 200 in 320ms (next.js: 37ms, application-code: 282ms)
+ GET / 200 in 289ms (next.js: 26ms, application-code: 263ms)
+ GET / 200 in 241ms (next.js: 3ms, application-code: 238ms)
+ GET / 200 in 245ms (next.js: 27ms, application-code: 218ms)
+ GET / 200 in 224ms (next.js: 27ms, application-code: 198ms)
+ GET / 200 in 204ms (next.js: 30ms, application-code: 174ms)
+ GET / 200 in 185ms (next.js: 38ms, application-code: 147ms)
+ GET / 200 in 154ms (next.js: 28ms, application-code: 126ms)
+ GET / 200 in 136ms (next.js: 31ms, application-code: 105ms)
+ GET / 200 in 60ms (next.js: 3ms, application-code: 57ms)
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+ GET / 200 in 55ms (next.js: 12ms, application-code: 43ms)
+ GET / 200 in 145ms (next.js: 2ms, application-code: 142ms)
+ GET / 200 in 140ms (next.js: 2ms, application-code: 137ms)
+ GET / 200 in 145ms (next.js: 27ms, application-code: 118ms)
+ GET / 200 in 105ms (next.js: 3ms, application-code: 103ms)
+ GET / 200 in 102ms (next.js: 4ms, application-code: 98ms)
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+ GET / 200 in 52ms (next.js: 10ms, application-code: 42ms)
+✓ Compiled in 25ms
+ GET / 200 in 244ms (next.js: 57ms, application-code: 187ms)
+ GET / 200 in 32ms (next.js: 1123µs, application-code: 31ms)
+ GET / 200 in 371ms (next.js: 3ms, application-code: 368ms)
+ GET / 200 in 360ms (next.js: 7ms, application-code: 353ms)
+ GET / 200 in 323ms (next.js: 4ms, application-code: 318ms)
+ GET / 200 in 322ms (next.js: 30ms, application-code: 292ms)
+ GET / 200 in 297ms (next.js: 30ms, application-code: 267ms)
+ GET / 200 in 275ms (next.js: 29ms, application-code: 246ms)
+ GET / 200 in 250ms (next.js: 29ms, application-code: 221ms)
+ GET / 200 in 225ms (next.js: 35ms, application-code: 191ms)
+ GET / 200 in 196ms (next.js: 41ms, application-code: 155ms)
+ GET / 200 in 160ms (next.js: 32ms, application-code: 128ms)
+ GET / 200 in 138ms (next.js: 28ms, application-code: 109ms)
+ GET / 200 in 98ms (next.js: 3ms, application-code: 96ms)
+ GET / 200 in 91ms (next.js: 1962µs, application-code: 89ms)
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+ GET / 200 in 276ms (next.js: 12ms, application-code: 264ms)
+ GET / 200 in 231ms (next.js: 3ms, application-code: 228ms)
+ GET / 200 in 204ms (next.js: 3ms, application-code: 200ms)
+ GET / 200 in 205ms (next.js: 34ms, application-code: 171ms)
+ GET / 200 in 181ms (next.js: 38ms, application-code: 143ms)
+ GET / 200 in 120ms (next.js: 3ms, application-code: 118ms)
+ GET / 200 in 132ms (next.js: 28ms, application-code: 104ms)
+ GET / 200 in 44ms (next.js: 2ms, application-code: 42ms)
+ GET / 200 in 80ms (next.js: 1797µs, application-code: 78ms)
+ GET / 200 in 49ms (next.js: 1839µs, application-code: 47ms)
+ GET / 200 in 39ms (next.js: 2ms, application-code: 37ms)
+ GET / 200 in 61ms (next.js: 17ms, application-code: 45ms)
+ GET / 200 in 185ms (next.js: 2ms, application-code: 183ms)
+ GET / 200 in 155ms (next.js: 3ms, application-code: 153ms)
+ GET / 200 in 175ms (next.js: 4ms, application-code: 171ms)
+ GET / 200 in 186ms (next.js: 4ms, application-code: 182ms)
+ GET / 200 in 191ms (next.js: 5ms, application-code: 186ms)
+ GET / 200 in 213ms (next.js: 32ms, application-code: 180ms)
+ GET / 200 in 139ms (next.js: 6ms, application-code: 133ms)
+ GET / 200 in 145ms (next.js: 28ms, application-code: 117ms)
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+ GET / 200 in 79ms (next.js: 3ms, application-code: 76ms)
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+ GET / 200 in 80ms (next.js: 2ms, application-code: 78ms)
+ GET / 200 in 61ms (next.js: 2ms, application-code: 59ms)
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+ GET / 200 in 116ms (next.js: 4ms, application-code: 112ms)
+ GET / 200 in 131ms (next.js: 3ms, application-code: 129ms)
+ GET / 200 in 108ms (next.js: 5ms, application-code: 103ms)
+ GET / 200 in 113ms (next.js: 25ms, application-code: 87ms)
+ GET / 200 in 35ms (next.js: 1963µs, application-code: 33ms)
+ GET / 200 in 35ms (next.js: 1830µs, application-code: 33ms)
+ GET / 200 in 37ms (next.js: 1624µs, application-code: 35ms)
+ GET / 200 in 34ms (next.js: 989µs, application-code: 33ms)
+ GET / 200 in 361ms (next.js: 3ms, application-code: 358ms)
+ GET / 200 in 343ms (next.js: 3ms, application-code: 340ms)
+ GET / 200 in 345ms (next.js: 32ms, application-code: 313ms)
+ GET / 200 in 318ms (next.js: 30ms, application-code: 288ms)
+ GET / 200 in 292ms (next.js: 38ms, application-code: 254ms)
+ GET / 200 in 263ms (next.js: 30ms, application-code: 233ms)
+ GET / 200 in 239ms (next.js: 30ms, application-code: 208ms)
+ GET / 200 in 213ms (next.js: 29ms, application-code: 184ms)
+ GET / 200 in 190ms (next.js: 29ms, application-code: 160ms)
+ GET / 200 in 181ms (next.js: 28ms, application-code: 153ms)
+ GET / 200 in 132ms (next.js: 3ms, application-code: 129ms)
+ GET / 200 in 140ms (next.js: 30ms, application-code: 111ms)
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+ GET / 200 in 210ms (next.js: 2ms, application-code: 208ms)
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+ GET / 200 in 263ms (next.js: 4ms, application-code: 259ms)
+ GET / 200 in 231ms (next.js: 13ms, application-code: 219ms)
+ GET / 200 in 302ms (next.js: 7ms, application-code: 295ms)
+ GET / 200 in 308ms (next.js: 26ms, application-code: 282ms)
+ GET / 200 in 317ms (next.js: 40ms, application-code: 276ms)
+ GET / 200 in 226ms (next.js: 21ms, application-code: 206ms)
+ GET / 200 in 214ms (next.js: 34ms, application-code: 180ms)
+ GET / 200 in 186ms (next.js: 26ms, application-code: 160ms)
+ GET / 200 in 167ms (next.js: 28ms, application-code: 139ms)
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+ GET / 200 in 54ms (next.js: 3ms, application-code: 51ms)
+ GET / 200 in 37ms (next.js: 1448µs, application-code: 36ms)
+ GET / 200 in 35ms (next.js: 1266µs, application-code: 34ms)
+ GET / 200 in 290ms (next.js: 2ms, application-code: 288ms)
+ GET / 200 in 288ms (next.js: 2ms, application-code: 285ms)
+ GET / 200 in 289ms (next.js: 35ms, application-code: 254ms)
+ GET / 200 in 233ms (next.js: 5ms, application-code: 228ms)
+ GET / 200 in 233ms (next.js: 14ms, application-code: 218ms)
+ GET / 200 in 184ms (next.js: 6ms, application-code: 178ms)
+ GET / 200 in 195ms (next.js: 8ms, application-code: 186ms)
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+ GET / 200 in 169ms (next.js: 3ms, application-code: 166ms)
+ GET / 200 in 172ms (next.js: 27ms, application-code: 145ms)
+ GET / 200 in 154ms (next.js: 28ms, application-code: 126ms)
+ GET / 200 in 120ms (next.js: 6ms, application-code: 114ms)
+ GET / 200 in 170ms (next.js: 20ms, application-code: 150ms)
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+ GET / 200 in 244ms (next.js: 2ms, application-code: 242ms)
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+ GET / 200 in 215ms (next.js: 3ms, application-code: 213ms)
+ GET / 200 in 216ms (next.js: 27ms, application-code: 189ms)
+ GET / 200 in 215ms (next.js: 3ms, application-code: 211ms)
+ GET / 200 in 217ms (next.js: 37ms, application-code: 180ms)
+ GET / 200 in 141ms (next.js: 5ms, application-code: 136ms)
+ GET / 200 in 144ms (next.js: 19ms, application-code: 125ms)
+ GET / 200 in 146ms (next.js: 53ms, application-code: 94ms)
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+ GET / 200 in 36ms (next.js: 1566µs, application-code: 35ms)
+ GET / 200 in 38ms (next.js: 1869µs, application-code: 36ms)
+ GET / 200 in 34ms (next.js: 1331µs, application-code: 32ms)
+ GET / 200 in 30ms (next.js: 1045µs, application-code: 29ms)
+ GET / 200 in 331ms (next.js: 3ms, application-code: 328ms)
+ GET / 200 in 294ms (next.js: 2ms, application-code: 291ms)
+ GET / 200 in 296ms (next.js: 23ms, application-code: 273ms)
+ GET / 200 in 233ms (next.js: 5ms, application-code: 229ms)
+ GET / 200 in 233ms (next.js: 15ms, application-code: 219ms)
+ GET / 200 in 233ms (next.js: 51ms, application-code: 182ms)
+ GET / 200 in 189ms (next.js: 31ms, application-code: 158ms)
+ GET / 200 in 146ms (next.js: 8ms, application-code: 138ms)
+ GET / 200 in 133ms (next.js: 3ms, application-code: 130ms)
+ GET / 200 in 140ms (next.js: 29ms, application-code: 111ms)
+ GET / 200 in 64ms (next.js: 14ms, application-code: 50ms)
+ GET / 200 in 28ms (next.js: 1238µs, application-code: 27ms)
+ GET / 200 in 38ms (next.js: 1724µs, application-code: 37ms)
+ GET / 200 in 37ms (next.js: 3ms, application-code: 34ms)
+ GET / 200 in 29ms (next.js: 1414µs, application-code: 28ms)
+ GET / 200 in 347ms (next.js: 4ms, application-code: 344ms)
+ GET / 200 in 307ms (next.js: 3ms, application-code: 304ms)
+ GET / 200 in 265ms (next.js: 3ms, application-code: 262ms)
+ GET / 200 in 265ms (next.js: 28ms, application-code: 237ms)
+ GET / 200 in 241ms (next.js: 29ms, application-code: 212ms)
+ GET / 200 in 217ms (next.js: 30ms, application-code: 187ms)
+ GET / 200 in 192ms (next.js: 32ms, application-code: 161ms)
+ GET / 200 in 165ms (next.js: 30ms, application-code: 135ms)
+ GET / 200 in 140ms (next.js: 27ms, application-code: 112ms)
+ GET / 200 in 120ms (next.js: 29ms, application-code: 90ms)
+ GET / 200 in 177ms (next.js: 2ms, application-code: 175ms)
+ GET / 200 in 147ms (next.js: 2ms, application-code: 144ms)
+ GET / 200 in 154ms (next.js: 20ms, application-code: 135ms)
+ GET / 200 in 89ms (next.js: 6ms, application-code: 83ms)
+ GET / 200 in 37ms (next.js: 3ms, application-code: 34ms)
+ GET / 200 in 33ms (next.js: 1096µs, application-code: 32ms)
+ GET / 200 in 335ms (next.js: 3ms, application-code: 332ms)
+ GET / 200 in 294ms (next.js: 4ms, application-code: 290ms)
+ GET / 200 in 266ms (next.js: 4ms, application-code: 263ms)
+ GET / 200 in 267ms (next.js: 31ms, application-code: 236ms)
+ GET / 200 in 241ms (next.js: 36ms, application-code: 204ms)
+ GET / 200 in 211ms (next.js: 29ms, application-code: 182ms)
+ GET / 200 in 186ms (next.js: 31ms, application-code: 155ms)
+ GET / 200 in 160ms (next.js: 31ms, application-code: 129ms)
+ GET / 200 in 133ms (next.js: 31ms, application-code: 102ms)
+ GET / 200 in 109ms (next.js: 30ms, application-code: 80ms)
+ GET / 200 in 147ms (next.js: 1691µs, application-code: 145ms)
+ GET / 200 in 173ms (next.js: 3ms, application-code: 170ms)
+ GET / 200 in 135ms (next.js: 6ms, application-code: 129ms)
+ GET / 200 in 103ms (next.js: 15ms, application-code: 88ms)
+ GET / 200 in 36ms (next.js: 1710µs, application-code: 35ms)
+ GET / 200 in 35ms (next.js: 1193µs, application-code: 33ms)
+ GET / 200 in 32ms (next.js: 3ms, application-code: 29ms)
+ GET / 200 in 29ms (next.js: 1286µs, application-code: 27ms)
+ GET / 200 in 328ms (next.js: 4ms, application-code: 324ms)
+ GET / 200 in 327ms (next.js: 20ms, application-code: 308ms)
+ GET / 200 in 262ms (next.js: 10ms, application-code: 252ms)
+ GET / 200 in 255ms (next.js: 26ms, application-code: 229ms)
+ GET / 200 in 207ms (next.js: 5ms, application-code: 202ms)
+ GET / 200 in 206ms (next.js: 29ms, application-code: 177ms)
+ GET / 200 in 182ms (next.js: 29ms, application-code: 152ms)
+ GET / 200 in 157ms (next.js: 25ms, application-code: 132ms)
+ GET / 200 in 137ms (next.js: 28ms, application-code: 110ms)
+ GET / 200 in 117ms (next.js: 32ms, application-code: 85ms)
+ GET / 200 in 44ms (next.js: 2ms, application-code: 42ms)
+ GET / 200 in 95ms (next.js: 3ms, application-code: 91ms)
+ GET / 200 in 95ms (next.js: 19ms, application-code: 76ms)
+ GET / 200 in 50ms (next.js: 1999µs, application-code: 48ms)
+ GET / 200 in 40ms (next.js: 3ms, application-code: 38ms)
+ GET / 200 in 35ms (next.js: 1135µs, application-code: 34ms)
+ GET / 200 in 33ms (next.js: 1242µs, application-code: 32ms)
+ GET / 200 in 32ms (next.js: 1124µs, application-code: 31ms)
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[browser] `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog 
+[browser] Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+ GET / 200 in 32ms (next.js: 1415µs, application-code: 31ms)
+ GET / 200 in 30ms (next.js: 1203µs, application-code: 29ms)

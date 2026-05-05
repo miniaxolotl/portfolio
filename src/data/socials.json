@@ -1,0 +1,19 @@
+[
+  {
+    "label": "GitHub",
+    "href": "https://github.com/miniaxolotl",
+    "iconName": "LuGithub"
+  },
+  {
+    "label": "LinkedIn",
+    "href": "https://www.linkedin.com/in/elias-mawa/",
+    "iconName": "LuLinkedin"
+  },
+  { "label": "Email", "href": "mailto:elias@mawa.dev", "iconName": "LuMail" },
+  {
+    "label": "Discord",
+    "href": "#",
+    "iconName": "RxDiscordLogo",
+    "copyToClipboard": true
+  }
+]

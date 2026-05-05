@@ -1,0 +1,44 @@
+[
+  {
+    "name": "JavaScript/TypeScript",
+    "category": "Languages",
+    "variant": "muted_olive"
+  },
+  { "name": "Bash", "category": "Languages", "variant": "muted_olive" },
+  { "name": "Python", "category": "Languages", "variant": "muted_olive" },
+  { "name": "Go/Golang", "category": "Languages", "variant": "muted_olive" },
+  { "name": "Dart", "category": "Languages", "variant": "muted_olive" },
+  { "name": "Java", "category": "Languages", "variant": "muted_olive" },
+  { "name": "PHP", "category": "Languages", "variant": "muted_olive" },
+  { "name": "Perl", "category": "Languages", "variant": "muted_olive" },
+  { "name": "React", "category": "Frontend", "variant": "muted_olive" },
+  { "name": "Next.js", "category": "Frontend", "variant": "muted_olive" },
+  { "name": "Remix", "category": "Frontend", "variant": "muted_olive" },
+  { "name": "Flutter", "category": "Frontend", "variant": "muted_olive" },
+  { "name": "SSR", "category": "Frontend", "variant": "muted_olive" },
+  {
+    "name": "State Management",
+    "category": "Frontend",
+    "variant": "muted_olive"
+  },
+  { "name": "Express.js", "category": "Backend", "variant": "muted_olive" },
+  { "name": "Koa.js", "category": "Backend", "variant": "muted_olive" },
+  { "name": "NestJS", "category": "Backend", "variant": "muted_olive" },
+  { "name": "Laravel", "category": "Backend", "variant": "muted_olive" },
+  { "name": "REST APIs", "category": "Backend", "variant": "muted_olive" },
+  { "name": "API Design", "category": "Backend", "variant": "muted_olive" },
+  { "name": "PostgreSQL", "category": "Databases", "variant": "muted_olive" },
+  { "name": "MySQL", "category": "Databases", "variant": "muted_olive" },
+  { "name": "MongoDB", "category": "Databases", "variant": "muted_olive" },
+  { "name": "DB2", "category": "Databases", "variant": "muted_olive" },
+  { "name": "RAG", "category": "Databases", "variant": "muted_olive" },
+  { "name": "AWS", "category": "Cloud & DevOps", "variant": "muted_olive" },
+  {
+    "name": "DigitalOcean",
+    "category": "Cloud & DevOps",
+    "variant": "muted_olive"
+  },
+  { "name": "GCP", "category": "Cloud & DevOps", "variant": "muted_olive" },
+  { "name": "Docker", "category": "Cloud & DevOps", "variant": "muted_olive" },
+  { "name": "CI/CD", "category": "Cloud & DevOps", "variant": "muted_olive" }
+]

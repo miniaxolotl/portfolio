@@ -1,0 +1,61 @@
+{
+  "name": "Grove",
+  "tagline": "Never lose context in your AI coding sessions",
+  "description": "Grove is a self-hosted memory server that gives AI coding tools long-term memory. It combines semantic vector search with knowledge graphs to let AI assistants remember everything about your projects, tasks, and preferences across sessions.",
+  "npm": "@miniaxolotl/grove",
+  "docker": "miniaxolotl/grove",
+  "github": "miniaxolotl/grove",
+  "registry": {
+    "npm": "https://www.npmjs.com/package/grove",
+    "docker": "https://hub.docker.com/r/miniaxolotl/grove",
+    "github": "https://github.com/miniaxolotl/grove"
+  },
+  "features": [
+    "MCP-compatible - works with OpenCode, Cursor, and any MCP client",
+    "Semantic search powered by Qdrant vector database",
+    "Entity and relation knowledge graphs for structured information",
+    "Importance-based memory management - key facts stay accessible",
+    "Reranking support for better search relevance",
+    "Fast local ONNX embeddings - no external API dependencies"
+  ],
+  "techStack": ["Go", "Qdrant", "MCP", "ONNX"],
+  "tools": ["grove (server)", "@miniaxolotl/grove-opencode-plugin"],
+  "mcpTools": {
+    "memory": [
+      "memory_save",
+      "memory_search",
+      "memory_scroll",
+      "memory_update",
+      "memory_forget",
+      "memory_compact",
+      "memory_prune",
+      "memory_stats",
+      "memory_note"
+    ],
+    "entity": [
+      "entity_create",
+      "entity_get",
+      "entity_search",
+      "entity_list",
+      "entity_update",
+      "entity_add_observations"
+    ],
+    "relation": [
+      "relation_create",
+      "relation_search",
+      "relation_list",
+      "relation_delete"
+    ]
+  },
+  "architecture": "OpenCode → Grove MCP → Qdrant → Embeddings",
+  "commands": {
+    "serve": "grove serve",
+    "stdio": "grove"
+  },
+  "guides": [
+    "Installation",
+    "Configuration",
+    "OpenCode Integration",
+    "Deployment"
+  ]
+}

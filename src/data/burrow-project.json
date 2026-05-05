@@ -1,0 +1,30 @@
+{
+  "name": "Burrow",
+  "tagline": "Permanent, secure URLs for local development",
+  "description": "Burrow is an open-source tunneling tool that gives you stable, HTTPS-accessible URLs for your local development environment. No more unreliable free tiers or expensive subscriptions - just run one command and share your localhost with the world.",
+  "npm": null,
+  "docker": "miniaxolotl/burrowd",
+  "github": "miniaxolotl/burrow",
+  "registry": {
+    "npm": null,
+    "docker": "https://hub.docker.com/r/miniaxolotl/burrowd",
+    "github": "https://github.com/miniaxolotl/burrow"
+  },
+  "features": [
+    "HTTPS subdomains with automatic certificate management via Let's Encrypt",
+    "TCP tunnel support for databases, SSH, and non-HTTP services",
+    "WebSocket multiplexing for efficient bandwidth and low latency",
+    "Redis-backed tunnel tracking with persistence across restarts",
+    "Token-based admin authentication for team environments",
+    "Cross-platform TUI client with real-time log viewing"
+  ],
+  "techStack": ["Go", "Redis", "WebSocket", "yamux"],
+  "tools": ["burrowd (server)", "burrowctl (CLI client)"],
+  "architecture": "burrowctl → WebSocket → burrowd → HTTPS/TCP → Internet",
+  "commands": {
+    "server": "burrowd serve --secret mysecret --domain burrow.example.com --port 25701",
+    "client": "burrowctl tunnel create --port 3000"
+  },
+  "guides": ["Installation", "Configuration", "Deployment", "Troubleshooting"],
+  "mcpTools": null
+}
