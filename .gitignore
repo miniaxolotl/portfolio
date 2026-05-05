@@ -1,1 +1,15 @@
-(public/content/posts/burrow.md, public/content/posts/fashion-vision.md, public/content/posts/fitr.md, public/content/posts/grove.md, public/content/posts/inkbyte.md)
+node_modules/
+next-env.d.ts
+bin/
+dist/
+
+.env
+.env.*
+!.env.example
+
+/data/
+/logs/
+/plans/
+.opencode/
+.next/
+test-results/
