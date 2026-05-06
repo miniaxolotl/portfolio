@@ -28,10 +28,12 @@
   { "name": "Django", "category": "Backend", "variant": "muted_olive" },
   { "name": "Flask", "category": "Backend", "variant": "muted_olive" },
   {
-    "name": "Go (gin, echo, encore)",
+    "name": "Gin",
     "category": "Backend",
     "variant": "muted_olive"
   },
+  { "name": "Echo", "category": "Backend", "variant": "muted_olive" },
+  { "name": "Encore", "category": "Backend", "variant": "muted_olive" },
   { "name": "PostgreSQL", "category": "Databases", "variant": "muted_olive" },
   { "name": "MySQL", "category": "Databases", "variant": "muted_olive" },
   { "name": "DB2 for I", "category": "Databases", "variant": "muted_olive" },
