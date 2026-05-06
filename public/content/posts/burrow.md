@@ -1,6 +1,6 @@
 ---
 title: Burrow
-description: Building a tunneling tool that just works. Permanent URLs, secure connections, and the invisible complexity of infrastructure.
+description: Building a tunneling tool because I needed one and because it sounded fun. What I learned about WebSockets, TLS, and learning by doing.
 year: "2024"
 tags:
   - Go
@@ -10,17 +10,21 @@ tags:
 gitLink: github.com/miniaxolotl/burrow
 ---
 
-## The Frustration That Started It
+## The Real Reason
 
-Every developer has needed to show someone their localhost. Ngrok works until it does not. Rate limits, expiring URLs, paid tiers for features that should be free. I wanted to build a tunneling tool that just worked. Permanent URLs without the friction.
+I needed my friends to see Fashion Vision from their own laptops. They were not sitting next to me. I could have grabbed ngrok. That would have been the sensible choice.
 
-## How I Built It
+Instead I decided to build my own tunneling tool. I had time and I wanted to learn something. Finding an existing tool felt like skipping the lesson. Building one felt like the point.
 
-Building a secure tunneling protocol means getting the framing right. WebSocket messages need to carry stream identifiers and sequence numbers and flow control signals without adding latency. The yamux integration handles multiplexing, but tuning it for low-latency developer workflows required careful configuration. Automatic certificate provisioning was another challenge. Every new tunnel needs a TLS cert from Let's Encrypt before the first request hits it. If the ACME challenge fails, the tunnel never opens.
+## How It Works
 
-Run one command and you get a stable HTTPS URL. The server assigns a subdomain and provisions the TLS certificate and opens a WebSocket tunnel back to your machine. The URL does not change. Under the hood, the protocol multiplexes multiple TCP streams over a single WebSocket. You can expose HTTP services and databases and SSH sessions through one tunnel. The framing avoids head-of-line blocking so a slow stream does not stall the others.
+Burrow gives you a stable HTTPS URL for your localhost. You run one command. The server assigns a subdomain, provisions a TLS certificate from Let's Encrypt, and opens a WebSocket tunnel back to your machine. The URL does not change.
 
-Redis tracks active tunnels and persists state across server restarts. If the server goes down and comes back, tunnels reconnect automatically. A token-based auth layer keeps the admin interface locked down for team environments.
+Under the hood the protocol multiplexes multiple TCP streams over a single WebSocket. You can expose HTTP services and databases and SSH sessions through one tunnel. The framing avoids head-of-line blocking so a slow stream does not stall the others.
+
+WebSocket messages carry stream identifiers and sequence numbers and flow control signals. The yamux integration handles multiplexing. Tuning it for low-latency developer workflows took careful configuration. Automatic certificate provisioning means every new tunnel needs a TLS cert before the first request hits it. If the ACME challenge fails, the tunnel never opens.
+
+Redis tracks active tunnels and persists state across server restarts. If the server goes down and comes back, tunnels reconnect automatically. A token-based auth layer keeps the admin interface locked down.
 
 ![Burrow main interface showing active tunnels](/img/projects/burrow/ui_main_1.png)
 
@@ -30,8 +34,10 @@ Redis tracks active tunnels and persists state across server restarts. If the se
 
 ![Burrow help screen showing available commands](/img/projects/burrow/ui_help.png)
 
-## What I Learned About Simple Tools
+## What I Learned
 
 I thought the hard part would be the WebSocket protocol itself. It was not. The hard part was all the edge cases around it. What happens when the connection drops? When the certificate expires? When a thousand tunnels are open at once?
 
-The engineering lives in reconnection logic and state recovery and graceful degradation. These feel like secondary concerns until they break your entire system. I learned that infrastructure tools need to assume failure will happen and design around it from the start. The best tool is the one you forget you are using. If someone has to think about how Burrow works, I have failed.
+The engineering lives in reconnection logic and state recovery and graceful degradation. These feel like secondary concerns until they break your entire system. I learned that infrastructure tools need to assume failure will happen and design around it from the start.
+
+The best tool is the one you forget you are using. If someone has to think about how Burrow works, I have failed.
