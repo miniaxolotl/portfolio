@@ -10,6 +10,14 @@ export const blogSlugs = new Set([
   "inkbyte",
   "paint-opengl",
   "sorbet",
+  "snake-game",
+]);
+
+export const dropdownBlogSlugs = new Set([
+  "burrow",
+  "grove",
+  "fitr",
+  "fashion-vision",
 ]);
 
 export const tagColors = [

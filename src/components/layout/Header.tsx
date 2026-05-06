@@ -23,7 +23,7 @@ import {
 import profile from "@/data/profile.json";
 import projects from "@/data/projects.json";
 import { capture } from "@/lib/analytics";
-import { blogSlugs, getProjectHref } from "@/lib/projects";
+import { dropdownBlogSlugs, getProjectHref } from "@/lib/projects";
 import { cn } from "@/lib/utils";
 import { drawerStore, themeStore } from "@/stores";
 import { MobileSidebar } from "./MobileSidebar";
@@ -35,7 +35,7 @@ const navItems = [
 ];
 
 const dropdownProjects = projects
-  .filter((p) => blogSlugs.has(p.slug))
+  .filter((p) => dropdownBlogSlugs.has(p.slug))
   .sort((a, b) => {
     const yearA = a.year ? parseInt(a.year, 10) : 0;
     const yearB = b.year ? parseInt(b.year, 10) : 0;
