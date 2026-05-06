@@ -17,7 +17,9 @@ export const About = () => (
           />
         </div>
       </div>
-      <p className="text-sm text-muted-foreground leading-relaxed text-center md:text-left">{profile.summary}</p>
+      <p className="text-sm text-muted-foreground leading-relaxed text-center md:text-left">
+        {profile.summary}
+      </p>
     </div>
   </Section>
 );

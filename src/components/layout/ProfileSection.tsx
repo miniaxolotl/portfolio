@@ -20,7 +20,11 @@ export const ProfileSection = ({ imageSize = 88 }: ProfileSectionProps) => (
       />
     </div>
     <h1 className="text-lg font-bold tracking-tight">{profile.name}</h1>
-    <p className="text-sm text-muted-foreground font-medium mt-1.5">{profile.role}</p>
-    <p className="text-xs text-muted-foreground/60 mt-0.5">{profile.location}</p>
+    <p className="text-sm text-muted-foreground font-medium mt-1.5">
+      {profile.role}
+    </p>
+    <p className="text-xs text-muted-foreground/60 mt-0.5">
+      {profile.location}
+    </p>
   </div>
 );

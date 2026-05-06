@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { capture } from "@/lib/analytics";
 import { LuGithub } from "react-icons/lu";
 import { ProjectTag } from "@/components/project/ProjectTag";
+import { capture } from "@/lib/analytics";
 import { blogSlugs, getProjectHref } from "@/lib/projects";
 import { ensureProtocol } from "@/lib/utils";
 import type { Project } from "@/types";

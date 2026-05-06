@@ -1,9 +1,9 @@
 "use client";
 
 import { Check, Copy } from "lucide-react";
-import { capture } from "@/lib/analytics";
 import { useState } from "react";
 import { RxDiscordLogo } from "react-icons/rx";
+import { capture } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 interface DiscordCopyButtonProps {

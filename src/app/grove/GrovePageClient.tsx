@@ -1,42 +1,56 @@
-import { Boxes, Brain, Database, Link2, Package, Sparkles, Zap } from "lucide-react";
+import {
+  Boxes,
+  Brain,
+  Database,
+  Link2,
+  Package,
+  Sparkles,
+  Zap,
+} from "lucide-react";
 import { LuGithub } from "react-icons/lu";
 import { SiDocker, SiNpm } from "react-icons/si";
 import { BadgeRow } from "@/components/project/BadgeRow";
 import { GroveSetupSection } from "@/components/project/GroveSetupSection";
-import { HeroInstall } from "@/components/project/HeroInstall";
 import { ProjectPageLayout } from "@/components/project/ProjectPageLayout";
+import { TabbedTerminal } from "@/components/project/TabbedTerminal";
 import groveData from "@/data/grove-project.json";
 
 const features = [
   {
     icon: Sparkles,
     title: "MCP-Native",
-    description: "Drop-in memory server for OpenCode, Cursor, Claude Desktop, and any MCP-compatible client.",
+    description:
+      "Drop-in memory server for OpenCode, Cursor, Claude Desktop, and any MCP-compatible client.",
   },
   {
     icon: Database,
     title: "Semantic Search",
-    description: "Qdrant vector database powers lightning-fast similarity search across everything the AI has seen.",
+    description:
+      "Qdrant vector database powers lightning-fast similarity search across everything the AI has seen.",
   },
   {
     icon: Boxes,
     title: "Knowledge Graphs",
-    description: "Entity-relationship graphs turn flat memories into structured, queryable knowledge.",
+    description:
+      "Entity-relationship graphs turn flat memories into structured, queryable knowledge.",
   },
   {
     icon: Brain,
     title: "Smart Forgetting",
-    description: "Importance scoring keeps critical facts at the surface while noise naturally decays.",
+    description:
+      "Importance scoring keeps critical facts at the surface while noise naturally decays.",
   },
   {
     icon: Link2,
     title: "Reranking",
-    description: "Optional cross-encoder reranking boosts retrieval accuracy when precision matters.",
+    description:
+      "Optional cross-encoder reranking boosts retrieval accuracy when precision matters.",
   },
   {
     icon: Zap,
     title: "Local Embeddings",
-    description: "ONNX-based models run entirely offline. No API keys, no rate limits, no privacy leaks.",
+    description:
+      "ONNX-based models run entirely offline. No API keys, no rate limits, no privacy leaks.",
   },
 ];
 
@@ -64,9 +78,9 @@ const groveBadges = [
 ];
 
 const groveInstallTabs = [
-  { id: "bun", label: "bun", command: "bun add -g @miniaxolotl/grove" },
-  { id: "npm", label: "npm", command: "npm i -g @miniaxolotl/grove" },
-  { id: "pnpm", label: "pnpm", command: "pnpm add -g @miniaxolotl/grove" },
+  { id: "bun", label: "bun", code: "bun add -g @miniaxolotl/grove" },
+  { id: "npm", label: "npm", code: "npm i -g @miniaxolotl/grove" },
+  { id: "pnpm", label: "pnpm", code: "pnpm add -g @miniaxolotl/grove" },
 ];
 
 export const GrovePageClient = () => (
@@ -75,7 +89,7 @@ export const GrovePageClient = () => (
     tagline={groveData.tagline}
     description={groveData.description}
     badges={<BadgeRow badges={groveBadges} />}
-    quickInstall={<HeroInstall tabs={groveInstallTabs} defaultTab="npm" />}
+    quickInstall={<TabbedTerminal tabs={groveInstallTabs} defaultTab="npm" />}
     features={features}
     featureSectionTitle="Features"
     setupContent={<GroveSetupSection />}

@@ -39,7 +39,14 @@
     "title": "Fashion Vision",
     "slug": "fashion-vision",
     "description": "Computer vision microservice with 7-stage ML pipeline for fashion analysis. Four concurrent models for classification, segmentation, face parsing, and background removal.",
-    "tags": ["TypeScript", "React", "Hono", "Transformers.js", "Computer Vision", "ONNX"],
+    "tags": [
+      "TypeScript",
+      "React",
+      "Hono",
+      "Transformers.js",
+      "Computer Vision",
+      "ONNX"
+    ],
     "gitLink": "github.com/miniaxolotl/fashion-vision",
     "year": "2024",
     "featured": true
@@ -48,7 +55,16 @@
     "title": "InkByte",
     "slug": "inkbyte",
     "description": "Link management platform with URL shortening, QR codes, link-in-bio pages, and geolocation analytics. Monorepo with Koa API and SSR React frontend.",
-    "tags": ["TypeScript", "React", "Koa", "MySQL", "Prisma", "Vite", "Mantine UI", "SSR"],
+    "tags": [
+      "TypeScript",
+      "React",
+      "Koa",
+      "MySQL",
+      "Prisma",
+      "Vite",
+      "Mantine UI",
+      "SSR"
+    ],
     "gitLink": "github.com/miniaxolotl/inkbyte",
     "year": "2021",
     "featured": true

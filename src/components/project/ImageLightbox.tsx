@@ -1,8 +1,8 @@
 "use client";
 
 import { X } from "lucide-react";
-import { capture } from "@/lib/analytics";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { capture } from "@/lib/analytics";
 
 interface ImageLightboxProps {
   children: React.ReactNode;

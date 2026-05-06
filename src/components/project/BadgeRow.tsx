@@ -1,7 +1,7 @@
 "use client";
 
-import { capture } from "@/lib/analytics";
 import type { ReactNode } from "react";
+import { capture } from "@/lib/analytics";
 
 interface Badge {
   label: string;

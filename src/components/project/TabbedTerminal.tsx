@@ -69,8 +69,8 @@ export const TabbedTerminal = ({
                 className={cn(
                   "px-3 py-1 text-xs font-mono font-medium rounded-md transition-colors",
                   activeTab === tab.id
-                    ? "text-[var(--terminal-text)]"
-                    : "text-[var(--terminal-muted)] hover:text-[var(--terminal-text)]",
+                    ? "text-(--terminal-text)"
+                    : "text-(--terminal-muted) hover:text-(--terminal-text)",
                 )}
                 style={
                   activeTab === tab.id

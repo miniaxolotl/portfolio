@@ -1,8 +1,8 @@
 "use client";
 
-import { capture } from "@/lib/analytics";
 import { SocialIcon } from "@/components/layout/SocialIcon";
 import socials from "@/data/socials.json";
+import { capture } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 interface SocialLinksProps {

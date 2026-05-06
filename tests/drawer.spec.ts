@@ -18,12 +18,17 @@ test.describe("Mobile Drawer", () => {
     await expect(drawer).toBeVisible();
   });
 
-  test("should have proper aria attributes on menu button", async ({ page }) => {
+  test("should have proper aria attributes on menu button", async ({
+    page,
+  }) => {
     const menuButton = page.getByRole("button", {
       name: /open navigation menu/i,
     });
     await expect(menuButton).toHaveAttribute("aria-expanded", "false");
-    await expect(menuButton).toHaveAttribute("aria-controls", "mobile-navigation");
+    await expect(menuButton).toHaveAttribute(
+      "aria-controls",
+      "mobile-navigation",
+    );
   });
 
   test("should close drawer when pressing Escape", async ({ page }) => {

@@ -11,7 +11,10 @@ export const Sidebar = () => {
   const activeSection = useActiveSection(sectionIds);
 
   return (
-    <aside className="hidden md:block fixed left-0 top-16 z-40 w-72 h-[calc(100vh-4rem)] bg-card border-r border-border">
+    <aside
+      data-testid="sidebar"
+      className="hidden md:block fixed left-0 top-16 z-40 w-72 h-[calc(100vh-4rem)] bg-card border-r border-border"
+    >
       <div className="flex flex-col h-full p-6 gap-6 overflow-y-auto">
         <ProfileSection imageSize={88} />
 

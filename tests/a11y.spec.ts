@@ -15,7 +15,9 @@ test.describe("Accessibility", () => {
       await expect(skipLink).toHaveAttribute("href", "#main-content");
     });
 
-    test("should focus main content when skip link receives focus", async ({ page }) => {
+    test("should focus main content when skip link receives focus", async ({
+      page,
+    }) => {
       await page.keyboard.press("Tab");
 
       const skipLink = page.getByRole("link", {
@@ -59,13 +61,18 @@ test.describe("Accessibility", () => {
       await expect(skipLink).toBeAttached();
     });
 
-    test("should have accessible mobile navigation drawer", async ({ page }) => {
+    test("should have accessible mobile navigation drawer", async ({
+      page,
+    }) => {
       const menuButton = page.getByRole("button", {
         name: /open navigation menu/i,
       });
       await expect(menuButton).toBeVisible();
       await expect(menuButton).toHaveAttribute("aria-expanded", "false");
-      await expect(menuButton).toHaveAttribute("aria-controls", "mobile-navigation");
+      await expect(menuButton).toHaveAttribute(
+        "aria-controls",
+        "mobile-navigation",
+      );
 
       await menuButton.click();
 
@@ -98,7 +105,9 @@ test.describe("Accessibility", () => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    const consoleErrors = errors.filter((e) => !e.includes("Download the React DevTools"));
+    const consoleErrors = errors.filter(
+      (e) => !e.includes("Download the React DevTools"),
+    );
     expect(consoleErrors).toHaveLength(0);
   });
 });

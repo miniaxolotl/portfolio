@@ -2,7 +2,13 @@ import type { Project } from "@/types";
 
 export const featuredSlugs = new Set(["burrow", "grove"]);
 
-export const blogSlugs = new Set(["burrow", "grove", "fitr", "fashion-vision", "inkbyte"]);
+export const blogSlugs = new Set([
+  "burrow",
+  "grove",
+  "fitr",
+  "fashion-vision",
+  "inkbyte",
+]);
 
 export const tagColors = [
   "bg-[var(--badge-olive-bg)] text-[var(--badge-olive-text)]",
@@ -19,7 +25,10 @@ export const getTagColorIndex = (tag: string): number => {
   return Math.abs(hash) % tagColors.length;
 };
 
-export const getTagColorClass = (tag: string): string => tagColors[getTagColorIndex(tag)];
+export const getTagColorClass = (tag: string): string =>
+  tagColors[getTagColorIndex(tag)];
 
 export const getProjectHref = (project: Project) =>
-  blogSlugs.has(project.slug) ? `/projects/${project.slug}` : `/${project.slug}`;
+  blogSlugs.has(project.slug)
+    ? `/projects/${project.slug}`
+    : `/${project.slug}`;

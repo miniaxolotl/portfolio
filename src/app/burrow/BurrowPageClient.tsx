@@ -3,40 +3,46 @@ import { LuGithub } from "react-icons/lu";
 import { SiDocker, SiNpm } from "react-icons/si";
 import { BadgeRow } from "@/components/project/BadgeRow";
 import { BurrowSetupSection } from "@/components/project/BurrowSetupSection";
-import { HeroInstall } from "@/components/project/HeroInstall";
 import { ProjectPageLayout } from "@/components/project/ProjectPageLayout";
+import { TabbedTerminal } from "@/components/project/TabbedTerminal";
 import burrowData from "@/data/burrow-project.json";
 
 const features = [
   {
     icon: ArrowDownUp,
     title: "Public URLs in Seconds",
-    description: "Turn localhost into a public HTTPS URL with one command. No config, no signup.",
+    description:
+      "Turn localhost into a public HTTPS URL with one command. No config, no signup.",
   },
   {
     icon: Lock,
     title: "TLS Out of the Box",
-    description: "Automatic Let's Encrypt certificates for every subdomain. Your traffic is encrypted end-to-end.",
+    description:
+      "Automatic Let's Encrypt certificates for every subdomain. Your traffic is encrypted end-to-end.",
   },
   {
     icon: Network,
     title: "More Than HTTP",
-    description: "Expose databases, SSH, game servers, or any TCP service through the same tunnel.",
+    description:
+      "Expose databases, SSH, game servers, or any TCP service through the same tunnel.",
   },
   {
     icon: Zap,
     title: "WebSocket Multiplexing",
-    description: "Efficient connection reuse keeps latency low and bandwidth minimal across all tunnels.",
+    description:
+      "Efficient connection reuse keeps latency low and bandwidth minimal across all tunnels.",
   },
   {
     icon: Shield,
     title: "Token-Based Auth",
-    description: "Built-in admin tokens and team authentication. Control who can open tunnels on your server.",
+    description:
+      "Built-in admin tokens and team authentication. Control who can open tunnels on your server.",
   },
   {
     icon: Box,
     title: "Survives Restarts",
-    description: "Redis-backed state means tunnels persist across server reboots without reconfiguration.",
+    description:
+      "Redis-backed state means tunnels persist across server reboots without reconfiguration.",
   },
 ];
 
@@ -59,9 +65,9 @@ const burrowBadges = [
 ];
 
 const burrowInstallTabs = [
-  { id: "bun", label: "bun", command: "bun add -g @miniaxolotl/burrowctl" },
-  { id: "npm", label: "npm", command: "npm i -g @miniaxolotl/burrowctl" },
-  { id: "pnpm", label: "pnpm", command: "pnpm add -g @miniaxolotl/burrowctl" },
+  { id: "bun", label: "bun", code: "bun add -g @miniaxolotl/burrowctl" },
+  { id: "npm", label: "npm", code: "npm i -g @miniaxolotl/burrowctl" },
+  { id: "pnpm", label: "pnpm", code: "pnpm add -g @miniaxolotl/burrowctl" },
 ];
 
 export const BurrowPageClient = () => (
@@ -70,7 +76,7 @@ export const BurrowPageClient = () => (
     tagline={burrowData.tagline}
     description={burrowData.description}
     badges={<BadgeRow badges={burrowBadges} />}
-    quickInstall={<HeroInstall tabs={burrowInstallTabs} defaultTab="npm" />}
+    quickInstall={<TabbedTerminal tabs={burrowInstallTabs} defaultTab="npm" />}
     features={features}
     featureSectionTitle="Features"
     setupContent={<BurrowSetupSection />}

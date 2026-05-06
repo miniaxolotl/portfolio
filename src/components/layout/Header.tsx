@@ -5,7 +5,6 @@ import { observer } from "mobx-react-lite";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { capture } from "@/lib/analytics";
 import { useEffect, useState } from "react";
 import {
   Drawer,
@@ -23,6 +22,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import profile from "@/data/profile.json";
 import projects from "@/data/projects.json";
+import { capture } from "@/lib/analytics";
 import { blogSlugs, getProjectHref } from "@/lib/projects";
 import { cn } from "@/lib/utils";
 import { drawerStore, themeStore } from "@/stores";

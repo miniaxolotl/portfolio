@@ -9,14 +9,19 @@ const BlogPage = () => (
       <div className="space-y-12">
         <div>
           <p className="text-sm text-muted-foreground leading-relaxed mb-6 max-w-2xl">
-            Technical explorations and deep dives into systems, AI, and full-stack development.
+            Technical explorations and deep dives into systems, AI, and
+            full-stack development.
           </p>
           <ProjectsList />
         </div>
 
         <div>
-          <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-4">Other Projects</h3>
-          <p className="text-xs text-muted-foreground mb-4">Earlier experiments and learning projects.</p>
+          <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-4">
+            Other Projects
+          </h3>
+          <p className="text-xs text-muted-foreground mb-4">
+            Earlier experiments and learning projects.
+          </p>
           <OtherProjectsList />
         </div>
       </div>

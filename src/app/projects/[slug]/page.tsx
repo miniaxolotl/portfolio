@@ -4,7 +4,11 @@ import { ImageLightbox } from "@/components/project/ImageLightbox";
 import { ProjectPageContent } from "@/components/project/ProjectPageContent";
 import profile from "@/data/profile.json";
 import projects from "@/data/projects.json";
-import { loadProjectMarkdown } from "@/lib/markdown";
+import {
+  calculateReadingTime,
+  extractHeadings,
+  loadProjectMarkdown,
+} from "@/lib/markdown";
 import { blogSlugs } from "@/lib/projects";
 
 interface ProjectPageProps {
@@ -19,7 +23,9 @@ export const generateStaticParams = () => [
   { slug: "inkbyte" },
 ];
 
-export const generateMetadata = async ({ params }: ProjectPageProps): Promise<Metadata> => {
+export const generateMetadata = async ({
+  params,
+}: ProjectPageProps): Promise<Metadata> => {
   const { slug } = await params;
   const project = projects.find((p) => p.slug === slug);
 
@@ -53,6 +59,16 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
   }
 
   const { frontmatter, content } = loadProjectMarkdown(slug);
+  const headings = extractHeadings(content);
+  const readingTime = calculateReadingTime(content);
+
+  const blogProjects = projects.filter((p) => blogSlugs.has(p.slug));
+  const currentIndex = blogProjects.findIndex((p) => p.slug === slug);
+  const prevProject = currentIndex > 0 ? blogProjects[currentIndex - 1] : null;
+  const nextProject =
+    currentIndex < blogProjects.length - 1
+      ? blogProjects[currentIndex + 1]
+      : null;
 
   return (
     <ImageLightbox>
@@ -61,10 +77,13 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
         description={frontmatter.description}
         tags={frontmatter.tags ?? []}
         year={frontmatter.year}
+        readingTime={readingTime}
         gitLink={frontmatter.gitLink}
         links={frontmatter.links}
         content={content}
-        hasSidebar
+        headings={headings}
+        prevProject={prevProject}
+        nextProject={nextProject}
       />
     </ImageLightbox>
   );
