@@ -37,7 +37,7 @@ For recommendations, I explored embeddings. Wardrobe items and preferences becom
 
 Running models locally changes the math. A compressed model on-device answers in milliseconds. The tradeoff is precision, but sometimes "this looks like a blue jacket" is more useful than a high-dimensional vector. The backend is Go. The mobile frontend is Flutter. The design system needed to feel editorial. More magazine than marketplace.
 
-![Personalized recommendations feed showing AI-curated outfit suggestions](/img/projects/fitr/for-you-page.png)
+![Personalized recommendations feed showing AI-curated outfit suggestions](/img/projects/fitr/for-you-page.jpg)
 
 ## What I Learned About AI and Style
 
@@ -45,4 +45,4 @@ I started this project thinking I needed complex ML models. What I actually need
 
 I also learned how much of AI product design is about restraint. The best systems learn from behavior without demanding explanations. They leave room for people to change their minds and surprise themselves.
 
-![User profile page showing wardrobe and style identity](/img/projects/fitr/profile-page.png)
+![User profile page showing wardrobe and style identity](/img/projects/fitr/profile-page.jpg)

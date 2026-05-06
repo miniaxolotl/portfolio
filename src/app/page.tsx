@@ -1,5 +1,3 @@
-"use client";
-
 import { PageShell } from "@/components/layout/PageShell";
 import { About } from "@/components/sections/About";
 import { Projects } from "@/components/sections/Projects";

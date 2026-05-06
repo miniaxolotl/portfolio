@@ -1,5 +1,3 @@
-"use client";
-
 import { ArrowDownUp, Box, Lock, Network, Shield, Zap } from "lucide-react";
 import { LuGithub } from "react-icons/lu";
 import { SiDocker, SiNpm } from "react-icons/si";
@@ -13,38 +11,32 @@ const features = [
   {
     icon: ArrowDownUp,
     title: "Public URLs in Seconds",
-    description:
-      "Turn localhost into a public HTTPS URL with one command. No config, no signup.",
+    description: "Turn localhost into a public HTTPS URL with one command. No config, no signup.",
   },
   {
     icon: Lock,
     title: "TLS Out of the Box",
-    description:
-      "Automatic Let's Encrypt certificates for every subdomain. Your traffic is encrypted end-to-end.",
+    description: "Automatic Let's Encrypt certificates for every subdomain. Your traffic is encrypted end-to-end.",
   },
   {
     icon: Network,
     title: "More Than HTTP",
-    description:
-      "Expose databases, SSH, game servers, or any TCP service through the same tunnel.",
+    description: "Expose databases, SSH, game servers, or any TCP service through the same tunnel.",
   },
   {
     icon: Zap,
     title: "WebSocket Multiplexing",
-    description:
-      "Efficient connection reuse keeps latency low and bandwidth minimal across all tunnels.",
+    description: "Efficient connection reuse keeps latency low and bandwidth minimal across all tunnels.",
   },
   {
     icon: Shield,
     title: "Token-Based Auth",
-    description:
-      "Built-in admin tokens and team authentication. Control who can open tunnels on your server.",
+    description: "Built-in admin tokens and team authentication. Control who can open tunnels on your server.",
   },
   {
     icon: Box,
     title: "Survives Restarts",
-    description:
-      "Redis-backed state means tunnels persist across server reboots without reconfiguration.",
+    description: "Redis-backed state means tunnels persist across server reboots without reconfiguration.",
   },
 ];
 

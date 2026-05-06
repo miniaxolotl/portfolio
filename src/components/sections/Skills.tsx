@@ -41,28 +41,26 @@ const skillCategories = [
   },
 ];
 
-export const Skills = () => {
-  return (
-    <Section id="skills" title="Skills">
-      <div className="space-y-8 sm:space-y-10">
-        {skillCategories.map((category) => (
-          <div key={category.name}>
-            <div className="mb-4">
-              <h3 className="text-sm font-semibold mb-1">{category.name}</h3>
-              <p className="text-xs text-muted-foreground">
-                {category.description}
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {category.skills.map((skill) => (
-                <SkillBadge key={skill.name} variant={skill.variant}>
-                  {skill.name}
-                </SkillBadge>
-              ))}
-            </div>
+export const Skills = () => (
+  <Section id="skills" title="Skills">
+    <div className="space-y-8 sm:space-y-10">
+      {skillCategories.map((category) => (
+        <div key={category.name}>
+          <div className="mb-4">
+            <h3 className="text-sm font-semibold mb-1">{category.name}</h3>
+            <p className="text-xs text-muted-foreground">
+              {category.description}
+            </p>
           </div>
-        ))}
-      </div>
-    </Section>
-  );
-};
+          <div className="flex flex-wrap gap-2">
+            {category.skills.map((skill) => (
+              <SkillBadge key={skill.name} variant={skill.variant}>
+                {skill.name}
+              </SkillBadge>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </Section>
+);

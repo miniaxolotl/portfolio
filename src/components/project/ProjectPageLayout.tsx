@@ -1,5 +1,3 @@
-"use client";
-
 import type { LucideIcon } from "lucide-react";
 import { PageShell } from "@/components/layout/PageShell";
 import { CompactFeatureCard } from "@/components/project/CompactFeatureCard";
@@ -44,29 +42,19 @@ export const ProjectPageLayout = ({
         <div className="mb-16 md:mb-20 text-center">
           {badges && <div className="mb-5 flex justify-center">{badges}</div>}
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-5">
-            {name}
-          </h1>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-5">{name}</h1>
 
-          <p className="text-xl sm:text-2xl text-muted-foreground leading-relaxed mb-6 max-w-2xl mx-auto">
-            {tagline}
-          </p>
+          <p className="text-xl sm:text-2xl text-muted-foreground leading-relaxed mb-6 max-w-2xl mx-auto">{tagline}</p>
 
-          <p className="text-base leading-relaxed mb-8 max-w-2xl mx-auto text-muted-foreground/80">
-            {description}
-          </p>
+          <p className="text-base leading-relaxed mb-8 max-w-2xl mx-auto text-muted-foreground/80">{description}</p>
 
-          {quickInstall && (
-            <div className="mb-6 flex justify-center">{quickInstall}</div>
-          )}
+          {quickInstall && <div className="mb-6 flex justify-center">{quickInstall}</div>}
         </div>
 
         {/* Features */}
         {features && features.length > 0 && (
           <section className="mb-16 md:mb-20">
-            <h2 className="text-xl sm:text-2xl font-bold mb-8 text-center">
-              {featureSectionTitle}
-            </h2>
+            <h2 className="text-xl sm:text-2xl font-bold mb-8 text-center">{featureSectionTitle}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {features.map((feature) => (
                 <CompactFeatureCard
@@ -86,9 +74,7 @@ export const ProjectPageLayout = ({
         {/* Setup */}
         {setupContent && (
           <section>
-            <h2 className="text-xl sm:text-2xl font-bold mb-8 text-center">
-              {setupSectionTitle}
-            </h2>
+            <h2 className="text-xl sm:text-2xl font-bold mb-8 text-center">{setupSectionTitle}</h2>
             <div className="space-y-6">{setupContent}</div>
           </section>
         )}

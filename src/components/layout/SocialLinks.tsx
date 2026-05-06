@@ -14,9 +14,7 @@ export const SocialLinks = ({ variant, className }: SocialLinksProps) => {
 
   return (
     <div className={cn("pt-4", className)}>
-      <p className="text-xs font-medium text-muted-foreground/60 uppercase tracking-wider mb-3 px-1">
-        Connect
-      </p>
+      <p className="text-xs font-medium text-muted-foreground/60 uppercase tracking-wider mb-3 px-1">Connect</p>
       {variant === "icon-only" ? (
         <div className="flex flex-wrap gap-2">
           {nonDiscordSocials.map((social) => (

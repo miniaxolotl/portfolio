@@ -1,14 +1,4 @@
-"use client";
-
-import {
-  Boxes,
-  Brain,
-  Database,
-  Link2,
-  Package,
-  Sparkles,
-  Zap,
-} from "lucide-react";
+import { Boxes, Brain, Database, Link2, Package, Sparkles, Zap } from "lucide-react";
 import { LuGithub } from "react-icons/lu";
 import { SiDocker, SiNpm } from "react-icons/si";
 import { BadgeRow } from "@/components/project/BadgeRow";
@@ -21,38 +11,32 @@ const features = [
   {
     icon: Sparkles,
     title: "MCP-Native",
-    description:
-      "Drop-in memory server for OpenCode, Cursor, Claude Desktop, and any MCP-compatible client.",
+    description: "Drop-in memory server for OpenCode, Cursor, Claude Desktop, and any MCP-compatible client.",
   },
   {
     icon: Database,
     title: "Semantic Search",
-    description:
-      "Qdrant vector database powers lightning-fast similarity search across everything the AI has seen.",
+    description: "Qdrant vector database powers lightning-fast similarity search across everything the AI has seen.",
   },
   {
     icon: Boxes,
     title: "Knowledge Graphs",
-    description:
-      "Entity-relationship graphs turn flat memories into structured, queryable knowledge.",
+    description: "Entity-relationship graphs turn flat memories into structured, queryable knowledge.",
   },
   {
     icon: Brain,
     title: "Smart Forgetting",
-    description:
-      "Importance scoring keeps critical facts at the surface while noise naturally decays.",
+    description: "Importance scoring keeps critical facts at the surface while noise naturally decays.",
   },
   {
     icon: Link2,
     title: "Reranking",
-    description:
-      "Optional cross-encoder reranking boosts retrieval accuracy when precision matters.",
+    description: "Optional cross-encoder reranking boosts retrieval accuracy when precision matters.",
   },
   {
     icon: Zap,
     title: "Local Embeddings",
-    description:
-      "ONNX-based models run entirely offline. No API keys, no rate limits, no privacy leaks.",
+    description: "ONNX-based models run entirely offline. No API keys, no rate limits, no privacy leaks.",
   },
 ];
 
