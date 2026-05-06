@@ -43,16 +43,16 @@ const skillCategories = [
 
 export const Skills = () => (
   <Section id="skills" title="Skills">
-    <div className="space-y-8 sm:space-y-10">
+    <div className="space-y-5 sm:space-y-6">
       {skillCategories.map((category) => (
         <div key={category.name}>
-          <div className="mb-4">
-            <h3 className="text-sm font-semibold mb-1">{category.name}</h3>
+          <div className="mb-2">
+            <h3 className="text-sm font-semibold">{category.name}</h3>
             <p className="text-xs text-muted-foreground">
               {category.description}
             </p>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5">
             {category.skills.map((skill) => (
               <SkillBadge key={skill.name} variant={skill.variant}>
                 {skill.name}
