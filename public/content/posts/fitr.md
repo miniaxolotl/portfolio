@@ -35,11 +35,15 @@ Building an AI that recommends clothes is easy. Building one that recommends clo
 
 The core idea was Style DNA. A profile built from behavior rather than questionnaires. The system learns patterns like color affinities and silhouette preferences from what you save and linger on and return to. I chose spectrums over categories. Primary and secondary traits written in natural language capture the fluidity of style better than rigid labels.
 
-For recommendations, I explored embeddings. Wardrobe items and preferences become vectors that can be compared by meaning inside PostgreSQL with pgvector. No separate ML service required. We store clothing embeddings in PostgreSQL with pgvector. This lets us compare items by meaning rather than by tag. A blue blazer and a navy sport coat live near each other in vector space even if no one labeled them similarly.
+For recommendations, I explored embeddings. Wardrobe items and preferences become vectors that can be compared by meaning inside PostgreSQL with pgvector. No separate ML service required. A blue blazer and a navy sport coat live near each other in vector space even if no one labeled them similarly.
 
 I also looked at how a machine sees clothing. A photo is just pixels. For software to understand it, those pixels need to be separated into body from background and upper from lower and garment from skin. We built computer vision pipelines that segment clothing from body and background. The model isolates upper body from lower body. It finds accessories. It figures out where the garment ends and the person begins. The segmentation strategy mirrors human perception.
 
-Running models locally changes the math. A compressed model on-device answers in milliseconds. The tradeoff is precision, but sometimes "this looks like a blue jacket" is more useful than a high-dimensional vector. The backend is Go. I architected the core backend and API layer in Go. The app needs to serve recommendations fast. It needs to handle wardrobe uploads and user sessions and outfit generation without falling over. Go felt right for that. It is fast and the concurrency model is clean. The mobile frontend is Flutter. The design system needed to feel editorial. More magazine than marketplace.
+Running models locally changes the math. A compressed model on-device answers in milliseconds. The tradeoff is precision, but sometimes "this looks like a blue jacket" is more useful than a high-dimensional vector.
+
+The backend is Go. I architected the core backend and API layer because the app needs to serve recommendations fast. It needs to handle wardrobe uploads and user sessions and outfit generation without falling over. Go felt right for that. It is fast and the concurrency model is clean.
+
+The mobile frontend is Flutter. The design system needed to feel editorial. More magazine than marketplace.
 
 ![Personalized recommendations feed showing AI-curated outfit suggestions](/img/projects/fitr/for-you-page.jpg)
 

@@ -12,9 +12,11 @@ gitLink: github.com/miniaxolotl/burrow
 
 ## The Real Reason
 
-I needed my friends to see Fashion Vision from their own laptops. They were not sitting next to me. I could have grabbed ngrok. That would have been the sensible choice.
+I needed my friends to see Fashion Vision from their own laptops. They were not sitting next to me. Every developer has needed to show someone their localhost. Usually you grab ngrok and move on.
 
-Instead I decided to build my own tunneling tool. I had time and I wanted to learn something. Finding an existing tool felt like skipping the lesson. Building one felt like the point.
+Ngrok works until it does not. Rate limits, expiring URLs, paid tiers for features that should be free. I wanted a tunneling tool that just worked. Permanent URLs without the friction.
+
+I also had time and I wanted to learn something. Finding an existing tool felt like skipping the lesson. Building one felt like the point.
 
 ## How It Works
 
@@ -22,9 +24,9 @@ Burrow gives you a stable HTTPS URL for your localhost. You run one command. The
 
 Under the hood the protocol multiplexes multiple TCP streams over a single WebSocket. You can expose HTTP services and databases and SSH sessions through one tunnel. The framing avoids head-of-line blocking so a slow stream does not stall the others.
 
-WebSocket messages carry stream identifiers and sequence numbers and flow control signals. The yamux integration handles multiplexing. Tuning it for low-latency developer workflows took careful configuration. Automatic certificate provisioning means every new tunnel needs a TLS cert before the first request hits it. If the ACME challenge fails, the tunnel never opens.
+WebSocket messages carry stream identifiers and sequence numbers and flow control signals. The yamux integration handles multiplexing. Tuning it for low-latency developer workflows took careful configuration. Automatic certificate provisioning means every new tunnel needs a TLS cert from Let's Encrypt before the first request hits it. If the ACME challenge fails, the tunnel never opens.
 
-Redis tracks active tunnels and persists state across server restarts. If the server goes down and comes back, tunnels reconnect automatically. A token-based auth layer keeps the admin interface locked down.
+Redis tracks active tunnels and persists state across server restarts. If the server goes down and comes back, tunnels reconnect automatically. A token-based auth layer keeps the admin interface locked down for team environments.
 
 ![Burrow main interface showing active tunnels](/img/projects/burrow/ui_main_1.png)
 
@@ -34,7 +36,7 @@ Redis tracks active tunnels and persists state across server restarts. If the se
 
 ![Burrow help screen showing available commands](/img/projects/burrow/ui_help.png)
 
-## What I Learned
+## What I Learned About Simple Tools
 
 I thought the hard part would be the WebSocket protocol itself. It was not. The hard part was all the edge cases around it. What happens when the connection drops? When the certificate expires? When a thousand tunnels are open at once?
 
