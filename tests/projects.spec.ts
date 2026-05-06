@@ -15,12 +15,8 @@ test.describe("Projects", () => {
     await expect(readMoreLinks).toHaveCount(5);
   });
 
-  test("should navigate to project detail page via read more", async ({
-    page,
-  }) => {
-    const groveLink = page
-      .locator('#projects a[href="/projects/grove"]')
-      .first();
+  test("should navigate to project detail page via read more", async ({ page }) => {
+    const groveLink = page.locator('#projects a[href="/projects/grove"]').first();
     await groveLink.click();
 
     await expect(page).toHaveURL(/\/projects\/grove/);
@@ -30,16 +26,14 @@ test.describe("Projects", () => {
 });
 
 test.describe("Project Blog Posts", () => {
-  test("should render markdown content on blog project page", async ({
-    page,
-  }) => {
+  test("should render markdown content on blog project page", async ({ page }) => {
     await page.goto("/projects/grove");
 
     const heading = page.getByRole("heading", { name: /grove/i, level: 1 });
     await expect(heading).toBeVisible();
 
     const markdownHeading = page.getByRole("heading", {
-      name: /almost right/i,
+      name: /the problem i wanted to solve/i,
     });
     await expect(markdownHeading).toBeVisible();
 
@@ -47,9 +41,7 @@ test.describe("Project Blog Posts", () => {
     await expect(paragraph).toBeVisible();
   });
 
-  test("should display feature cards on featured project page", async ({
-    page,
-  }) => {
+  test("should display feature cards on featured project page", async ({ page }) => {
     await page.goto("/burrow");
 
     const heading = page.getByRole("heading", { name: /burrow/i, level: 1 });
@@ -102,11 +94,9 @@ test.describe("Header Blog Dropdown", () => {
   });
 
   test("should open blog dropdown and show project links", async ({ page }) => {
-    const dropdownTrigger = page
-      .locator('nav[aria-label="Main navigation"]')
-      .getByRole("button", {
-        name: /blog/i,
-      });
+    const dropdownTrigger = page.locator('nav[aria-label="Main navigation"]').getByRole("button", {
+      name: /blog/i,
+    });
     await expect(dropdownTrigger).toBeVisible();
 
     await dropdownTrigger.click();
@@ -121,11 +111,9 @@ test.describe("Header Blog Dropdown", () => {
   });
 
   test("should navigate to project from dropdown", async ({ page }) => {
-    const dropdownTrigger = page
-      .locator('nav[aria-label="Main navigation"]')
-      .getByRole("button", {
-        name: /blog/i,
-      });
+    const dropdownTrigger = page.locator('nav[aria-label="Main navigation"]').getByRole("button", {
+      name: /blog/i,
+    });
     await dropdownTrigger.click();
 
     const menu = page.getByRole("menu");
