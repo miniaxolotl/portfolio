@@ -7,6 +7,7 @@ export const blogSlugs = new Set([
   "grove",
   "fitr",
   "fashion-vision",
+  "gobox",
   "inkbyte",
   "paint-opengl",
   "sorbet",
