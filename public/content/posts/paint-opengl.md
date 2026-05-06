@@ -9,35 +9,41 @@ tags:
 gitLink: github.com/miniaxolotl/paint-opengl
 ---
 
-## Why I Built It
+## Learning by Drawing
 
-I wanted to learn OpenGL. The best way to learn is to build something that needs all of it. A paint app seemed like the right challenge. It needs real-time rendering. It needs a color system. It needs tools that feel responsive.
+I wanted to learn OpenGL. Reading about projection matrices and vertex buffers only gets you so far. I needed to build something that actually puts pixels on the screen. A paint app felt like the right challenge. It needs real-time rendering. It needs a color picker. It needs tools that respond instantly when you move the mouse.
 
-## The Rendering Pipeline
+The canvas is a thirty-two by thirty-two grid. Small enough to feel manageable. Large enough to draw something recognizable. Each pixel is a quad drawn directly with OpenGL immediate mode. No shaders. No modern pipeline. Just vertices and colors.
 
-The core idea was a 32x32 pixel grid rendered with OpenGL's fixed-function pipeline. Each pixel is a `CanvasNode` -- a quad drawn with `GL_POLYGON` in normalized device coordinates. The canvas is not a simple 2D array. It is a linked graph where each node holds explicit pointers to its four neighbors (north, south, east, west). This design enables flood fill to traverse via neighbor pointers rather than array indexing.
+## The Canvas as a Graph
 
-Double-buffered rendering via `glutSwapBuffers()`. Orthographic projection for the canvas, and a pixel-coordinate projection for UI overlays. A checkerboard background indicates transparency. Alpha blending is enabled throughout.
+I did not store the canvas as a simple array. Each pixel is a node in a linked graph. Every node holds pointers to its four neighbors. North, south, east, west. This made flood fill feel natural. The algorithm walks from node to node following the pointers instead of calculating array indices.
 
-## Brush System
+The recursive brush expansion works the same way. A brush larger than one pixel spreads outward through the neighbor links, reducing its reach by one step at each hop. The same structure supports both tools.
 
-Two brush types: pixel and flood fill. The pixel brush sets color and visibility on individual nodes. It supports a variable brush size (1-5) via recursive flood-expansion that spreads to neighbors, decreasing size by one each step. A colored circle indicator follows the mouse cursor with a contrast ring for visibility.
+The background draws as a checkerboard pattern to show transparency. Alpha blending is on. The canvas sits in an orthographic projection so coordinates map directly to pixels.
 
-## Flood Fill
+## Filling with Color
 
-The bucket tool uses a BFS (breadth-first search) algorithm with `std::queue` and `std::set` for visited tracking. It processes incrementally -- each frame handles a batch of nodes to avoid freezing the UI. A slow mode adds a delay per node for visual animation. Early-exit optimization skips if the replacement color equals the existing color.
+The bucket tool uses breadth-first search. A queue holds the nodes to process. A set tracks which ones have been visited. Each frame handles a batch of nodes so the UI does not freeze while the fill runs. I added a slow mode that delays between nodes so you can watch the fill spread across the canvas.
+
+If the replacement color matches the existing color, the tool exits early. No point in filling a region with the same color it already has.
 
 <video controls autoplay loop muted playsinline>
   <source src="/img/projects/paint-opengl/flood-fill-demo.mp4" type="video/mp4">
 </video>
 
-## Color System
+## Picking Colors
 
-Full HSV color model with 360-degree hue, saturation, and value controls. Multiple selection methods: scroll wheel changes hue (Shift+Scroll for saturation, Ctrl+Scroll for value), a clickable hue spectrum bar at the bottom, and a saturation/value gradient square. HSV-to-RGB conversion implemented from the standard algorithm. A color preview swatch sits in the top-right corner.
+I built a full HSV color model. Three hundred sixty degrees of hue. Saturation and value controls on top of that. You can scroll the mouse wheel to shift hue. Hold shift and scroll for saturation. Hold control and scroll for value. A spectrum bar at the bottom lets you click directly to a hue. A gradient square handles saturation and value together.
 
-## UI and Tools
+A small swatch in the corner shows the current color. The info panel in the top left displays the active tool, brush size, and both RGB and HSV values.
 
-All UI is hand-drawn with OpenGL immediate mode and GLUT bitmap fonts. No third-party UI library. A top-left info panel shows the current tool, brush size, RGB and HSV values. A help overlay toggles with the `h` key. Tools include pixel brush, flood fill bucket, eraser (right mouse), and full canvas clear.
+## Drawing the Interface
+
+Everything is hand-drawn with OpenGL immediate mode and GLUT bitmap fonts. No third-party UI library. The tool buttons, the color picker, the info panel, the help overlay. All of it is quads and text rendered by hand.
+
+The tools are simple. A pixel brush. A flood fill bucket. An eraser on the right mouse button. A full canvas clear. The help overlay toggles with the h key and lists every shortcut.
 
 <img src="/img/projects/paint-opengl/example-1.png" alt="Paint OpenGL canvas showing pixel art" />
 
@@ -45,8 +51,8 @@ All UI is hand-drawn with OpenGL immediate mode and GLUT bitmap fonts. No third-
 
 ## What I Learned
 
-OpenGL's fixed-function pipeline is a different world from modern shader-based rendering. `glBegin` and `glEnd` with immediate mode means every vertex is specified directly. The state machine model means you always need to know what is currently bound and what the last operation changed.
+OpenGL immediate mode is a different world from modern shader-based rendering. You call glBegin and glEnd and specify every vertex directly. The state machine model means you always need to know what is currently bound and what the last operation changed. Forgetting to reset a state causes bugs that show up three frames later.
 
-I learned that graph-based data structures can be more flexible than arrays for certain problems. The linked grid of CanvasNodes made flood fill traversal natural and enabled the recursive brush expansion.
+I learned that graph-based structures can be more natural than arrays for certain problems. The linked grid made flood fill and brush expansion feel straightforward because the data structure matched the algorithm.
 
-Paint OpenGL taught me that real-time rendering is about discipline. Every frame has a budget. Every draw call costs something. The best rendering code does the minimum work to get the right pixels on the screen.
+Real-time rendering teaches discipline. Every frame has a budget. Every draw call costs something. The best rendering code does the minimum work to get the right pixels on the screen.

@@ -12,7 +12,7 @@ gitLink: github.com/celestialstag/gobox-server-v1
 
 I kept moving files between computers on the same network. USB drives work but they are slow. Cloud storage works but it uploads to a server somewhere else first. I wanted something that stayed local. Something I could start with one command and forget about.
 
-I decided to build it in Go. The language compiles to a single binary. No runtime to install. No package manager to fight with. Just run the file and it works.
+Go felt like the right language. It compiles to a single binary. No runtime to install. No package manager to fight with. Just run the file and it works.
 
 ## How It Works
 

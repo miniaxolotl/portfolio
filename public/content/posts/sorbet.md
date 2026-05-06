@@ -9,41 +9,41 @@ tags:
 gitLink: github.com/miniaxolotl/sorbet
 ---
 
-## Why I Built It
+## Starting from Nothing
 
-I wanted to understand how game engines actually work. Not how to use one. How to build one. Unity and Godot are great until you need to know what happens under the hood. So I decided to write my own.
+I wanted to know what happens under the hood of a game engine. Not how to use one. How one is built. Unity and Godot are great tools. But they hide everything. I wanted to see the gears.
 
-I called it Sorbet. A lightweight 2D engine in C using SDL2. No frameworks. No wrappers. Just C and a window on the screen.
+So I wrote my own. A lightweight 2D engine in C with SDL2. No frameworks. No wrappers. Just C code and a window on the screen.
 
-## Building an ECS in C
+I called it Sorbet. The name does not matter much. The learning did.
 
-The hardest part was the entity component system. An ECS sounds simple. Entities are IDs. Components are data. Systems process them. But implementing that in C without pointers chasing each other across memory is a different story.
+## Organizing Entities and Components
 
-I used struct-of-arrays layouts instead of array-of-structs. Each component type lives in its own contiguous block. Systems iterate over flat arrays. The CPU cache stays happy. No indirection. No allocation per entity.
+The hardest part was the entity component system. The idea sounds clean. Entities are identifiers. Components hold data. Systems process them. But implementing that in C without pointers chasing each other across memory takes thought.
 
-The Collection acts as the world that owns all entities and systems. It maintains a vector of systems and entities, a hashmap for O(1) system lookup by ID, and a circular queue for entity ID recycling so deleted IDs can be reused. The `collection__link_components()` function automatically maps components to their correct systems via the hashmap.
+I laid out each component type in its own contiguous block of memory. Systems iterate over flat arrays. The CPU cache stays happy. No jumping between scattered allocations. No indirection.
 
-## Data Structures
+The Collection owns everything. It holds a vector of systems and a vector of entities. A hashmap gives fast lookup of systems by ID. A circular queue recycles entity IDs when things get deleted so old identifiers can be reused. When a component gets attached to an entity, the Collection figures out which system should handle it. No manual wiring.
 
-Four fundamental data structures, all using `void*` for generic payloads:
+## Building the Pieces
 
-**Vector** is a dynamic array that doubles capacity when full. Supports insert, get, remove, and free.
+I needed basic data structures before anything else. C does not give you these for free.
 
-**Hashmap** is an open-addressing hash table built on top of Vector. Uses modulo hashing with linear probing for collision resolution.
+A vector that grows when full. A hashmap built on top of that vector using linear probing. A doubly linked list with head and tail pointers. A circular buffer queue with front and rear indices. All of them use void pointers so they can carry any type of data.
 
-**Linked List** is a doubly-linked list with head/tail pointers. Supports push, pop by key, peek, and cycle operations.
+Writing these from scratch taught me why standard libraries exist. Every edge case needs handling. What happens when the vector doubles and the old memory gets freed. What happens when the hashmap fills up and collisions pile up. What happens when the queue wraps around the buffer boundary.
 
-**Queue** is a circular buffer queue with front/rear indices. Supports push, pop, and empty/full checks.
+## The Loop That Runs Everything
 
-## The Game Loop
+The engine runs a fixed framerate loop. SDL tracks the time between frames. I cap the delta at three times the target interval so the game does not explode after you switch tabs and come back.
 
-The core engine runs a fixed framerate timing loop using `SDL_GetTicks()` for delta time calculation. Delta is capped at 3x the target frame interval to prevent physics explosions after tab-switching or pauses. Each frame polls SDL events, runs the ECS collection tick, calls per-entity update and render callbacks, and presents the renderer.
+Each frame polls events, ticks the ECS, calls update and render callbacks on each entity, and presents the frame. Clean teardown shuts down SDL subsystems in order. Renderer first. Window next. Then the image and font libraries. Finally SDL itself.
 
-Clean teardown handles SDL subsystems in order: renderer, window, TTF, IMG, then SDL_Quit.
+## The Snake Demo
 
-## Snake Demo
+The demo is a complete Snake game built on the ECS. A thirty by twenty grid with cells at twenty-four pixels each. The snake wraps around the edges. Hitting yourself ends the game. The speed climbs as the snake grows.
 
-The included demo is a complete, playable Snake game built on top of the ECS. A 30x20 grid with 24px cells in a 720x480 window. The snake wraps around edges. Self-collision ends the game. Speed increases as the snake grows. All game state lives on the stack while the ECS holds a pointer to it. A single system with a single entity and component holds all the game logic.
+All the game state lives on the stack. The ECS holds a pointer to it. A single system with a single entity and component runs the entire game. The ECS overhead is minimal because the design stays thin.
 
 <img src="/img/projects/sorbet/sorbet-snake-game-demo.png" alt="Sorbet engine running a snake game demo" />
 
@@ -51,8 +51,8 @@ The included demo is a complete, playable Snake game built on top of the ECS. A 
 
 ## What I Learned
 
-Writing an engine teaches you about tradeoffs. Every abstraction costs something. SDL2 gives you windowing and input and rendering for free. But wrapping it in your own API means you own the bugs too.
+Writing an engine teaches you about tradeoffs. SDL2 gives you windowing and input and rendering. But wrapping it in your own API means you own the bugs too.
 
-I learned that C forces you to think about memory from the start. There is no garbage collector to save you. There is no smart pointer to clean up. You allocate. You track. You free. If you forget, the leak shows up eventually.
+C forces you to think about memory from the start. There is no garbage collector. There is no smart pointer. You allocate. You track. You free. If you forget, the leak shows up eventually.
 
-Sorbet taught me that game engines are not magic. They are just careful organization of data and a tight loop that runs sixty times a second. The best engines are the ones that stay out of your way. Thin abstractions. Fast iteration. Clear ownership.
+Sorbet taught me that game engines are not magic. They are careful organization of data and a tight loop that runs sixty times a second. The best engines stay out of your way. Thin abstractions. Fast iteration. Clear ownership.
