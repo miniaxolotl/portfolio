@@ -83,7 +83,8 @@
     "description": "🎨 Simple paint application built with modern OpenGL. Layer editing, brush system, and real-time GPU rendering.",
     "tags": ["C++", "OpenGL", "GLSL"],
     "gitLink": "github.com/miniaxolotl/paint-opengl",
-    "year": "2019"
+    "year": "2019",
+    "hasPost": true
   },
   {
     "title": "Sorbet",
@@ -91,7 +92,8 @@
     "description": "🍨 A lightweight C game engine and ECS library built with SDL2. Scene management and hardware-accelerated rendering.",
     "tags": ["C", "SDL2", "Game Engine"],
     "gitLink": "github.com/miniaxolotl/sorbet",
-    "year": "2020"
+    "year": "2020",
+    "hasPost": true
   },
   {
     "title": "Shrymp",

@@ -8,6 +8,8 @@ export const blogSlugs = new Set([
   "fitr",
   "fashion-vision",
   "inkbyte",
+  "paint-opengl",
+  "sorbet",
 ]);
 
 export const tagColors = [

@@ -12,7 +12,7 @@ test.describe("Projects", () => {
     const readMoreLinks = projectsSection.getByRole("link", {
       name: /read more/i,
     });
-    await expect(readMoreLinks).toHaveCount(5);
+    await expect(readMoreLinks).toHaveCount(7);
   });
 
   test("should navigate to project detail page via read more", async ({ page }) => {
