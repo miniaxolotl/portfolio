@@ -1,6 +1,7 @@
 "use client";
 
 import { Check, Copy } from "lucide-react";
+import posthog from "posthog-js";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
@@ -55,6 +56,11 @@ export const PackageInstall = ({
     await navigator.clipboard.writeText(command);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+    posthog.capture("package_install_command_copied", {
+      package_manager: activeTab,
+      package: npmPackage ?? dockerImage ?? null,
+      command,
+    });
   };
 
   const parts = command?.split(" ") ?? [];

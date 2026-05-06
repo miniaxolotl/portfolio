@@ -1,6 +1,7 @@
 "use client";
 
 import { Check, Copy } from "lucide-react";
+import posthog from "posthog-js";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
@@ -25,12 +26,22 @@ export const HeroInstall = ({ tabs, defaultTab }: HeroInstallProps) => {
     await navigator.clipboard.writeText(activeCommand);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+    posthog.capture("install_command_copied", {
+      package_manager: activeTab,
+      command: activeCommand,
+    });
   };
 
   return (
-    <div className="inline-flex flex-col rounded-lg overflow-hidden" style={{ backgroundColor: "var(--terminal-bg)" }}>
+    <div
+      className="inline-flex flex-col rounded-lg overflow-hidden"
+      style={{ backgroundColor: "var(--terminal-bg)" }}
+    >
       {/* Tabs */}
-      <div className="flex items-center gap-1.5 px-3 py-2" style={{ backgroundColor: "var(--terminal-header)" }}>
+      <div
+        className="flex items-center gap-1.5 px-3 py-2"
+        style={{ backgroundColor: "var(--terminal-header)" }}
+      >
         {tabs.map((tab) => (
           <button
             key={tab.id}
@@ -42,7 +53,11 @@ export const HeroInstall = ({ tabs, defaultTab }: HeroInstallProps) => {
                 ? "text-[var(--terminal-text)]"
                 : "text-[var(--terminal-muted)] hover:text-[var(--terminal-text)]",
             )}
-            style={activeTab === tab.id ? { backgroundColor: "var(--terminal-tab-active-bg)" } : undefined}
+            style={
+              activeTab === tab.id
+                ? { backgroundColor: "var(--terminal-tab-active-bg)" }
+                : undefined
+            }
           >
             {tab.label}
           </button>
@@ -52,7 +67,10 @@ export const HeroInstall = ({ tabs, defaultTab }: HeroInstallProps) => {
       {/* Command */}
       <div className="px-4 py-3 flex items-center gap-3">
         <span style={{ color: "var(--terminal-prompt)" }}>$</span>
-        <span className="font-mono text-sm" style={{ color: "var(--terminal-text)" }}>
+        <span
+          className="font-mono text-sm"
+          style={{ color: "var(--terminal-text)" }}
+        >
           {activeCommand}
         </span>
         <button
@@ -60,12 +78,15 @@ export const HeroInstall = ({ tabs, defaultTab }: HeroInstallProps) => {
           onClick={handleCopy}
           className={cn(
             "ml-auto p-1.5 rounded-md transition-colors",
-            copied ? "text-[var(--terminal-prompt)]" : "text-[var(--terminal-muted)] hover:text-[var(--terminal-text)]",
+            copied
+              ? "text-[var(--terminal-prompt)]"
+              : "text-[var(--terminal-muted)] hover:text-[var(--terminal-text)]",
           )}
           style={
             copied
               ? {
-                  backgroundColor: "color-mix(in srgb, var(--terminal-prompt) 10%, transparent)",
+                  backgroundColor:
+                    "color-mix(in srgb, var(--terminal-prompt) 10%, transparent)",
                 }
               : undefined
           }

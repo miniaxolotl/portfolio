@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import posthog from "posthog-js";
 import { LuGithub } from "react-icons/lu";
 import { ProjectTag } from "@/components/project/ProjectTag";
 import { blogSlugs, getProjectHref } from "@/lib/projects";
@@ -39,6 +42,13 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+              onClick={() =>
+                posthog.capture("project_github_clicked", {
+                  project: project.slug,
+                  url: link.url,
+                  label: link.label,
+                })
+              }
             >
               <LuGithub size={12} />
               {link.label}
@@ -52,6 +62,12 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center h-8 w-8 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
               aria-label={`View ${project.title} on GitHub`}
+              onClick={() =>
+                posthog.capture("project_github_clicked", {
+                  project: project.slug,
+                  url: link,
+                })
+              }
             >
               <LuGithub size={16} />
             </a>
@@ -74,6 +90,12 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
           <Link
             href={href}
             className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            onClick={() =>
+              posthog.capture("project_read_more_clicked", {
+                project: project.slug,
+                href,
+              })
+            }
           >
             Read more
             <span className="ml-1 transition-transform group-hover:translate-x-0.5">

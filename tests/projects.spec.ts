@@ -12,32 +12,32 @@ test.describe("Projects", () => {
     const readMoreLinks = projectsSection.getByRole("link", {
       name: /read more/i,
     });
-    await expect(readMoreLinks).toHaveCount(7);
+    await expect(readMoreLinks).toHaveCount(5);
   });
 
   test("should navigate to project detail page via read more", async ({ page }) => {
-    const goboxLink = page.locator('#projects a[href="/projects/gobox"]').first();
-    await goboxLink.click();
+    const groveLink = page.locator('#projects a[href="/projects/grove"]').first();
+    await groveLink.click();
 
-    await expect(page).toHaveURL(/\/projects\/gobox/);
-    const heading = page.getByRole("heading", { name: /gobox/i, level: 1 });
+    await expect(page).toHaveURL(/\/projects\/grove/);
+    const heading = page.getByRole("heading", { name: /grove/i, level: 1 });
     await expect(heading).toBeVisible();
   });
 });
 
 test.describe("Project Blog Posts", () => {
   test("should render markdown content on blog project page", async ({ page }) => {
-    await page.goto("/projects/gobox");
+    await page.goto("/projects/grove");
 
-    const heading = page.getByRole("heading", { name: /gobox/i, level: 1 });
+    const heading = page.getByRole("heading", { name: /grove/i, level: 1 });
     await expect(heading).toBeVisible();
 
     const markdownHeading = page.getByRole("heading", {
-      name: /what it does/i,
+      name: /the problem i wanted to solve/i,
     });
     await expect(markdownHeading).toBeVisible();
 
-    const paragraph = page.locator("text=lightweight file sharing daemon").first();
+    const paragraph = page.locator("text=self-hosted MCP server").first();
     await expect(paragraph).toBeVisible();
   });
 
@@ -47,7 +47,7 @@ test.describe("Project Blog Posts", () => {
     const heading = page.getByRole("heading", { name: /burrow/i, level: 1 });
     await expect(heading).toBeVisible();
 
-    const featureCard = page.locator("text=Self-hosted").first();
+    const featureCard = page.locator("text=Public URLs in Seconds").first();
     await expect(featureCard).toBeVisible();
   });
 
@@ -60,15 +60,15 @@ test.describe("Project Blog Posts", () => {
   });
 });
 
-test.describe("Header Projects Dropdown", () => {
+test.describe("Header Blog Dropdown", () => {
   test.beforeEach(async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 720 });
     await page.goto("/");
   });
 
-  test("should open projects dropdown and show project links", async ({ page }) => {
+  test("should open blog dropdown and show project links", async ({ page }) => {
     const dropdownTrigger = page.locator('nav[aria-label="Main navigation"]').getByRole("button", {
-      name: /projects/i,
+      name: /blog/i,
     });
     await expect(dropdownTrigger).toBeVisible();
 
@@ -77,15 +77,15 @@ test.describe("Header Projects Dropdown", () => {
     const menu = page.getByRole("menu");
     await expect(menu).toBeVisible();
 
-    const goboxLink = menu.getByRole("menuitem", { name: /gobox/i });
+    const groveLink = menu.getByRole("menuitem", { name: /grove/i });
     const inkbyteLink = menu.getByRole("menuitem", { name: /inkbyte/i });
-    await expect(goboxLink).toBeVisible();
+    await expect(groveLink).toBeVisible();
     await expect(inkbyteLink).toBeVisible();
   });
 
   test("should navigate to project from dropdown", async ({ page }) => {
     const dropdownTrigger = page.locator('nav[aria-label="Main navigation"]').getByRole("button", {
-      name: /projects/i,
+      name: /blog/i,
     });
     await dropdownTrigger.click();
 

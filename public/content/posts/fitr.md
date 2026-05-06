@@ -11,7 +11,7 @@ tags:
   - Flutter
   - PostgreSQL
   - pgvector
-gitLink: github.com/miniaxolotl/fitr
+gitLink: github.com/FITR-MAE
 ---
 
 ## The Question Behind the Project

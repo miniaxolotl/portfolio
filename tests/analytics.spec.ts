@@ -7,7 +7,7 @@ test.describe("Vercel Analytics", () => {
 
     // In development, the debug script is injected client-side
     const script = page.locator('script[src*="va.vercel-scripts.com"]');
-    await expect(script).toHaveCount(1);
+    await expect(script).toHaveCount(2);
   });
 
   test("should inject analytics script on /burrow", async ({ page }) => {
@@ -15,7 +15,7 @@ test.describe("Vercel Analytics", () => {
     await page.waitForLoadState("networkidle");
 
     const script = page.locator('script[src*="va.vercel-scripts.com"]');
-    await expect(script).toHaveCount(1);
+    await expect(script).toHaveCount(2);
   });
 
   test("should inject analytics script on /grove", async ({ page }) => {
@@ -23,6 +23,6 @@ test.describe("Vercel Analytics", () => {
     await page.waitForLoadState("networkidle");
 
     const script = page.locator('script[src*="va.vercel-scripts.com"]');
-    await expect(script).toHaveCount(1);
+    await expect(script).toHaveCount(2);
   });
 });

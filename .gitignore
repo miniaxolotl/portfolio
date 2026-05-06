@@ -13,3 +13,4 @@ dist/
 .opencode/
 .next/
 test-results/
+.env.local

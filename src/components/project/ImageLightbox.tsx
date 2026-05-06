@@ -1,6 +1,7 @@
 "use client";
 
 import { X } from "lucide-react";
+import posthog from "posthog-js";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 interface ImageLightboxProps {
@@ -18,16 +19,23 @@ export const ImageLightbox = ({ children }: ImageLightboxProps) => {
     setSelectedImage(null);
   }, []);
 
-  const handleContainerClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    const img = (e.target as HTMLElement).closest("img[data-zoomable]");
-    if (img) {
-      const src = img.getAttribute("src");
-      const alt = img.getAttribute("alt") ?? "";
-      if (src) {
-        setSelectedImage({ src, alt });
+  const handleContainerClick = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      const img = (e.target as HTMLElement).closest("img[data-zoomable]");
+      if (img) {
+        const src = img.getAttribute("src");
+        const alt = img.getAttribute("alt") ?? "";
+        if (src) {
+          setSelectedImage({ src, alt });
+          posthog.capture("image_lightbox_opened", {
+            image_src: src,
+            image_alt: alt,
+          });
+        }
       }
-    }
-  }, []);
+    },
+    [],
+  );
 
   useEffect(() => {
     if (!selectedImage) return;
@@ -45,7 +53,11 @@ export const ImageLightbox = ({ children }: ImageLightboxProps) => {
   return (
     <>
       {/* biome-ignore lint/a11y/noStaticElementInteractions: event delegation for zoomable images */}
-      <div ref={containerRef} onClick={handleContainerClick} role="presentation">
+      <div
+        ref={containerRef}
+        onClick={handleContainerClick}
+        role="presentation"
+      >
         {children}
       </div>
       {selectedImage && (
@@ -69,7 +81,11 @@ export const ImageLightbox = ({ children }: ImageLightboxProps) => {
             <X size={20} />
           </button>
           {/* biome-ignore lint/performance/noImgElement: lightbox needs unknown-dimension images */}
-          <img src={selectedImage.src} alt={selectedImage.alt} className="max-h-[90vh] max-w-[90vw] object-contain" />
+          <img
+            src={selectedImage.src}
+            alt={selectedImage.alt}
+            className="max-h-[90vh] max-w-[90vw] object-contain"
+          />
         </div>
       )}
     </>

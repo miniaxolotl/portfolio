@@ -114,13 +114,13 @@ test.describe("Mobile Drawer", () => {
     const portfolioLink = mainNav.getByRole("link", { name: /portfolio/i });
     const burrowLink = mainNav.getByRole("link", { name: /burrow/i });
     const groveLink = mainNav.getByRole("link", { name: /grove/i });
-    const projectsTrigger = mainNav.getByRole("button", {
-      name: /projects/i,
+    const blogTrigger = mainNav.getByRole("button", {
+      name: /blog/i,
     });
 
     await expect(portfolioLink).toBeVisible();
     await expect(burrowLink).toBeVisible();
     await expect(groveLink).toBeVisible();
-    await expect(projectsTrigger).toBeVisible();
+    await expect(blogTrigger).toBeVisible();
   });
 });

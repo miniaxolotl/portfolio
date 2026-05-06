@@ -1,5 +1,6 @@
 "use client";
 
+import posthog from "posthog-js";
 import { SocialIcon } from "@/components/layout/SocialIcon";
 import socials from "@/data/socials.json";
 import { cn } from "@/lib/utils";
@@ -14,7 +15,9 @@ export const SocialLinks = ({ variant, className }: SocialLinksProps) => {
 
   return (
     <div className={cn("pt-4", className)}>
-      <p className="text-xs font-medium text-muted-foreground/60 uppercase tracking-wider mb-3 px-1">Connect</p>
+      <p className="text-xs font-medium text-muted-foreground/60 uppercase tracking-wider mb-3 px-1">
+        Connect
+      </p>
       {variant === "icon-only" ? (
         <div className="flex flex-wrap gap-2">
           {nonDiscordSocials.map((social) => (
@@ -24,6 +27,13 @@ export const SocialLinks = ({ variant, className }: SocialLinksProps) => {
               className="flex items-center justify-center w-9 h-9 rounded-lg bg-muted hover:bg-accent hover:text-accent-foreground transition-colors"
               aria-label={social.label}
               title={social.label}
+              onClick={() =>
+                posthog.capture("social_link_clicked", {
+                  label: social.label,
+                  href: social.href,
+                  display: "icon-only",
+                })
+              }
             >
               <SocialIcon iconName={social.iconName} size={16} />
             </a>
@@ -37,6 +47,13 @@ export const SocialLinks = ({ variant, className }: SocialLinksProps) => {
               href={social.href}
               className="group flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-muted transition-colors"
               aria-label={social.label}
+              onClick={() =>
+                posthog.capture("social_link_clicked", {
+                  label: social.label,
+                  href: social.href,
+                  display: "list",
+                })
+              }
             >
               <span className="flex items-center justify-center w-8 h-8 rounded-md bg-muted text-muted-foreground group-hover:bg-background group-hover:text-foreground transition-colors">
                 <SocialIcon iconName={social.iconName} size={16} />

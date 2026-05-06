@@ -1,5 +1,6 @@
 "use client";
 
+import posthog from "posthog-js";
 import type { ReactNode } from "react";
 
 interface Badge {
@@ -21,6 +22,12 @@ export const BadgeRow = ({ badges }: BadgeRowProps) => (
         target="_blank"
         rel="noopener noreferrer"
         className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium bg-muted/60 hover:bg-muted transition-colors border border-border/40"
+        onClick={() =>
+          posthog.capture("project_external_link_clicked", {
+            label: badge.label,
+            url: badge.url,
+          })
+        }
       >
         {badge.icon}
         {badge.label}
