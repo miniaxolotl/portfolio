@@ -70,6 +70,18 @@ const RootLayout = ({
 }>) => (
   <html lang="en" suppressHydrationWarning>
     <head>
+      <link rel="preconnect" href="https://github.com" />
+      <link rel="preconnect" href="https://hub.docker.com" />
+      <link rel="preconnect" href="https://www.npmjs.com" />
+      <link rel="dns-prefetch" href="https://github.com" />
+      <link rel="dns-prefetch" href="https://hub.docker.com" />
+      <link rel="dns-prefetch" href="https://www.npmjs.com" />
+      <style
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: static font-display rule
+        dangerouslySetInnerHTML={{
+          __html: "@font-face{font-display:swap}",
+        }}
+      />
       <script
         id="theme-script"
         // biome-ignore lint/security/noDangerouslySetInnerHtml: inline theme script, no user input

@@ -22,7 +22,7 @@ Building an AI that recommends clothes is easy. Building one that recommends clo
 
 <div class="flex flex-col sm:flex-row gap-4 my-8">
   <span class="flex-1">
-    <img src="/img/projects/fitr/style-dna.PNG" alt="Style DNA profile showing identity-driven style analysis" />
+    <img src="/img/projects/fitr/style-dna.png" alt="Style DNA profile showing identity-driven style analysis" />
   </span>
   <span class="flex-1">
     <img src="/img/projects/fitr/style-graph.png" alt="Style graph visualization showing identity-driven style profiling" />

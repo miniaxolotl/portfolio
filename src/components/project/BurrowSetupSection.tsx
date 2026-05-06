@@ -1,5 +1,3 @@
-"use client";
-
 import { LuGithub } from "react-icons/lu";
 import { SiDocker, SiNpm } from "react-icons/si";
 import { CodeBlock } from "@/components/project/CodeBlock";
