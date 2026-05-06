@@ -5,7 +5,7 @@ dist/
 
 .env
 .env.*
-!.env.local
+.env.local
 !.env.example
 
 /data/
@@ -14,4 +14,3 @@ dist/
 .opencode/
 .next/
 test-results/
-.env.local
