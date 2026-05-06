@@ -1,8 +1,11 @@
+"use client";
+
 import { Package } from "lucide-react";
 import { LuGithub } from "react-icons/lu";
 import { SiDocker, SiNpm } from "react-icons/si";
 import { JsonBlock } from "@/components/project/JsonBlock";
 import { TabbedTerminal } from "@/components/project/TabbedTerminal";
+import { capture } from "@/lib/analytics";
 
 const serverTabs = [
   {
@@ -48,6 +51,13 @@ export const GroveSetupSection = () => (
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium bg-muted hover:bg-muted/80 transition-colors"
+          onClick={() =>
+            capture("setup_link_clicked", {
+              project: "grove",
+              label: "Docker Hub",
+              url: "https://hub.docker.com/r/miniaxolotl/grove",
+            })
+          }
         >
           <SiDocker size={14} />
           Docker Hub
@@ -57,6 +67,13 @@ export const GroveSetupSection = () => (
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium bg-muted hover:bg-muted/80 transition-colors"
+          onClick={() =>
+            capture("setup_link_clicked", {
+              project: "grove",
+              label: "GHCR",
+              url: "https://github.com/miniaxolotl/grove/pkgs/container/grove",
+            })
+          }
         >
           <LuGithub size={14} />
           GHCR
@@ -89,6 +106,13 @@ export const GroveSetupSection = () => (
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium bg-muted hover:bg-muted/80 transition-colors"
+          onClick={() =>
+            capture("setup_link_clicked", {
+              project: "grove",
+              label: "npm",
+              url: "https://www.npmjs.com/package/@miniaxolotl/grove",
+            })
+          }
         >
           <SiNpm size={14} />
           npm
@@ -98,6 +122,13 @@ export const GroveSetupSection = () => (
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium bg-muted hover:bg-muted/80 transition-colors"
+          onClick={() =>
+            capture("setup_link_clicked", {
+              project: "grove",
+              label: "OpenCode Plugin",
+              url: "https://www.npmjs.com/package/@miniaxolotl/grove-opencode-plugin",
+            })
+          }
         >
           <Package size={14} />
           OpenCode Plugin

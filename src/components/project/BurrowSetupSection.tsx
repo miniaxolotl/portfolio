@@ -1,7 +1,10 @@
+"use client";
+
 import { LuGithub } from "react-icons/lu";
 import { SiDocker, SiNpm } from "react-icons/si";
 import { CodeBlock } from "@/components/project/CodeBlock";
 import { TabbedTerminal } from "@/components/project/TabbedTerminal";
+import { capture } from "@/lib/analytics";
 
 const clientTabs = [
   {
@@ -39,6 +42,13 @@ export const BurrowSetupSection = () => (
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium bg-muted hover:bg-muted/80 transition-colors"
+          onClick={() =>
+            capture("setup_link_clicked", {
+              project: "burrow",
+              label: "Docker Hub",
+              url: "https://hub.docker.com/r/miniaxolotl/burrowd",
+            })
+          }
         >
           <SiDocker size={14} />
           Docker Hub
@@ -48,6 +58,13 @@ export const BurrowSetupSection = () => (
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium bg-muted hover:bg-muted/80 transition-colors"
+          onClick={() =>
+            capture("setup_link_clicked", {
+              project: "burrow",
+              label: "GHCR",
+              url: "https://github.com/miniaxolotl/burrow/pkgs/container/burrowd",
+            })
+          }
         >
           <LuGithub size={14} />
           GHCR
@@ -69,6 +86,13 @@ export const BurrowSetupSection = () => (
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium bg-muted hover:bg-muted/80 transition-colors"
+          onClick={() =>
+            capture("setup_link_clicked", {
+              project: "burrow",
+              label: "npm",
+              url: "https://www.npmjs.com/package/@miniaxolotl/burrowctl",
+            })
+          }
         >
           <SiNpm size={14} />
           npm

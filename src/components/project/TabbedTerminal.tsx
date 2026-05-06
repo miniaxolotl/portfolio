@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { CodeBlock } from "@/components/project/CodeBlock";
+import { capture } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 interface TerminalTab {
@@ -58,7 +59,13 @@ export const TabbedTerminal = ({
               <button
                 key={tab.id}
                 type="button"
-                onClick={() => setActiveTab(tab.id)}
+                onClick={() => {
+                  setActiveTab(tab.id);
+                  capture("terminal_tab_switched", {
+                    tab: tab.id,
+                    label: tab.label,
+                  });
+                }}
                 className={cn(
                   "px-3 py-1 text-xs font-mono font-medium rounded-md transition-colors",
                   activeTab === tab.id

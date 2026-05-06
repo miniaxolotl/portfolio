@@ -1,7 +1,7 @@
 "use client";
 
 import { Check, Copy } from "lucide-react";
-import posthog from "posthog-js";
+import { capture } from "@/lib/analytics";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
@@ -26,7 +26,7 @@ export const HeroInstall = ({ tabs, defaultTab }: HeroInstallProps) => {
     await navigator.clipboard.writeText(activeCommand);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
-    posthog.capture("install_command_copied", {
+    capture("install_command_copied", {
       package_manager: activeTab,
       command: activeCommand,
     });

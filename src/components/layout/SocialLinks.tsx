@@ -1,6 +1,6 @@
 "use client";
 
-import posthog from "posthog-js";
+import { capture } from "@/lib/analytics";
 import { SocialIcon } from "@/components/layout/SocialIcon";
 import socials from "@/data/socials.json";
 import { cn } from "@/lib/utils";
@@ -28,7 +28,7 @@ export const SocialLinks = ({ variant, className }: SocialLinksProps) => {
               aria-label={social.label}
               title={social.label}
               onClick={() =>
-                posthog.capture("social_link_clicked", {
+                capture("social_link_clicked", {
                   label: social.label,
                   href: social.href,
                   display: "icon-only",
@@ -48,7 +48,7 @@ export const SocialLinks = ({ variant, className }: SocialLinksProps) => {
               className="group flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-muted transition-colors"
               aria-label={social.label}
               onClick={() =>
-                posthog.capture("social_link_clicked", {
+                capture("social_link_clicked", {
                   label: social.label,
                   href: social.href,
                   display: "list",

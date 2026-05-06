@@ -1,7 +1,7 @@
 "use client";
 
 import { Check, Copy } from "lucide-react";
-import posthog from "posthog-js";
+import { capture } from "@/lib/analytics";
 import { useState } from "react";
 import { RxDiscordLogo } from "react-icons/rx";
 import { cn } from "@/lib/utils";
@@ -22,7 +22,7 @@ export const DiscordCopyButton = ({
       await navigator.clipboard.writeText("crestfallen.faerie");
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
-      posthog.capture("discord_username_copied", { variant });
+      capture("discord_username_copied", { variant });
     } catch {
       // ignore
     }

@@ -1,3 +1,5 @@
+"use client";
+
 import { ArrowLeft, ArrowUpRight, Calendar } from "lucide-react";
 import Link from "next/link";
 import { LuGithub } from "react-icons/lu";
@@ -6,6 +8,7 @@ import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import { PageShell } from "@/components/layout/PageShell";
 import { ProjectTag } from "@/components/project/ProjectTag";
+import { capture } from "@/lib/analytics";
 import { cn, ensureProtocol } from "@/lib/utils";
 
 interface ProjectPageContentProps {
@@ -66,9 +69,13 @@ export const ProjectPageContent = ({
 
             <div className="h-px w-20 bg-gradient-to-r from-accent to-transparent mb-8" />
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-5 text-foreground">{name}</h1>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-5 text-foreground">
+              {name}
+            </h1>
 
-            <p className="text-[17px] sm:text-lg text-muted-foreground leading-[1.75] mb-8 max-w-2xl">{description}</p>
+            <p className="text-[17px] sm:text-lg text-muted-foreground leading-[1.75] mb-8 max-w-2xl">
+              {description}
+            </p>
 
             {allLinks.length > 0 && (
               <div className="flex flex-wrap gap-2.5">
@@ -79,6 +86,13 @@ export const ProjectPageContent = ({
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium bg-muted/50 hover:bg-muted border border-border/30 hover:border-accent/25 transition-all duration-200"
+                    onClick={() =>
+                      capture("project_link_clicked", {
+                        label: link.label,
+                        url: link.url,
+                        project: name,
+                      })
+                    }
                   >
                     {link.icon}
                     <span>{link.label}</span>
@@ -100,42 +114,78 @@ export const ProjectPageContent = ({
               remarkPlugins={[remarkGfm]}
               rehypePlugins={[rehypeRaw]}
               components={{
-                h2: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+                h2: ({
+                  children,
+                  ...props
+                }: React.HTMLAttributes<HTMLHeadingElement>) => (
                   <h2
                     className="text-xl sm:text-2xl font-semibold tracking-tight mt-16 mb-6 flex items-center gap-4 group scroll-mt-24"
                     {...props}
                   >
                     <span className="h-px flex-1 bg-gradient-to-r from-accent/50 to-transparent transition-all group-hover:from-accent/70" />
-                    <span className="text-foreground whitespace-nowrap">{children}</span>
+                    <span className="text-foreground whitespace-nowrap">
+                      {children}
+                    </span>
                   </h2>
                 ),
-                h3: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-                  <h3 className="text-lg font-semibold mt-10 mb-3 text-foreground/90 scroll-mt-24" {...props}>
+                h3: ({
+                  children,
+                  ...props
+                }: React.HTMLAttributes<HTMLHeadingElement>) => (
+                  <h3
+                    className="text-lg font-semibold mt-10 mb-3 text-foreground/90 scroll-mt-24"
+                    {...props}
+                  >
                     {children}
                   </h3>
                 ),
-                p: ({ children, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
-                  <p className="text-[15px] leading-[1.8] text-muted-foreground mb-5 last:mb-0" {...props}>
+                p: ({
+                  children,
+                  ...props
+                }: React.HTMLAttributes<HTMLParagraphElement>) => (
+                  <p
+                    className="text-[15px] leading-[1.8] text-muted-foreground mb-5 last:mb-0"
+                    {...props}
+                  >
                     {children}
                   </p>
                 ),
-                ul: ({ children, ...props }: React.HTMLAttributes<HTMLUListElement>) => (
+                ul: ({
+                  children,
+                  ...props
+                }: React.HTMLAttributes<HTMLUListElement>) => (
                   <ul className="my-6 space-y-3" {...props}>
                     {children}
                   </ul>
                 ),
-                ol: ({ children, ...props }: React.HTMLAttributes<HTMLOListElement>) => (
-                  <ol className="my-6 space-y-3 list-decimal pl-5 marker:text-accent/60" {...props}>
+                ol: ({
+                  children,
+                  ...props
+                }: React.HTMLAttributes<HTMLOListElement>) => (
+                  <ol
+                    className="my-6 space-y-3 list-decimal pl-5 marker:text-accent/60"
+                    {...props}
+                  >
                     {children}
                   </ol>
                 ),
-                li: ({ children, ...props }: React.HTMLAttributes<HTMLLIElement>) => (
-                  <li className="leading-relaxed flex items-start gap-3 text-[15px] text-muted-foreground" {...props}>
+                li: ({
+                  children,
+                  ...props
+                }: React.HTMLAttributes<HTMLLIElement>) => (
+                  <li
+                    className="leading-relaxed flex items-start gap-3 text-[15px] text-muted-foreground"
+                    {...props}
+                  >
                     <span className="mt-2.5 h-1 w-1 rounded-full bg-accent/50 shrink-0" />
                     <span>{children}</span>
                   </li>
                 ),
-                a: ({ children, href, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
+                a: ({
+                  children,
+                  href,
+                  ...props
+                }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
                   <a
                     href={href}
                     className="font-medium text-foreground underline underline-offset-4 decoration-accent/30 hover:decoration-accent transition-colors"
@@ -144,7 +194,11 @@ export const ProjectPageContent = ({
                     {children}
                   </a>
                 ),
-                code: ({ children, className, ...props }: React.HTMLAttributes<HTMLElement>) => {
+                code: ({
+                  children,
+                  className,
+                  ...props
+                }: React.HTMLAttributes<HTMLElement>) => {
                   const isInline = !className;
                   return isInline ? (
                     <code
@@ -178,9 +232,15 @@ export const ProjectPageContent = ({
                           />
                         </div>
                       </div>
-                      <pre className="p-4 overflow-x-auto" style={{ backgroundColor: "var(--terminal-bg)" }}>
+                      <pre
+                        className="p-4 overflow-x-auto"
+                        style={{ backgroundColor: "var(--terminal-bg)" }}
+                      >
                         <code
-                          className={cn("text-sm font-mono leading-relaxed", className)}
+                          className={cn(
+                            "text-sm font-mono leading-relaxed",
+                            className,
+                          )}
                           style={{ color: "var(--terminal-text)" }}
                           {...props}
                         >
@@ -190,7 +250,10 @@ export const ProjectPageContent = ({
                     </div>
                   );
                 },
-                blockquote: ({ children, ...props }: React.HTMLAttributes<HTMLQuoteElement>) => (
+                blockquote: ({
+                  children,
+                  ...props
+                }: React.HTMLAttributes<HTMLQuoteElement>) => (
                   <blockquote
                     className="border-l-2 border-accent/40 bg-accent/3 pl-5 pr-4 py-4 rounded-r-lg text-muted-foreground my-8 italic text-[15px] leading-[1.8]"
                     {...props}
@@ -204,49 +267,84 @@ export const ProjectPageContent = ({
                     {...props}
                   />
                 ),
-                strong: ({ children, ...props }: React.HTMLAttributes<HTMLElement>) => (
+                strong: ({
+                  children,
+                  ...props
+                }: React.HTMLAttributes<HTMLElement>) => (
                   <strong className="font-semibold text-foreground" {...props}>
                     {children}
                   </strong>
                 ),
-                em: ({ children, ...props }: React.HTMLAttributes<HTMLElement>) => (
+                em: ({
+                  children,
+                  ...props
+                }: React.HTMLAttributes<HTMLElement>) => (
                   <em className="text-muted-foreground" {...props}>
                     {children}
                   </em>
                 ),
-                table: ({ children, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
+                table: ({
+                  children,
+                  ...props
+                }: React.HTMLAttributes<HTMLTableElement>) => (
                   <div className="overflow-x-auto my-8 rounded-xl border border-border/40 shadow-sm">
                     <table className="w-full text-sm text-left" {...props}>
                       {children}
                     </table>
                   </div>
                 ),
-                thead: ({ children, ...props }: React.HTMLAttributes<HTMLTableSectionElement>) => (
-                  <thead className="bg-muted/50 text-foreground font-medium" {...props}>
+                thead: ({
+                  children,
+                  ...props
+                }: React.HTMLAttributes<HTMLTableSectionElement>) => (
+                  <thead
+                    className="bg-muted/50 text-foreground font-medium"
+                    {...props}
+                  >
                     {children}
                   </thead>
                 ),
-                tbody: ({ children, ...props }: React.HTMLAttributes<HTMLTableSectionElement>) => (
+                tbody: ({
+                  children,
+                  ...props
+                }: React.HTMLAttributes<HTMLTableSectionElement>) => (
                   <tbody className="divide-y divide-border/30" {...props}>
                     {children}
                   </tbody>
                 ),
-                tr: ({ children, ...props }: React.HTMLAttributes<HTMLTableRowElement>) => (
-                  <tr className="text-muted-foreground hover:bg-muted/15 transition-colors" {...props}>
+                tr: ({
+                  children,
+                  ...props
+                }: React.HTMLAttributes<HTMLTableRowElement>) => (
+                  <tr
+                    className="text-muted-foreground hover:bg-muted/15 transition-colors"
+                    {...props}
+                  >
                     {children}
                   </tr>
                 ),
-                th: ({ children, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
+                th: ({
+                  children,
+                  ...props
+                }: React.HTMLAttributes<HTMLTableCellElement>) => (
                   <th className="px-4 py-3 font-medium" {...props}>
                     {children}
                   </th>
                 ),
-                td: ({ children, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
+                td: ({
+                  children,
+                  ...props
+                }: React.HTMLAttributes<HTMLTableCellElement>) => (
                   <td className="px-4 py-3" {...props}>
                     {children}
                   </td>
                 ),
-                img: ({ src, alt, className, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => {
+                img: ({
+                  src,
+                  alt,
+                  className,
+                  ...props
+                }: React.ImgHTMLAttributes<HTMLImageElement>) => {
                   const hasWrapper = className?.includes("flex-1");
                   const isInline = className?.includes("inline-only");
                   const isFirst = isFirstImage;
@@ -258,7 +356,10 @@ export const ProjectPageContent = ({
                       <img
                         src={src}
                         alt={alt ?? ""}
-                        className={cn("w-full h-auto block rounded max-h-80 object-contain cursor-zoom-in", className)}
+                        className={cn(
+                          "w-full h-auto block rounded max-h-80 object-contain cursor-zoom-in",
+                          className,
+                        )}
                         data-zoomable
                         loading={isFirst ? "eager" : "lazy"}
                         {...(isFirst ? { fetchPriority: "high" } : {})}
@@ -304,8 +405,14 @@ export const ProjectPageContent = ({
             <Link
               href="/#projects"
               className="group inline-flex items-center gap-2.5 px-5 py-3 rounded-xl text-sm font-medium bg-muted/50 hover:bg-muted border border-border/30 hover:border-accent/25 transition-all duration-200"
+              onClick={() =>
+                capture("project_back_to_list_clicked", { project: name })
+              }
             >
-              <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
+              <ArrowLeft
+                size={14}
+                className="group-hover:-translate-x-1 transition-transform"
+              />
               Back to projects
             </Link>
           </div>

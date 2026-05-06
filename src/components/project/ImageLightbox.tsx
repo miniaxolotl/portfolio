@@ -1,7 +1,7 @@
 "use client";
 
 import { X } from "lucide-react";
-import posthog from "posthog-js";
+import { capture } from "@/lib/analytics";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 interface ImageLightboxProps {
@@ -27,7 +27,7 @@ export const ImageLightbox = ({ children }: ImageLightboxProps) => {
         const alt = img.getAttribute("alt") ?? "";
         if (src) {
           setSelectedImage({ src, alt });
-          posthog.capture("image_lightbox_opened", {
+          capture("image_lightbox_opened", {
             image_src: src,
             image_alt: alt,
           });

@@ -1,5 +1,8 @@
+"use client";
+
 import { LuGithub } from "react-icons/lu";
 import projects from "@/data/projects.json";
+import { capture } from "@/lib/analytics";
 import { ensureProtocol } from "@/lib/utils";
 
 export const OtherProjectsList = () => {
@@ -43,6 +46,13 @@ export const OtherProjectsList = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                  onClick={() =>
+                    capture("other_project_github_clicked", {
+                      project: project.slug,
+                      url: link.url,
+                      label: link.label,
+                    })
+                  }
                 >
                   <LuGithub size={12} />
                   {link.label}
@@ -56,6 +66,12 @@ export const OtherProjectsList = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center h-7 w-7 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
                   aria-label={`View ${project.title} on GitHub`}
+                  onClick={() =>
+                    capture("other_project_github_clicked", {
+                      project: project.slug,
+                      url: link,
+                    })
+                  }
                 >
                   <LuGithub size={14} />
                 </a>

@@ -1,7 +1,7 @@
 "use client";
 
 import { Download } from "lucide-react";
-import posthog from "posthog-js";
+import { capture } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 interface ResumeDownloadLinkProps {
@@ -14,7 +14,7 @@ export const ResumeDownloadLink = ({
   className,
 }: ResumeDownloadLinkProps) => {
   const handleClick = () => {
-    posthog.capture("resume_downloaded");
+    capture("resume_downloaded");
     onClick?.();
   };
 

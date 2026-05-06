@@ -5,7 +5,7 @@ import { observer } from "mobx-react-lite";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import posthog from "posthog-js";
+import { capture } from "@/lib/analytics";
 import { useEffect, useState } from "react";
 import {
   Drawer,
@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import profile from "@/data/profile.json";
 import projects from "@/data/projects.json";
-import { blogSlugs, featuredSlugs, getProjectHref } from "@/lib/projects";
+import { blogSlugs, getProjectHref } from "@/lib/projects";
 import { cn } from "@/lib/utils";
 import { drawerStore, themeStore } from "@/stores";
 import { MobileSidebar } from "./MobileSidebar";
@@ -64,7 +64,7 @@ export const Header = observer(() => {
             open={drawerStore.open}
             onOpenChange={(open) => {
               drawerStore.setOpen(open);
-              if (open) posthog.capture("mobile_nav_opened");
+              if (open) capture("mobile_nav_opened");
             }}
           >
             <DrawerTrigger
@@ -187,7 +187,7 @@ export const Header = observer(() => {
         <button
           type="button"
           onClick={() => {
-            posthog.capture("theme_toggled", {
+            capture("theme_toggled", {
               new_theme: themeStore.isDark ? "light" : "dark",
             });
             themeStore.toggle();
