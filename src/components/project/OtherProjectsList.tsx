@@ -26,15 +26,22 @@ export const OtherProjectsList = () => {
         return (
           <div
             key={project.slug}
-            className="flex items-center justify-between gap-3 py-2 border-b border-border/30"
+            className="flex items-start justify-between gap-3 py-2 border-b border-border/30"
           >
-            <div className="flex items-center gap-2 min-w-0">
-              <span className="text-sm font-medium truncate">
-                {project.title}
-              </span>
-              {project.year && (
-                <span className="text-xs text-muted-foreground font-mono shrink-0">
-                  {project.year}
+            <div className="flex flex-col gap-0.5 min-w-0">
+              <div className="flex items-center gap-2">
+                <span className="text-sm font-medium truncate">
+                  {project.title}
+                </span>
+                {project.year && (
+                  <span className="text-xs text-muted-foreground font-mono shrink-0">
+                    {project.year}
+                  </span>
+                )}
+              </div>
+              {project.description && (
+                <span className="text-xs text-muted-foreground line-clamp-2">
+                  {project.description}
                 </span>
               )}
             </div>
