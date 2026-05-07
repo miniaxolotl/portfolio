@@ -4,26 +4,21 @@ import Link from "next/link";
 import { LuArrowUpRight, LuGithub } from "react-icons/lu";
 import projects from "@/data/projects.json";
 import { capture } from "@/lib/analytics";
-import { blogSlugs, getProjectHref } from "@/lib/projects";
+import {
+  blogSlugs,
+  getProjectHref,
+  normalizeGitLinks,
+  sortByYearDesc,
+} from "@/lib/projects";
 import { ensureProtocol } from "@/lib/utils";
 
 export const OtherProjectsList = () => {
-  const other = projects
-    .filter((p) => !p.featured)
-    .sort((a, b) => {
-      const yearA = a.year ? parseInt(a.year, 10) : 0;
-      const yearB = b.year ? parseInt(b.year, 10) : 0;
-      return yearB - yearA;
-    });
+  const other = projects.filter((p) => !p.featured).sort(sortByYearDesc);
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
       {other.map((project) => {
-        const gitLinks = Array.isArray(project.gitLink)
-          ? project.gitLink
-          : project.gitLink
-            ? [project.gitLink]
-            : [];
+        const gitLinks = normalizeGitLinks(project.gitLink);
 
         const href = getProjectHref(project);
 

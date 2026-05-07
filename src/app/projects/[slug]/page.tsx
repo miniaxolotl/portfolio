@@ -4,16 +4,23 @@ import { ImageLightbox } from "@/components/project/ImageLightbox";
 import { ProjectPageContent } from "@/components/project/ProjectPageContent";
 import profile from "@/data/profile.json";
 import projects from "@/data/projects.json";
-import { calculateReadingTime, extractHeadings, loadProjectMarkdown } from "@/lib/markdown";
-import { blogSlugs } from "@/lib/projects";
+import {
+  calculateReadingTime,
+  extractHeadings,
+  loadProjectMarkdown,
+} from "@/lib/markdown";
+import { blogSlugs, sortByYearDesc } from "@/lib/projects";
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>;
 }
 
-export const generateStaticParams = () => Array.from(blogSlugs).map((slug) => ({ slug }));
+export const generateStaticParams = () =>
+  Array.from(blogSlugs).map((slug) => ({ slug }));
 
-export const generateMetadata = async ({ params }: ProjectPageProps): Promise<Metadata> => {
+export const generateMetadata = async ({
+  params,
+}: ProjectPageProps): Promise<Metadata> => {
   const { slug } = await params;
   const project = projects.find((p) => p.slug === slug);
 
@@ -50,10 +57,15 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
   const headings = extractHeadings(content);
   const readingTime = calculateReadingTime(content);
 
-  const blogProjects = projects.filter((p) => blogSlugs.has(p.slug));
+  const blogProjects = projects
+    .filter((p) => blogSlugs.has(p.slug))
+    .sort(sortByYearDesc);
   const currentIndex = blogProjects.findIndex((p) => p.slug === slug);
   const prevProject = currentIndex > 0 ? blogProjects[currentIndex - 1] : null;
-  const nextProject = currentIndex < blogProjects.length - 1 ? blogProjects[currentIndex + 1] : null;
+  const nextProject =
+    currentIndex < blogProjects.length - 1
+      ? blogProjects[currentIndex + 1]
+      : null;
 
   return (
     <ImageLightbox>

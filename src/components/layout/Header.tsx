@@ -23,7 +23,11 @@ import {
 import profile from "@/data/profile.json";
 import projects from "@/data/projects.json";
 import { capture } from "@/lib/analytics";
-import { dropdownBlogSlugs, getProjectHref } from "@/lib/projects";
+import {
+  dropdownBlogSlugs,
+  getProjectHref,
+  sortByYearDesc,
+} from "@/lib/projects";
 import { cn } from "@/lib/utils";
 import { drawerStore, themeStore } from "@/stores";
 import { MobileSidebar } from "./MobileSidebar";
@@ -32,11 +36,7 @@ const navItems = [{ href: "/", label: "portfolio" }];
 
 const dropdownProjects = projects
   .filter((p) => dropdownBlogSlugs.has(p.slug))
-  .sort((a, b) => {
-    const yearA = a.year ? parseInt(a.year, 10) : 0;
-    const yearB = b.year ? parseInt(b.year, 10) : 0;
-    return yearB - yearA;
-  });
+  .sort(sortByYearDesc);
 
 const navLinkBase =
   "inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors outline-none hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50";

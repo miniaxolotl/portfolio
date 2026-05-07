@@ -18,7 +18,8 @@ import { ProjectTag } from "@/components/project/ProjectTag";
 import { TableOfContents } from "@/components/project/TableOfContents";
 import { capture } from "@/lib/analytics";
 import type { MarkdownHeading } from "@/lib/markdown";
-import { cn, ensureProtocol } from "@/lib/utils";
+import { normalizeGitLinks } from "@/lib/projects";
+import { cn, ensureProtocol, slugify } from "@/lib/utils";
 import type { Project } from "@/types";
 
 interface ProjectPageContentProps {
@@ -50,7 +51,7 @@ export const ProjectPageContent = ({
 }: ProjectPageContentProps) => {
   let isFirstImage = true;
 
-  const gitLinks = Array.isArray(gitLink) ? gitLink : gitLink ? [gitLink] : [];
+  const gitLinks = normalizeGitLinks(gitLink);
   const allLinks = [
     ...(links?.map((l) => ({
       label: l.label,
@@ -161,11 +162,7 @@ export const ProjectPageContent = ({
                         : Array.isArray(children)
                           ? children.join("")
                           : "";
-                    const id = text
-                      .toLowerCase()
-                      .replace(/[^\w\s-]/g, "")
-                      .replace(/\s+/g, "-")
-                      .replace(/-+/g, "-");
+                    const id = slugify(text);
                     return (
                       <h2
                         id={id}
@@ -189,11 +186,7 @@ export const ProjectPageContent = ({
                         : Array.isArray(children)
                           ? children.join("")
                           : "";
-                    const id = text
-                      .toLowerCase()
-                      .replace(/[^\w\s-]/g, "")
-                      .replace(/\s+/g, "-")
-                      .replace(/-+/g, "-");
+                    const id = slugify(text);
                     return (
                       <h3
                         id={id}

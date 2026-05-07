@@ -43,3 +43,14 @@ export const getProjectHref = (project: Project) =>
   blogSlugs.has(project.slug)
     ? `/projects/${project.slug}`
     : `/${project.slug}`;
+
+export const sortByYearDesc = (a: Project, b: Project): number => {
+  const yearA = a.year ? parseInt(a.year, 10) : 0;
+  const yearB = b.year ? parseInt(b.year, 10) : 0;
+  return yearB - yearA;
+};
+
+export const normalizeGitLinks = (gitLink?: string | string[]): string[] => {
+  if (Array.isArray(gitLink)) return gitLink;
+  return gitLink ? [gitLink] : [];
+};
