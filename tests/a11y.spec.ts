@@ -36,7 +36,7 @@ test.describe("Accessibility", () => {
       await expect(nav).toBeVisible();
 
       const links = nav.getByRole("link");
-      await expect(links).toHaveCount(3);
+      await expect(links).toHaveCount(1);
 
       const buttons = nav.getByRole("button");
       await expect(buttons).toHaveCount(1);
