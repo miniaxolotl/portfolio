@@ -1,15 +1,6 @@
 "use client";
 
-import {
-  ArrowDownUp,
-  Download,
-  FolderOpen,
-  Home,
-  Moon,
-  Sun,
-  TreePine,
-  X,
-} from "lucide-react";
+import { Download, FolderOpen, Home, Moon, Sun, X } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -30,8 +21,6 @@ interface MobileSidebarProps {
 
 const pageNavItems = [
   { href: "/", label: "Portfolio", icon: Home },
-  { href: "/burrow", label: "Burrow", icon: ArrowDownUp },
-  { href: "/grove", label: "Grove", icon: TreePine },
   { href: "/projects", label: "Blog", icon: FolderOpen },
 ];
 

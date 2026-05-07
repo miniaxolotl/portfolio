@@ -28,11 +28,7 @@ import { cn } from "@/lib/utils";
 import { drawerStore, themeStore } from "@/stores";
 import { MobileSidebar } from "./MobileSidebar";
 
-const navItems = [
-  { href: "/", label: "portfolio" },
-  { href: "/burrow", label: "burrow" },
-  { href: "/grove", label: "grove" },
-];
+const navItems = [{ href: "/", label: "portfolio" }];
 
 const dropdownProjects = projects
   .filter((p) => dropdownBlogSlugs.has(p.slug))
