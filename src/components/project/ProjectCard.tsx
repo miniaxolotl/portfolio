@@ -1,17 +1,15 @@
 "use client";
 
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { LuGithub } from "react-icons/lu";
 import { Card } from "@/components/ui/card";
 import { capture } from "@/lib/analytics";
-import { blogSlugs, getProjectHref, normalizeGitLinks } from "@/lib/projects";
+import { normalizeGitLinks } from "@/lib/projects";
 import { ensureProtocol } from "@/lib/utils";
 import type { Project } from "@/types";
 
 export const ProjectCard = ({ project }: { project: Project }) => {
-  const href = getProjectHref(project);
   const gitLinks = normalizeGitLinks(project.gitLink);
 
   return (
@@ -24,9 +22,11 @@ export const ProjectCard = ({ project }: { project: Project }) => {
         className="flex h-full flex-col overflow-hidden rounded-2xl border border-border transition-colors hover:border-accent/50"
       >
         {project.banner && (
-          <Link
-            href={href}
-            aria-label={`Read about ${project.title}`}
+          <a
+            href={project.liveLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Open ${project.title} website`}
             className="block overflow-hidden border-b border-border"
           >
             <Image
@@ -37,7 +37,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
               sizes="(min-width: 1440px) 500px, (min-width: 1024px) 40vw, (min-width: 640px) 50vw, 100vw"
               className="project-art aspect-[1200/628] w-full object-cover"
             />
-          </Link>
+          </a>
         )}
         <div className="flex flex-1 flex-col p-5 sm:p-6">
           <div className="mb-5 flex items-center gap-3">
@@ -58,7 +58,13 @@ export const ProjectCard = ({ project }: { project: Project }) => {
                 id={`${project.slug}-title`}
                 className="text-xl font-medium tracking-tight"
               >
-                <Link href={href}>{project.title}</Link>
+                <a
+                  href={project.liveLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {project.title}
+                </a>
               </h3>
             </div>
             <span className="ml-auto max-w-28 text-right text-[10px] leading-relaxed text-muted-foreground">
@@ -88,20 +94,6 @@ export const ProjectCard = ({ project }: { project: Project }) => {
               >
                 Visit site <ArrowUpRight size={15} aria-hidden="true" />
               </a>
-            )}
-            {blogSlugs.has(project.slug) && (
-              <Link
-                href={href}
-                className="inline-flex min-h-11 items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground"
-                onClick={() =>
-                  capture("project_read_more_clicked", {
-                    project: project.slug,
-                    href,
-                  })
-                }
-              >
-                Read the story <ArrowRight size={14} aria-hidden="true" />
-              </Link>
             )}
             {gitLinks.map((link) => (
               <a

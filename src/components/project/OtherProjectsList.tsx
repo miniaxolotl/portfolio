@@ -1,16 +1,10 @@
 "use client";
 
 import { ArrowUpRight } from "lucide-react";
-import Link from "next/link";
 import { LuGithub } from "react-icons/lu";
 import projects from "@/data/projects.json";
 import { capture } from "@/lib/analytics";
-import {
-  blogSlugs,
-  getProjectHref,
-  normalizeGitLinks,
-  sortByYearDesc,
-} from "@/lib/projects";
+import { normalizeGitLinks, sortByYearDesc } from "@/lib/projects";
 import { ensureProtocol } from "@/lib/utils";
 import type { Project } from "@/types";
 
@@ -29,22 +23,7 @@ export const OtherProjectsList = () => {
           <div>
             <div className="flex items-center gap-3">
               <h4 id={`${project.slug}-title`} className="text-sm font-medium">
-                {blogSlugs.has(project.slug) ? (
-                  <Link
-                    className="inline-flex min-h-9 items-center gap-2 hover:text-accent"
-                    href={getProjectHref(project)}
-                    onClick={() =>
-                      capture("other_project_read_more_clicked", {
-                        project: project.slug,
-                      })
-                    }
-                  >
-                    {project.title}
-                    <ArrowUpRight size={14} aria-hidden="true" />
-                  </Link>
-                ) : (
-                  project.title
-                )}
+                {project.title}
               </h4>
               <span className="font-mono text-[10px] text-muted-foreground">
                 {project.year}

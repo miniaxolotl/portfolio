@@ -1,6 +1,5 @@
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { Card } from "@/components/ui/card";
 
 export const Studio = () => (
@@ -18,7 +17,9 @@ export const Studio = () => (
     />
     <div className="p-6 sm:p-8">
       <p className="section-kicker mb-3">A home for good ideas</p>
-      <h3 className="font-serif text-3xl">Growing at Bramble Labs.</h3>
+      <h3 className="text-xl sm:text-2xl font-bold tracking-tight">
+        Growing at Bramble Labs.
+      </h3>
       <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
         Fern, Grove, and Burrow are part of Bramble Labs Inc. — a home for
         independent software, from shared memories to better developer
@@ -34,13 +35,6 @@ export const Studio = () => (
           Meet Bramble Labs
           <ArrowUpRight size={15} aria-hidden="true" />
         </a>
-        <Link
-          className="inline-flex min-h-11 items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground"
-          href="/projects/bramble-labs"
-        >
-          Behind the website
-          <ArrowRight size={14} aria-hidden="true" />
-        </Link>
       </div>
     </div>
   </Card>

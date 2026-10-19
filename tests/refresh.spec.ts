@@ -60,27 +60,33 @@ test("hero work action reaches the projects, with contact and resume available",
   expect(await download.failure()).toBeNull();
 });
 
-for (const [slug, name, status] of [
-  ["fern", "Fern", "Coming soon"],
-  ["bramble-labs", "Bramble Labs", "Building"],
-  ["fitr", "Fitr", "Early access waitlist"],
-]) {
-  test(`${name} story has one page heading, current status, and a public website action`, async ({
-    page,
-  }) => {
-    await page.goto(`/projects/${slug}`);
-    await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
-    await expect(page.getByRole("heading", { level: 1 })).toHaveText(name);
-    await expect(page.getByText(status, { exact: true })).toBeVisible();
-    await expect(
-      page.getByRole("link", { name: `Visit ${name}`, exact: true }),
-    ).toHaveAttribute("href", /^https:\/\//);
-    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
-      "href",
-      `https://mawa.dev/projects/${slug}`,
+test("Calgary, AB is consistent in the profile, bio, footer and sharing metadata", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.goto("/");
+  await expect(
+    page.locator("#about").getByText("Calgary, AB", { exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByTestId("sidebar").getByText("Calgary, AB", { exact: true }),
+  ).toBeVisible();
+  await expect(page.locator("#about")).toContainText("engineer in Calgary, AB");
+  await expect(page.locator("footer")).toContainText("in Calgary, AB.");
+  for (const selector of [
+    'meta[name="description"]',
+    'meta[property="og:description"]',
+    'meta[name="twitter:description"]',
+    'meta[name="keywords"]',
+    'meta[property="og:image:alt"]',
+  ]) {
+    await expect(page.locator(selector)).toHaveAttribute(
+      "content",
+      /Calgary, AB/,
     );
-  });
-}
+  }
+  expect(await page.content()).not.toContain("Edmonton");
+});
 
 test("legacy Grove setup switches agent commands and copies the current connection flow", async ({
   page,
@@ -139,7 +145,7 @@ test("mobile navigation closes after a section selection and a desktop resize", 
 });
 
 for (const theme of ["dark", "light"] as const) {
-  test(`${theme} theme fits narrow phones through desktop and passes accessibility checks`, async ({
+  test(`${theme} theme restores the original styling and passes responsive accessibility checks`, async ({
     page,
     context,
   }) => {
@@ -156,6 +162,26 @@ for (const theme of ["dark", "light"] as const) {
           name: new RegExp(`currently ${theme} mode`),
         }),
       ).toBeVisible();
+      await expect(page.locator("body")).toHaveCSS(
+        "background-color",
+        theme === "dark" ? "rgb(26, 21, 18)" : "rgb(250, 248, 245)",
+      );
+      await expect(page.locator("body")).toHaveCSS(
+        "font-family",
+        /^ui-sans-serif, system-ui, sans-serif/,
+      );
+      await expect(page.getByRole("heading", { level: 1 })).toHaveCSS(
+        "font-weight",
+        "700",
+      );
+      await expect(page.getByRole("heading", { level: 1 })).toHaveCSS(
+        "font-style",
+        "normal",
+      );
+      await expect(page.locator("h1 em")).toHaveCount(0);
+      await expect(page.locator('link[rel="preload"][as="font"]')).toHaveCount(
+        0,
+      );
       expect(
         await page.evaluate(
           () => document.documentElement.scrollWidth <= innerWidth,
@@ -163,7 +189,7 @@ for (const theme of ["dark", "light"] as const) {
         `homepage overflow at ${width}px`,
       ).toBe(true);
     }
-    for (const route of ["/", "/projects/fern", "/grove", "/burrow"]) {
+    for (const route of ["/", "/grove", "/burrow"]) {
       await page.setViewportSize({ width: 390, height: 844 });
       await page.goto(route);
       await expect(

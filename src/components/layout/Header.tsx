@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Menu, Moon, Sun } from "lucide-react";
+import { Menu, Moon, Sun } from "lucide-react";
 import { observer } from "mobx-react-lite";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,22 +13,8 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import profile from "@/data/profile.json";
-import projects from "@/data/projects.json";
 import { capture } from "@/lib/analytics";
-import {
-  dropdownBlogSlugs,
-  getProjectHref,
-  sortByYearDesc,
-} from "@/lib/projects";
 import { cn } from "@/lib/utils";
 import { drawerStore, themeStore } from "@/stores";
 import { MobileSidebar } from "./MobileSidebar";
@@ -38,10 +24,6 @@ const navItems = [
   { href: "/#projects", label: "work" },
   { href: "/#contact", label: "contact" },
 ];
-
-const dropdownProjects = projects
-  .filter((p) => dropdownBlogSlugs.has(p.slug))
-  .sort(sortByYearDesc);
 
 const navLinkBase =
   "inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors outline-none hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50";
@@ -76,6 +58,7 @@ export const Header = observer(() => {
             }}
           >
             <DrawerTrigger
+              disabled={!mounted}
               aria-label="Open navigation menu"
               aria-expanded={drawerStore.open}
               aria-controls="mobile-navigation"
@@ -126,69 +109,6 @@ export const Header = observer(() => {
                 {item.label}
               </Link>
             ))}
-
-            <DropdownMenu>
-              <DropdownMenuTrigger
-                className={cn(
-                  navLinkBase,
-                  dropdownProjects.some(
-                    (p) => pathname === getProjectHref(p),
-                  ) && activeNavLink,
-                )}
-              >
-                blog
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="12"
-                  height="12"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="ml-1 transition-transform data-popup-open:rotate-180"
-                  aria-hidden="true"
-                >
-                  <path d="m6 9 6 6 6-6" />
-                </svg>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                align="start"
-                className="w-56 p-1"
-                sideOffset={6}
-              >
-                <DropdownMenuGroup className="flex flex-col">
-                  {dropdownProjects.map((project) => (
-                    <DropdownMenuItem
-                      key={project.slug}
-                      href={getProjectHref(project)}
-                      className={cn(
-                        "flex items-center justify-between rounded-md px-2.5 py-2 text-sm cursor-pointer",
-                        pathname === getProjectHref(project)
-                          ? "bg-muted font-medium text-foreground"
-                          : "text-popover-foreground",
-                      )}
-                    >
-                      <span>{project.title}</span>
-                      {project.year && (
-                        <span className="text-[11px] tabular-nums text-muted-foreground">
-                          {project.year}
-                        </span>
-                      )}
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuGroup>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem
-                  href="/projects"
-                  className="flex items-center justify-between rounded-md px-2.5 py-2 text-sm text-muted-foreground hover:text-foreground cursor-pointer"
-                >
-                  <span>View all posts</span>
-                  <ArrowRight size={12} aria-hidden="true" />
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
           </nav>
         </div>
 

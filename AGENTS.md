@@ -29,11 +29,13 @@ bun run test         # Tests use same port 6681, webServer reuses existing dev s
 
 ## Architecture
 
-- **Routes:** `/`, `/projects`, `/projects/[slug]`, `/burrow`, `/grove`
+- **Public routes:** `/`, `/burrow`, `/grove`; blog routes `/projects` and `/projects/[slug]` are hidden (404/noindex)
 - **Dark mode default:** html uses `dark` class
 - **Mobile drawer:** `@base-ui/react/drawer`, controlled state with `open`/`onOpenChange`, close with `Escape`
 - **Drawer test selector:** `[data-vaul-drawer]`
-- **Header projects dropdown:** local shadcn-style wrapper over `@base-ui/react/menu`
+- **Header:** direct portfolio links; blog navigation is hidden
+- **Profile location:** Calgary, AB (`src/data/profile.json`)
+- **Typography/palette:** original system sans-serif, bold headings, warm brown/cream/olive colours
 
 ## Next.js Warning
 

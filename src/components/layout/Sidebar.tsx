@@ -17,7 +17,7 @@ export const Sidebar = () => {
     >
       <div className="flex flex-col h-full px-6 py-10 gap-7 overflow-y-auto">
         <ProfileSection imageSize={88} />
-        <p className="text-center font-serif text-xl italic text-muted-foreground">
+        <p className="text-center text-sm leading-relaxed text-muted-foreground">
           Curious by nature.
           <br />
           An engineer by practice.

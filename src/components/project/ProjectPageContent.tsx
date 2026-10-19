@@ -131,7 +131,7 @@ export const ProjectPageContent = ({
                   className="rounded-2xl"
                 />
               )}
-              <h1 className="font-serif text-5xl sm:text-6xl tracking-tight text-foreground">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground">
                 {name}
               </h1>
             </div>
@@ -213,7 +213,7 @@ export const ProjectPageContent = ({
                     return (
                       <h2
                         id={id}
-                        className="text-2xl sm:text-3xl font-serif tracking-tight mt-12 mb-5 scroll-mt-24"
+                        className="text-xl sm:text-2xl font-semibold tracking-tight mt-12 mb-5 scroll-mt-24"
                         {...props}
                       >
                         {children}

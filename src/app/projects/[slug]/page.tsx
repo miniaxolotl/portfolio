@@ -9,18 +9,20 @@ import {
   extractHeadings,
   loadProjectMarkdown,
 } from "@/lib/markdown";
-import { blogSlugs, sortByYearDesc } from "@/lib/projects";
+import { blogEnabled, blogSlugs, sortByYearDesc } from "@/lib/projects";
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>;
 }
 
 export const generateStaticParams = () =>
-  Array.from(blogSlugs).map((slug) => ({ slug }));
+  blogEnabled ? Array.from(blogSlugs).map((slug) => ({ slug })) : [];
 
 export const generateMetadata = async ({
   params,
 }: ProjectPageProps): Promise<Metadata> => {
+  if (!blogEnabled) notFound();
+
   const { slug } = await params;
   const project = projects.find((p) => p.slug === slug);
 
@@ -60,6 +62,8 @@ export const generateMetadata = async ({
 };
 
 const ProjectPage = async ({ params }: ProjectPageProps) => {
+  if (!blogEnabled) notFound();
+
   const { slug } = await params;
 
   const project = projects.find((p) => p.slug === slug);

@@ -17,12 +17,12 @@ export const About = () => (
           {profile.location}
         </span>
       </div>
-      <h1 id="intro-heading" className="hero-heading font-serif">
+      <h1 id="intro-heading" className="hero-heading">
         Thoughtful software.
         <br />
-        <em className="text-accent">Built for real life.</em>
+        <span className="text-primary">Built for real life.</span>
       </h1>
-      <p className="mt-7 max-w-xl text-base leading-[1.8] text-muted-foreground sm:text-lg">
+      <p className="mt-6 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
         {profile.summary}
       </p>
       <div className="mt-8 flex flex-wrap gap-3">

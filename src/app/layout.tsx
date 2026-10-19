@@ -1,36 +1,8 @@
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import profile from "@/data/profile.json";
 import "./globals.css";
-
-const sans = localFont({
-  src: [
-    { path: "./fonts/dm-sans-400.woff", weight: "400", style: "normal" },
-    { path: "./fonts/dm-sans-500.woff", weight: "500", style: "normal" },
-    { path: "./fonts/dm-sans-700.woff", weight: "700", style: "normal" },
-  ],
-  variable: "--font-dm-sans",
-  display: "swap",
-});
-
-const serif = localFont({
-  src: [
-    {
-      path: "./fonts/instrument-serif-400.woff",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "./fonts/instrument-serif-italic.woff",
-      weight: "400",
-      style: "italic",
-    },
-  ],
-  variable: "--font-instrument-serif",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(profile.website),
@@ -45,7 +17,7 @@ export const metadata: Metadata = {
     "TypeScript",
     "PostgreSQL",
     "AWS",
-    "Edmonton",
+    profile.location,
     "Alberta",
     "SaaS",
     "API Design",
@@ -97,11 +69,7 @@ const RootLayout = ({
 }: Readonly<{
   children: React.ReactNode;
 }>) => (
-  <html
-    lang="en"
-    className={`dark ${sans.variable} ${serif.variable}`}
-    suppressHydrationWarning
-  >
+  <html lang="en" className="dark" suppressHydrationWarning>
     <head>
       <script
         id="theme-script"

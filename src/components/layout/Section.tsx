@@ -32,7 +32,7 @@ export const Section = ({
       {eyebrow && <p className="section-kicker mb-4">{eyebrow}</p>}
       <Heading
         className={cn(
-          "font-serif text-4xl sm:text-5xl tracking-tight mb-6",
+          "text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-6",
           titleClassName,
         )}
       >

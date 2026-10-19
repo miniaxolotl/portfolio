@@ -26,17 +26,20 @@ Tests do not terminate that server. Install the browser with
 | Route | Purpose |
 | --- | --- |
 | `/` | Introduction, selected work, archive, skills/approach, contact |
-| `/projects` | Project stories and earlier writing |
-| `/projects/[slug]` | Markdown stories with metadata, artwork, TOC, adjacent articles |
+| `/projects` | Hidden blog index; returns 404/noindex |
+| `/projects/[slug]` | Hidden posts; return 404/noindex |
 | `/burrow` | Current Burrow overview and installation commands |
 | `/grove` | Current Grove overview and agent connection commands |
 | `/opengraph-image` | Generated portfolio sharing image |
 
 `src/data/projects.json` is the source of truth for display metadata, technology
 tags, public destinations and brand artwork. Article prose and descriptions live
-in `public/content/posts/`. Add an article slug to `blogSlugs` in
-`src/lib/projects.ts` to statically generate its route. `dropdownBlogSlugs`
-controls the compact blog menu. Historical years are not release dates.
+in `content/posts/`, outside the publicly served directory. `blogEnabled` is
+false in `src/lib/projects.ts`: no article slugs are generated, and the index,
+post pages and metadata stop at `notFound()` before loading content. Blog links
+are removed from navigation and project cards. Republishing requires an explicit
+decision to enable the routes and restore navigation. Historical years are not
+release dates. `src/data/profile.json` holds the location: **Calgary, AB**.
 
 Fern, Grove, and Burrow are products of Bramble Labs Inc. Fitr is independently
 operated by Fitr Technologies Inc. Reflect live availability accurately; do not
@@ -48,7 +51,7 @@ publish links to private repositories as public source links.
 - The sidebar appears from 1024px, at 256px wide, increasing to 288px at 1280px.
 - Mobile navigation appears below 768px. At tablet widths the top navigation
   remains available without squeezing the page beside a sidebar.
-- `Header` uses the local dropdown and drawer wrappers backed by Base UI.
+- `Header` uses direct portfolio links and the local drawer wrapper backed by Base UI.
 - `DrawerStore` controls opening/closing. Escape, section selection and desktop
   resize close the drawer. Keep `[data-vaul-drawer]` for existing tests.
 - `ThemeStore` controls the `dark` class on `<html>` and the persistent theme
@@ -57,9 +60,12 @@ publish links to private repositories as public source links.
 
 ## Visual system
 
-Semantic tokens in `src/app/globals.css` define warm paper/light and charcoal-sage
-dark palettes. DM Sans and Instrument Serif are locally hosted through
-`next/font/local`. Licenses are bundled with the fonts.
+Semantic tokens in `src/app/globals.css` restore the original warm brown, cream,
+and olive palette from pre-refresh production (`5718dfc`). Text uses the original
+system sans-serif stack with bold sans headings. The previous Geist variables
+were unbound; no Geist font was actually loaded. The layout does not load DM Sans
+or Instrument Serif. The sharing image uses bundled DM Sans with a bold sans
+treatment and the restored colours; font licenses remain bundled.
 
 `public/img/brands/README.md` records the source of all five current brand marks
 and banners from the marketing library. Artwork is optimized WebP with explicit
@@ -76,9 +82,10 @@ React Icons.
 ## Verification
 
 The browser suite covers themes and persistence, navigation and drawer behavior,
-article routing, Vercel script injection, public product destinations, image
-loading, resume downloads, current CLI commands, clipboard copying, canonical
-metadata and the social image. Responsive checks span 320, 390, 768, 1024 and
+hidden blog/raw-post routes, Vercel script injection, public product destinations,
+image loading, resume downloads, current CLI commands, clipboard copying, Calgary
+location/metadata, restored font/colour styling and the social image.
+Responsive checks span 320, 390, 768, 1024 and
 1440px. Axe checks WCAG A/AA on both themes and shared page types.
 
 After changing global CSS or local fonts, check computed styles in a fresh

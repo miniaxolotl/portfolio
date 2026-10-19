@@ -19,9 +19,10 @@ Fern's friends photograph comes from
 user-supplied photographs from its website. The Grove, Burrow, and Bramble
 illustrations are original marketing-library artwork.
 
-DM Sans and Instrument Serif are self-hosted from the same library's
+The bundled DM Sans and Instrument Serif files come from the same library's
 `_source/assets/fonts/`. Their SIL Open Font Licenses are included alongside the
-fonts in `src/app/fonts/`.
+fonts in `src/app/fonts/`. The portfolio pages use system sans-serif typography;
+the generated sharing image uses the bundled DM Sans regular and bold files.
 
 Bramble Labs Inc. is the company behind Fern, Grove, and Burrow.
 Fitr is independently operated by Fitr Technologies Inc.

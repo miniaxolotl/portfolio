@@ -59,7 +59,7 @@ export const ProjectPageLayout = ({
             )}
             {badges && <div className="mb-5 flex justify-center">{badges}</div>}
 
-            <h1 className="text-5xl sm:text-6xl font-serif tracking-tight mb-5">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-5">
               {name}
             </h1>
 
@@ -86,10 +86,10 @@ export const ProjectPageLayout = ({
                 </a>
               )}
               <Link
-                href={`/projects/${projectSlug}`}
+                href="/#projects"
                 className={buttonVariants({ variant: "outline" })}
               >
-                Read the project story
+                All projects
               </Link>
             </div>
             {project?.banner && (

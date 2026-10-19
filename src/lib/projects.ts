@@ -2,6 +2,9 @@ import type { Project } from "@/types";
 
 export const featuredSlugs = new Set(["fern", "grove", "fitr", "burrow"]);
 
+// Retain article sources while keeping the blog unpublished.
+export const blogEnabled = false;
+
 export const blogSlugs = new Set([
   "fern",
   "bramble-labs",
@@ -14,14 +17,6 @@ export const blogSlugs = new Set([
   "paint-opengl",
   "sorbet",
   "snake-game",
-]);
-
-export const dropdownBlogSlugs = new Set([
-  "fern",
-  "burrow",
-  "grove",
-  "fitr",
-  "bramble-labs",
 ]);
 
 export const tagColors = [

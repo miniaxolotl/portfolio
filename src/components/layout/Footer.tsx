@@ -18,7 +18,7 @@ export const Footer = () => {
           <span className="mx-2" aria-hidden="true">
             /
           </span>{" "}
-          Made with care, in Edmonton.
+          Made with care, in {profile.location}.
         </span>
         <div className="flex flex-wrap items-center gap-2">
           {nonDiscordSocials.map((s) => (
