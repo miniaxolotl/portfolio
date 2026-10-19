@@ -10,21 +10,20 @@ export const ProfileSection = ({ imageSize = 88 }: ProfileSectionProps) => (
     <div className="relative mb-4">
       <div className="absolute inset-2 rounded-full bg-accent/10" />
       <Image
-        src="/img/masthead/player-front-idle.gif"
+        src="/img/masthead/player-still.webp"
         alt=""
         width={imageSize}
         height={imageSize}
         className="relative object-cover rounded-full"
         style={{ width: imageSize, height: imageSize }}
-        unoptimized
       />
     </div>
-    <h1 className="text-lg font-bold tracking-tight">{profile.name}</h1>
+    <p data-testid="profile-name" className="text-lg font-bold tracking-tight">
+      {profile.name}
+    </p>
     <p className="text-sm text-muted-foreground font-medium mt-1.5">
       {profile.role}
     </p>
-    <p className="text-xs text-muted-foreground/60 mt-0.5">
-      {profile.location}
-    </p>
+    <p className="text-xs text-muted-foreground mt-1.5">{profile.location}</p>
   </div>
 );

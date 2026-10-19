@@ -5,7 +5,7 @@ year: "2017"
 tags:
   - Go
   - JavaScript
-gitLink: github.com/celestialstag/gobox-server-v1
+gitLink: github.com/miniaxolotl/gobox-v1
 ---
 
 ## The Problem

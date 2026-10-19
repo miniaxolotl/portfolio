@@ -10,14 +10,14 @@ bun run build    # Production build
 bun run lint     # Biome linting
 bun run format   # Biome format
 bunx biome check --write  # Auto-fix lint/format issues
-npx playwright test   # Tests use same port 6681, webServer reuses existing dev server
+bun run test         # Tests use same port 6681, webServer reuses existing dev server
 ```
 
 ## Testing
 
 - **Dev server:** Port 6681 (run separately with `bun run dev`)
 - **Tests:** Use port 6681 via `reuseExistingServer: true` in playwright.config.ts
-- **Command:** `npx playwright test`
+- **Command:** `bun run test`
 - **Important:** Tests do NOT kill the dev server - they reuse it via `reuseExistingServer: true`
 
 ## Critical Constraints
@@ -29,11 +29,13 @@ npx playwright test   # Tests use same port 6681, webServer reuses existing dev 
 
 ## Architecture
 
-- **3 pages:** `/`, `/burrow`, `/grove`
+- **Public routes:** `/`, `/burrow`, `/grove`; blog routes `/projects` and `/projects/[slug]` are hidden (404/noindex)
 - **Dark mode default:** html uses `dark` class
 - **Mobile drawer:** `@base-ui/react/drawer`, controlled state with `open`/`onOpenChange`, close with `Escape`
 - **Drawer test selector:** `[data-vaul-drawer]`
-- **Header projects dropdown:** `@headlessui/react` Menu component
+- **Header:** direct portfolio links; blog navigation is hidden
+- **Profile location:** Calgary, AB (`src/data/profile.json`)
+- **Typography/palette:** original system sans-serif, bold headings, warm brown/cream/olive colours
 
 ## Next.js Warning
 

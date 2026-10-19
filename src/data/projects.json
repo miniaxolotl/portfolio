@@ -1,37 +1,60 @@
 [
   {
+    "title": "Fern",
+    "slug": "fern",
+    "description": "Private photo capsules for your people. Collect everyone's photos, keep them hidden, and relive the moment together at a shared reveal.",
+    "tags": ["Flutter", "TypeScript", "Hono", "Bun"],
+    "liveLink": "https://usefern.app",
+    "category": "Shared moments",
+    "status": "Coming soon",
+    "year": "2026",
+    "featured": true,
+    "logo": "/img/brands/fern-mark.webp",
+    "banner": "/img/brands/fern-banner.webp",
+    "bannerAlt": "Fern campaign photography: friends sitting shoulder to shoulder by the water"
+  },
+  {
     "title": "Grove",
     "slug": "grove",
-    "description": "Self-hosted agentic memory MCP server backed by Qdrant. Semantic search, knowledge graphs, and importance-based recall for AI coding tools.",
-    "tags": ["TypeScript", "Node.js", "Qdrant", "MCP", "ONNX"],
+    "description": "Private memory that follows you across AI agents. Keep decisions, preferences, and hard-won fixes in one searchable, account-owned library.",
+    "tags": ["TypeScript", "PostgreSQL", "pgvector", "MCP"],
     "gitLink": "github.com/miniaxolotl/grove",
+    "liveLink": "https://usegrove.cloud",
+    "category": "Memory for agents",
+    "status": "Open source",
+    "logo": "/img/brands/grove-mark.webp",
+    "banner": "/img/brands/grove-banner.webp",
+    "bannerAlt": "Grove campaign illustration: the sprout identity connecting four pieces of context",
     "year": "2025",
     "featured": true
   },
   {
     "title": "Fitr",
     "slug": "fitr",
-    "description": "Design exploration for an AI-backed personal style engine. Identity-driven wardrobe intelligence with Style DNA, AI stylist, and computer vision clothing detection.",
-    "tags": [
-      "System Design",
-      "AI/ML",
-      "Computer Vision",
-      "Mobile App Design",
-      "Go",
-      "Flutter",
-      "PostgreSQL",
-      "pgvector"
-    ],
+    "description": "A digital wardrobe built around the clothes you own. Co-founding Fitr with Adam and Mason, with SŌEN as your personal AI stylist.",
+    "tags": ["Go", "Flutter", "PostgreSQL", "Computer Vision"],
     "gitLink": "github.com/FITR-MAE",
+    "liveLink": "https://fitr.ca",
+    "category": "Personal style",
+    "status": "Early access waitlist",
+    "logo": "/img/brands/fitr-mark.webp",
+    "banner": "/img/brands/fitr-banner.webp",
+    "bannerAlt": "Fitr campaign composition: a rose hoodie, cream trousers, and silver sneakers",
     "year": "2024",
     "featured": true
   },
   {
     "title": "Burrow",
     "slug": "burrow",
-    "description": "Open-source tunneling tool for permanent, secure URLs. HTTPS subdomains, TCP tunnels, and WebSocket multiplexing via yamux. Self-hostable alternative to ngrok.",
-    "tags": ["Go", "WebSocket", "Redis", "Nginx"],
+    "description": "Localhost, shared. Give your local app a public HTTPS link, receive real webhooks, and inspect requests from a terminal-first tunnel manager.",
+    "tags": ["Go", "WebSocket", "Redis", "CLI"],
     "gitLink": "github.com/miniaxolotl/burrow",
+    "liveLink": "https://useburrow.app",
+    "category": "Developer tools",
+    "status": "Open source",
+    "logo": "/img/brands/burrow-mark.webp",
+    "banner": "/img/brands/burrow-banner.webp",
+    "bannerAlt": "Burrow campaign illustration: a local development laptop connected to the outside world",
     "year": "2024",
     "featured": true
   },
@@ -47,9 +70,22 @@
       "Computer Vision",
       "ONNX"
     ],
-    "gitLink": "github.com/miniaxolotl/fashion-vision",
     "year": "2024",
-    "featured": true
+    "status": "Archived exploration",
+    "featured": false
+  },
+  {
+    "title": "Bramble Labs",
+    "slug": "bramble-labs",
+    "description": "The home for Fern, Grove, and Burrow. Independent apps and developer tools, brought together through a shared product identity.",
+    "tags": ["Product Design", "Next.js", "TypeScript"],
+    "liveLink": "https://bramblelabs.co",
+    "category": "Independent software",
+    "status": "Building",
+    "year": "2026",
+    "logo": "/img/brands/bramble-mark.webp",
+    "banner": "/img/brands/bramble-banner.webp",
+    "bannerAlt": "Bramble Labs campaign artwork featuring its botanical sprig identity"
   },
   {
     "title": "InkByte",
@@ -72,9 +108,9 @@
   {
     "title": "GoBox",
     "slug": "gobox",
-    "description": "📦 Lightweight file sharing daemon for LAN transfers. Drag-and-drop uploads, password-protected links, and configurable expiration.",
+    "description": "Lightweight file sharing daemon for LAN transfers. Drag-and-drop uploads, password-protected links, and configurable expiration.",
     "tags": ["Go", "JavaScript", "jQuery"],
-    "gitLink": "github.com/celestialstag/gobox-server-v1",
+    "gitLink": "github.com/miniaxolotl/gobox-v1",
     "year": "2017"
   },
   {
@@ -83,8 +119,7 @@
     "description": "A paint application built with OpenGL fixed-function pipeline and GLUT. 32x32 pixel canvas, BFS flood fill, HSV color system, and hand-drawn UI.",
     "tags": ["C++", "OpenGL", "GLSL"],
     "gitLink": "github.com/miniaxolotl/paint-opengl",
-    "year": "2019",
-    "hasPost": true
+    "year": "2019"
   },
   {
     "title": "Sorbet",
@@ -92,16 +127,15 @@
     "description": "A lightweight C game engine and ECS library built with SDL2. Entity-component-system architecture, custom data structures, and a snake game demo.",
     "tags": ["C", "SDL2", "Game Engine"],
     "gitLink": "github.com/miniaxolotl/sorbet",
-    "year": "2020",
-    "hasPost": true
+    "year": "2020"
   },
   {
     "title": "Shrymp",
     "slug": "shrymp",
-    "description": "🔗 My first attempt at a link shortener. The rough draft that eventually became InkByte.",
+    "description": "My first attempt at a link shortener. The rough draft that eventually became InkByte.",
     "tags": ["TypeScript", "Express.js", "MongoDB"],
     "links": [
-      { "label": "Server", "url": "github.com/theluckyegg/shrymp-server" },
+      { "label": "Server", "url": "github.com/miniaxolotl/shrymp-server" },
       { "label": "Client", "url": "github.com/miniaxolotl/shrymp-web" }
     ],
     "year": "2020"
