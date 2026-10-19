@@ -1,12 +1,12 @@
 ---
 title: Burrow
-description: Building a tunneling tool because I needed one and because it sounded fun. What I learned about WebSockets, TLS, and learning by doing.
+description: Public HTTPS tunnels for localhost. Building a terminal-first way to share previews, receive webhooks, and see the requests coming through.
 year: "2024"
 tags:
   - Go
   - WebSocket
   - Redis
-  - Nginx
+  - CLI
 gitLink: github.com/miniaxolotl/burrow
 ---
 
@@ -14,19 +14,32 @@ gitLink: github.com/miniaxolotl/burrow
 
 I needed my friends to see Fashion Vision from their own laptops. They were not sitting next to me. Every developer has needed to show someone their localhost. Usually you grab ngrok and move on.
 
-Ngrok works until it does not. Rate limits, expiring URLs, paid tiers for features that should be free. I wanted a tunneling tool that just worked. Permanent URLs without the friction.
+I wanted a tunneling tool that fit my workflow: run a command, share a link, and see what comes through. I also wanted the option to run the server myself.
 
 I also had time and I wanted to learn something. Finding an existing tool felt like skipping the lesson. Building one felt like the point.
 
 ## How It Works
 
-Burrow gives you a stable HTTPS URL for your localhost. You run one command. The server assigns a subdomain, provisions a TLS certificate from Let's Encrypt, and opens a WebSocket tunnel back to your machine. The URL does not change.
+Burrow gives a local HTTP app a public HTTPS URL. The CLI connects to `brmbl.dev` by default and creates a private owner credential automatically. No account or manual key setup is required. The public site is [useburrow.app](https://useburrow.app).
 
-Under the hood the protocol multiplexes multiple TCP streams over a single WebSocket. You can expose HTTP services and databases and SSH sessions through one tunnel. The framing avoids head-of-line blocking so a slow stream does not stall the others.
+```sh
+bun add -g @miniaxolotl/burrowctl
+burrowctl tunnel 3000
+```
 
-WebSocket messages carry stream identifiers and sequence numbers and flow control signals. The yamux integration handles multiplexing. Tuning it for low-latency developer workflows took careful configuration. Automatic certificate provisioning means every new tunnel needs a TLS cert from Let's Encrypt before the first request hits it. If the ACME challenge fails, the tunnel never opens.
+Run your app first and use its port. Keep the tunnel client running while you share the link. The terminal manager groups your tunnels and request logs in one place. The published CLI supports macOS and Linux on x64 and ARM64.
 
-Redis tracks active tunnels and persists state across server restarts. If the server goes down and comes back, tunnels reconnect automatically. A token-based auth layer keeps the admin interface locked down for team environments.
+## Owning the Tunnel
+
+The Go client and server use a WebSocket transport with multiplexed streams. Redis tracks server-side state. Management operations are owner-scoped: opening a public app URL does not grant access to its tunnel controls or logs.
+
+A shared app is still public at its URL, so application authentication belongs in the app itself. HTTPS protects the public connection; it is not a claim of end-to-end encryption through every hop. Reconnecting an existing tunnel can keep its URL, while a newly created tunnel receives a new one.
+
+Burrow is open source and self-hostable, under Bramble Labs Inc. The [current documentation](https://github.com/miniaxolotl/burrow/blob/HEAD/documentation/server.md) covers running your own server and domain.
+
+## Earlier Terminal Explorations
+
+These screenshots record an earlier version of the terminal UI. The current website shows the latest tunnel-manager workflow and installation commands.
 
 ![Burrow main interface showing active tunnels](/img/projects/burrow/ui_main_1.png)
 

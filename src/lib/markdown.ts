@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
+import { slugify } from "./utils";
 
 export interface ProjectFrontmatter {
   title: string;
@@ -35,13 +36,7 @@ export const loadProjectMarkdown = (slug: string): ProjectMarkdown => {
   };
 };
 
-export const slugify = (text: string): string =>
-  text
-    .toLowerCase()
-    .replace(/[^\w\s-]/g, "")
-    .replace(/\s+/g, "-")
-    .replace(/-+/g, "-")
-    .trim();
+export { slugify };
 
 export const extractHeadings = (content: string): MarkdownHeading[] => {
   const lines = content.split("\n");

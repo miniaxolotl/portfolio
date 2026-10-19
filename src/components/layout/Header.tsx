@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
 import {
   Drawer,
   DrawerContent,
@@ -23,20 +24,24 @@ import {
 import profile from "@/data/profile.json";
 import projects from "@/data/projects.json";
 import { capture } from "@/lib/analytics";
-import { dropdownBlogSlugs, getProjectHref } from "@/lib/projects";
+import {
+  dropdownBlogSlugs,
+  getProjectHref,
+  sortByYearDesc,
+} from "@/lib/projects";
 import { cn } from "@/lib/utils";
 import { drawerStore, themeStore } from "@/stores";
 import { MobileSidebar } from "./MobileSidebar";
 
-const navItems = [{ href: "/", label: "portfolio" }];
+const navItems = [
+  { href: "/", label: "portfolio" },
+  { href: "/#projects", label: "work" },
+  { href: "/#contact", label: "contact" },
+];
 
 const dropdownProjects = projects
   .filter((p) => dropdownBlogSlugs.has(p.slug))
-  .sort((a, b) => {
-    const yearA = a.year ? parseInt(a.year, 10) : 0;
-    const yearB = b.year ? parseInt(b.year, 10) : 0;
-    return yearB - yearA;
-  });
+  .sort(sortByYearDesc);
 
 const navLinkBase =
   "inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors outline-none hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50";
@@ -50,12 +55,19 @@ export const Header = observer(() => {
   useEffect(() => {
     setMounted(true);
     themeStore.sync();
+    const desktop = window.matchMedia("(min-width: 768px)");
+    const closeOnDesktop = () => {
+      if (desktop.matches) drawerStore.setOpen(false);
+    };
+    closeOnDesktop();
+    desktop.addEventListener("change", closeOnDesktop);
+    return () => desktop.removeEventListener("change", closeOnDesktop);
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur">
       <div className="flex h-16 items-center justify-between px-4 sm:px-6 md:px-8 lg:px-12">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 md:gap-10">
           <Drawer
             open={drawerStore.open}
             onOpenChange={(open) => {
@@ -67,7 +79,7 @@ export const Header = observer(() => {
               aria-label="Open navigation menu"
               aria-expanded={drawerStore.open}
               aria-controls="mobile-navigation"
-              className="md:hidden h-11 w-11 shrink-0 rounded-lg hover:bg-muted hover:text-foreground active:bg-muted/80"
+              className="inline-flex md:hidden items-center justify-center h-11 w-11 shrink-0 rounded-lg hover:bg-muted hover:text-foreground active:bg-muted/80"
             >
               <Menu size={20} aria-hidden="true" />
             </DrawerTrigger>
@@ -82,11 +94,11 @@ export const Header = observer(() => {
           {/* Mobile branding */}
           <Link
             href="/"
-            className="flex items-center gap-2.5 md:hidden"
-            aria-label="Go to portfolio"
+            className="flex items-center gap-2.5"
+            aria-label="Elias Mawa — home"
           >
             <Image
-              src="/img/masthead/player-front-idle.gif"
+              src="/img/masthead/player-still.webp"
               alt=""
               width={32}
               height={32}
@@ -180,7 +192,10 @@ export const Header = observer(() => {
           </nav>
         </div>
 
-        <button
+        <Button
+          variant="ghost"
+          size="icon"
+          disabled={!mounted}
           type="button"
           onClick={() => {
             capture("theme_toggled", {
@@ -205,7 +220,7 @@ export const Header = observer(() => {
           ) : (
             <span className="h-5 w-5" aria-hidden="true" />
           )}
-        </button>
+        </Button>
       </div>
     </header>
   );

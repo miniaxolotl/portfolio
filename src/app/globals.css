@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -21,8 +23,9 @@
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
 
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-dm-sans), sans-serif;
+  --font-serif: var(--font-instrument-serif), Georgia, serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 
   --radius-sm: 0.25rem;
   --radius-md: 0.375rem;
@@ -31,23 +34,23 @@
 }
 
 :root {
-  --background: #faf8f5;
-  --foreground: #1a1512;
-  --card: #f5f0e6;
-  --card-foreground: #1a1512;
+  --background: #f7f6f0;
+  --foreground: #242820;
+  --card: #fdfcf8;
+  --card-foreground: #242820;
   --popover: #faf8f5;
   --popover-foreground: #1a1512;
-  --primary: #7a6a5a;
-  --primary-foreground: #faf8f5;
+  --primary: #36563d;
+  --primary-foreground: #ffffff;
   --secondary: #9caf88;
   --secondary-foreground: #1a1512;
-  --muted: #e8e0d0;
-  --muted-foreground: #625548;
-  --accent: #8b9a6b;
+  --muted: #eeeee5;
+  --muted-foreground: #65695c;
+  --accent: #48643d;
   --accent-foreground: #faf8f5;
-  --border: #d4c9b5;
-  --input: #d4c9b5;
-  --ring: #8b9a6b;
+  --border: #dcded1;
+  --input: #dcded1;
+  --ring: #48643d;
   --text: #1a1512;
   --text-secondary: #625548;
   --destructive: #dc2626;
@@ -75,23 +78,24 @@
 }
 
 .dark {
-  --background: #1a1512;
-  --foreground: #f5f0e6;
-  --card: #252019;
-  --card-foreground: #f5f0e6;
-  --popover: #1a1512;
-  --popover-foreground: #f5f0e6;
-  --primary: #9caf88;
-  --primary-foreground: #1a1512;
+  color-scheme: dark;
+  --background: #191c18;
+  --foreground: #eeeee5;
+  --card: #20241e;
+  --card-foreground: #eeeee5;
+  --popover: #22261f;
+  --popover-foreground: #eeeee5;
+  --primary: #cad8af;
+  --primary-foreground: #212c1e;
   --secondary: #7a6a5a;
   --secondary-foreground: #f5f0e6;
-  --muted: #2e2820;
-  --muted-foreground: #9a8c74;
-  --accent: #8b9a6b;
-  --accent-foreground: #1a1512;
-  --border: #3d352a;
-  --input: #3d352a;
-  --ring: #8b9a6b;
+  --muted: #2a3026;
+  --muted-foreground: #adb1a2;
+  --accent: #c0d19e;
+  --accent-foreground: #212c1e;
+  --border: #363d30;
+  --input: #363d30;
+  --ring: #c0d19e;
   --text: #f5f0e6;
   --text-secondary: #b3a896;
   --destructive: #ef4444;
@@ -118,6 +122,11 @@
   --terminal-maximize: #27c93f;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -128,9 +137,56 @@ body {
   color: var(--accent-foreground);
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 5px;
+}
+
+.section-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.hero-heading {
+  font-size: clamp(3.1rem, 5.9vw, 5.8rem);
+  line-height: 1.04;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.project-art {
+  transition: transform 400ms ease;
+}
+
+.group:hover .project-art {
+  transform: scale(1.025);
+}
+
+.markdown-content {
+  overflow-wrap: anywhere;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  :root *,
+  :root *::before,
+  :root *::after {
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+    transition-duration: 0.01ms;
+    scroll-behavior: auto;
+  }
+
+  .group:hover .project-art {
+    transform: none;
+  }
 }
 
 /* iOS Safari touch fixes */

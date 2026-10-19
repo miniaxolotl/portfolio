@@ -1,73 +1,116 @@
 "use client";
 
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
-import { LuArrowUpRight, LuGithub } from "react-icons/lu";
-import { ProjectTag } from "@/components/project/ProjectTag";
+import { LuGithub } from "react-icons/lu";
+import { Card } from "@/components/ui/card";
 import { capture } from "@/lib/analytics";
-import { blogSlugs, getProjectHref } from "@/lib/projects";
+import { blogSlugs, getProjectHref, normalizeGitLinks } from "@/lib/projects";
 import { ensureProtocol } from "@/lib/utils";
 import type { Project } from "@/types";
 
-interface ProjectCardProps {
-  project: Project;
-}
-
-export const ProjectCard = ({ project }: ProjectCardProps) => {
-  const gitLinks = Array.isArray(project.gitLink)
-    ? project.gitLink
-    : project.gitLink
-      ? [project.gitLink]
-      : [];
-
+export const ProjectCard = ({ project }: { project: Project }) => {
   const href = getProjectHref(project);
+  const gitLinks = normalizeGitLinks(project.gitLink);
 
   return (
-    <article className="group relative flex flex-col gap-4 p-5 sm:p-6 rounded-2xl bg-card border border-border/40 transition-colors duration-200 hover:border-accent/30">
-      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-accent/5 to-transparent opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
-
-      <div className="relative flex flex-col gap-3">
-        <div className="flex items-start justify-between gap-4">
-          <div className="flex flex-col gap-1 min-w-0">
-            <div className="flex items-center gap-3">
-              <h3 className="text-lg font-semibold tracking-tight text-foreground">
-                {project.title}
+    <article
+      aria-labelledby={`${project.slug}-title`}
+      className="group min-w-0"
+    >
+      <Card
+        variant="filled"
+        className="flex h-full flex-col overflow-hidden rounded-2xl border border-border transition-colors hover:border-accent/50"
+      >
+        {project.banner && (
+          <Link
+            href={href}
+            aria-label={`Read about ${project.title}`}
+            className="block overflow-hidden border-b border-border"
+          >
+            <Image
+              src={project.banner}
+              alt={project.bannerAlt ?? ""}
+              width={1200}
+              height={628}
+              sizes="(min-width: 1440px) 500px, (min-width: 1024px) 40vw, (min-width: 640px) 50vw, 100vw"
+              className="project-art aspect-[1200/628] w-full object-cover"
+            />
+          </Link>
+        )}
+        <div className="flex flex-1 flex-col p-5 sm:p-6">
+          <div className="mb-5 flex items-center gap-3">
+            {project.logo && (
+              <Image
+                src={project.logo}
+                alt=""
+                width={40}
+                height={40}
+                className="rounded-xl"
+              />
+            )}
+            <div className="min-w-0">
+              <p className="mb-0.5 text-[11px] text-muted-foreground">
+                {project.category}
+              </p>
+              <h3
+                id={`${project.slug}-title`}
+                className="text-xl font-medium tracking-tight"
+              >
+                <Link href={href}>{project.title}</Link>
               </h3>
-              {project.year && (
-                <span className="text-xs text-muted-foreground font-mono shrink-0 px-2 py-0.5 rounded-md bg-muted/50">
-                  {project.year}
-                </span>
-              )}
             </div>
+            <span className="ml-auto max-w-28 text-right text-[10px] leading-relaxed text-muted-foreground">
+              {project.status}
+            </span>
           </div>
-
-          <div className="flex items-center gap-1 shrink-0">
-            {project.links?.map((link) => (
+          <p className="text-sm leading-[1.75] text-muted-foreground">
+            {project.description}
+          </p>
+          <p className="mt-4 text-[11px] leading-relaxed text-muted-foreground">
+            {project.tags.join(" · ")}
+          </p>
+          <div className="mt-auto flex flex-wrap items-center gap-x-4 gap-y-1 pt-5">
+            {project.liveLink && (
               <a
-                key={link.url}
-                href={ensureProtocol(link.url)}
+                href={project.liveLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-colors"
+                aria-label={`Visit ${project.title}`}
+                className="inline-flex min-h-11 items-center gap-1.5 text-sm font-medium hover:text-accent"
                 onClick={() =>
-                  capture("project_github_clicked", {
+                  capture("project_live_clicked", {
                     project: project.slug,
-                    url: link.url,
-                    label: link.label,
+                    url: project.liveLink,
                   })
                 }
               >
-                <LuGithub size={12} />
-                {link.label}
+                Visit site <ArrowUpRight size={15} aria-hidden="true" />
               </a>
-            ))}
+            )}
+            {blogSlugs.has(project.slug) && (
+              <Link
+                href={href}
+                className="inline-flex min-h-11 items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground"
+                onClick={() =>
+                  capture("project_read_more_clicked", {
+                    project: project.slug,
+                    href,
+                  })
+                }
+              >
+                Read the story <ArrowRight size={14} aria-hidden="true" />
+              </Link>
+            )}
             {gitLinks.map((link) => (
               <a
                 key={link}
                 href={ensureProtocol(link)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center h-8 w-8 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
                 aria-label={`View ${project.title} on GitHub`}
+                className="ml-auto inline-flex size-11 items-center justify-center rounded-full text-muted-foreground hover:bg-muted hover:text-foreground"
                 onClick={() =>
                   capture("project_github_clicked", {
                     project: project.slug,
@@ -75,43 +118,12 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                   })
                 }
               >
-                <LuGithub size={15} />
+                <LuGithub size={17} aria-hidden="true" />
               </a>
             ))}
           </div>
         </div>
-
-        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
-          {project.description}
-        </p>
-
-        <div className="flex flex-wrap gap-2">
-          {project.tags.map((tag) => (
-            <ProjectTag key={tag} tag={tag} />
-          ))}
-        </div>
-      </div>
-
-      {blogSlugs.has(project.slug) && (
-        <div className="relative pt-2 border-t border-border/30">
-          <Link
-            href={href}
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground/80 hover:text-accent transition-colors group/link"
-            onClick={() =>
-              capture("project_read_more_clicked", {
-                project: project.slug,
-                href,
-              })
-            }
-          >
-            Read more
-            <LuArrowUpRight
-              size={14}
-              className="transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
-            />
-          </Link>
-        </div>
-      )}
+      </Card>
     </article>
   );
 };

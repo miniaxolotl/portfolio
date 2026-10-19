@@ -45,7 +45,7 @@ export const MobileSidebar = observer(({ onNavigate }: MobileSidebarProps) => {
       >
         {/* Profile Header */}
         <div className="relative px-6 pt-6 pb-4">
-          <DrawerClose className="absolute top-4 right-4 inline-flex items-center justify-center h-8 w-8 rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-colors">
+          <DrawerClose className="absolute top-4 right-4 inline-flex items-center justify-center h-11 w-11 rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-colors">
             <X size={16} aria-hidden="true" />
             <span className="sr-only">Close menu</span>
           </DrawerClose>
@@ -63,9 +63,7 @@ export const MobileSidebar = observer(({ onNavigate }: MobileSidebarProps) => {
 
         {/* Pages */}
         <div className="px-4 py-2">
-          <p className="text-xs font-medium text-muted-foreground/60 uppercase tracking-wider mb-2 px-2">
-            Pages
-          </p>
+          <p className="section-kicker mb-2 px-2">Pages</p>
           <nav className="flex flex-col gap-0.5" aria-label="Pages">
             {pageNavItems.map((item) => {
               const isActive =
@@ -106,9 +104,7 @@ export const MobileSidebar = observer(({ onNavigate }: MobileSidebarProps) => {
         {/* Sections (home page only) */}
         {pathname === "/" && (
           <div className="px-4 py-2">
-            <p className="text-xs font-medium text-muted-foreground/60 uppercase tracking-wider mb-2 px-2">
-              On this page
-            </p>
+            <p className="section-kicker mb-2 px-2">On this page</p>
             <nav className="flex flex-col gap-0.5" aria-label="Page sections">
               {navLinks.map((link) => (
                 <SidebarNavLink
@@ -126,9 +122,7 @@ export const MobileSidebar = observer(({ onNavigate }: MobileSidebarProps) => {
 
         {/* Actions */}
         <div className="px-4 py-2">
-          <p className="text-xs font-medium text-muted-foreground/60 uppercase tracking-wider mb-2 px-2">
-            Actions
-          </p>
+          <p className="section-kicker mb-2 px-2">Actions</p>
           <div className="flex flex-col gap-0.5">
             <a
               href="/mawa-2026-05-v2c.pdf"
@@ -144,6 +138,7 @@ export const MobileSidebar = observer(({ onNavigate }: MobileSidebarProps) => {
 
             <button
               type="button"
+              disabled={!mounted}
               onClick={() => themeStore.toggle()}
               className="group flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground w-full text-left"
             >

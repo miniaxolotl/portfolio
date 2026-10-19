@@ -8,7 +8,7 @@ import {
   Zap,
 } from "lucide-react";
 import { LuGithub } from "react-icons/lu";
-import { SiDocker, SiNpm } from "react-icons/si";
+import { SiNpm } from "react-icons/si";
 import { BadgeRow } from "@/components/project/BadgeRow";
 import { GroveSetupSection } from "@/components/project/GroveSetupSection";
 import { ProjectPageLayout } from "@/components/project/ProjectPageLayout";
@@ -20,37 +20,37 @@ const features = [
     icon: Sparkles,
     title: "MCP-Native",
     description:
-      "Drop-in memory server for OpenCode, Cursor, Claude Desktop, and any MCP-compatible client.",
+      "Four focused tools: remember, recall, memories, and forget. Integrations for OpenCode, Claude Code, and Codex.",
   },
   {
     icon: Database,
     title: "Semantic Search",
     description:
-      "Qdrant vector database powers lightning-fast similarity search across everything the AI has seen.",
+      "Semantic and full-text search work together in PostgreSQL with pgvector and local embeddings.",
   },
   {
     icon: Boxes,
-    title: "Knowledge Graphs",
+    title: "One Private Library",
     description:
-      "Entity-relationship graphs turn flat memories into structured, queryable knowledge.",
+      "Browse, correct, and organize memories in the website. Your agents and dashboard use the same authenticated API.",
   },
   {
     icon: Brain,
-    title: "Smart Forgetting",
+    title: "An Explicit Lifecycle",
     description:
-      "Importance scoring keeps critical facts at the surface while noise naturally decays.",
+      "Keep durable memories until you change them, expire short handoffs, or archive memories reversibly.",
   },
   {
     icon: Link2,
-    title: "Reranking",
+    title: "Scoped Connections",
     description:
-      "Optional cross-encoder reranking boosts retrieval accuracy when precision matters.",
+      "Approve an agent's access, scope its memories, and revoke the connection. Account ownership is enforced with row-level security.",
   },
   {
     icon: Zap,
     title: "Local Embeddings",
     description:
-      "ONNX-based models run entirely offline. No API keys, no rate limits, no privacy leaks.",
+      "Embedding models run alongside your service. Lexical retrieval stays available while semantic indexing catches up.",
   },
 ];
 
@@ -64,11 +64,6 @@ const groveBadges = [
     label: "OpenCode Plugin",
     url: "https://www.npmjs.com/package/@miniaxolotl/grove-opencode-plugin",
     icon: <Package size={12} />,
-  },
-  {
-    label: "Docker Hub",
-    url: "https://hub.docker.com/r/miniaxolotl/grove",
-    icon: <SiDocker size={12} />,
   },
   {
     label: "GitHub",
@@ -85,6 +80,7 @@ const groveInstallTabs = [
 
 export const GrovePageClient = () => (
   <ProjectPageLayout
+    projectSlug="grove"
     name={groveData.name}
     tagline={groveData.tagline}
     description={groveData.description}

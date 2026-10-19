@@ -15,16 +15,14 @@ export const SocialLinks = ({ variant, className }: SocialLinksProps) => {
 
   return (
     <div className={cn("pt-4", className)}>
-      <p className="text-xs font-medium text-muted-foreground/60 uppercase tracking-wider mb-3 px-1">
-        Connect
-      </p>
+      <p className="section-kicker mb-3 px-1">Connect</p>
       {variant === "icon-only" ? (
         <div className="flex flex-wrap gap-2">
           {nonDiscordSocials.map((social) => (
             <a
               key={social.label}
               href={social.href}
-              className="flex items-center justify-center w-9 h-9 rounded-lg bg-muted hover:bg-accent hover:text-accent-foreground transition-colors"
+              className="flex items-center justify-center size-11 rounded-lg bg-muted hover:bg-accent hover:text-accent-foreground transition-colors"
               aria-label={social.label}
               title={social.label}
               onClick={() =>

@@ -1,8 +1,10 @@
 import type { Project } from "@/types";
 
-export const featuredSlugs = new Set(["burrow", "grove"]);
+export const featuredSlugs = new Set(["fern", "grove", "fitr", "burrow"]);
 
 export const blogSlugs = new Set([
+  "fern",
+  "bramble-labs",
   "burrow",
   "grove",
   "fitr",
@@ -15,10 +17,11 @@ export const blogSlugs = new Set([
 ]);
 
 export const dropdownBlogSlugs = new Set([
+  "fern",
   "burrow",
   "grove",
   "fitr",
-  "fashion-vision",
+  "bramble-labs",
 ]);
 
 export const tagColors = [
@@ -43,3 +46,14 @@ export const getProjectHref = (project: Project) =>
   blogSlugs.has(project.slug)
     ? `/projects/${project.slug}`
     : `/${project.slug}`;
+
+export const sortByYearDesc = (a: Project, b: Project): number => {
+  const yearA = a.year ? parseInt(a.year, 10) : 0;
+  const yearB = b.year ? parseInt(b.year, 10) : 0;
+  return yearB - yearA;
+};
+
+export const normalizeGitLinks = (gitLink?: string | string[]): string[] => {
+  if (Array.isArray(gitLink)) return gitLink;
+  return gitLink ? [gitLink] : [];
+};

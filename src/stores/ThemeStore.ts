@@ -4,7 +4,7 @@ import { getCookie, setCookie } from "@/lib/cookies";
 const THEME_COOKIE = "theme";
 
 class ThemeStore {
-  isDark = false;
+  isDark = true;
 
   constructor() {
     makeAutoObservable(this);
@@ -14,10 +14,7 @@ class ThemeStore {
   hydrate = () => {
     if (typeof document === "undefined") return;
     const stored = getCookie(THEME_COOKIE);
-    const systemPrefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)",
-    ).matches;
-    this.isDark = stored === "dark" || (!stored && systemPrefersDark);
+    this.isDark = stored !== "light";
     this.apply();
   };
 

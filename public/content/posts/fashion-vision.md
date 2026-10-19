@@ -9,7 +9,6 @@ tags:
   - Transformers.js
   - Computer Vision
   - ONNX
-gitLink: github.com/miniaxolotl/fashion-vision
 ---
 
 ## Why I Split It Out

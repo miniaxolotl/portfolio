@@ -5,14 +5,21 @@ test.describe("Projects", () => {
     await page.goto("/");
   });
 
-  test("should display read more links for each project", async ({ page }) => {
+  test("should give every featured project a story and a live destination", async ({
+    page,
+  }) => {
     const projectsSection = page.locator("#projects");
     await expect(projectsSection).toBeVisible();
 
-    const readMoreLinks = projectsSection.getByRole("link", {
-      name: /read more/i,
-    });
-    await expect(readMoreLinks).toHaveCount(8);
+    for (const name of ["Fern", "Grove", "Fitr", "Burrow"]) {
+      const card = projectsSection.getByRole("article", { name, exact: true });
+      await expect(
+        card.getByRole("link", { name: "Read the story" }),
+      ).toHaveAttribute("href", `/projects/${name.toLowerCase()}`);
+      await expect(
+        card.getByRole("link", { name: `Visit ${name}`, exact: true }),
+      ).toBeVisible();
+    }
   });
 
   test("should navigate to project detail page via read more", async ({
@@ -43,7 +50,9 @@ test.describe("Project Blog Posts", () => {
     });
     await expect(markdownHeading).toBeVisible();
 
-    const paragraph = page.locator("text=self-hosted MCP server").first();
+    const paragraph = page
+      .locator("article")
+      .getByText("PostgreSQL, full-text search, and pgvector", { exact: true });
     await expect(paragraph).toBeVisible();
   });
 

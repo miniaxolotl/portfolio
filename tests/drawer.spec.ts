@@ -54,7 +54,7 @@ test.describe("Mobile Drawer", () => {
     const drawer = page.locator("[data-vaul-drawer]");
     await expect(drawer).toBeVisible();
 
-    const profileName = drawer.locator("h1").first();
+    const profileName = drawer.getByTestId("profile-name");
     await expect(profileName).toBeVisible();
     await expect(profileName).toHaveText("Elias Mawa");
   });
@@ -117,15 +117,15 @@ test.describe("Mobile Drawer", () => {
 
     const mainNav = page.locator('nav[aria-label="Main navigation"]');
     const portfolioLink = mainNav.getByRole("link", { name: /portfolio/i });
-    const burrowLink = mainNav.getByRole("link", { name: /burrow/i });
-    const groveLink = mainNav.getByRole("link", { name: /grove/i });
+    const workLink = mainNav.getByRole("link", { name: /work/i });
+    const contactLink = mainNav.getByRole("link", { name: /contact/i });
     const blogTrigger = mainNav.getByRole("button", {
       name: /blog/i,
     });
 
     await expect(portfolioLink).toBeVisible();
-    await expect(burrowLink).toBeVisible();
-    await expect(groveLink).toBeVisible();
+    await expect(workLink).toBeVisible();
+    await expect(contactLink).toBeVisible();
     await expect(blogTrigger).toBeVisible();
   });
 });

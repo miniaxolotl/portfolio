@@ -24,9 +24,17 @@ export const CodeBlock = ({ code, className }: CodeBlockProps) => {
       style={{ backgroundColor: "var(--terminal-bg)" }}
     >
       <div className="px-4 py-4 flex items-center justify-between gap-4">
-        <pre className="text-sm font-mono overflow-x-auto">
+        {/* biome-ignore lint/a11y/useSemanticElements: preserve preformatted code in this named scroll region */}
+        <pre
+          className="text-sm font-mono overflow-x-auto"
+          // biome-ignore lint/a11y/noNoninteractiveTabindex: keyboard access to horizontally scrollable commands
+          tabIndex={0}
+          role="region"
+          aria-label="Terminal commands"
+        >
           <code>
             {code.split("\n").map((line, i) => (
+              // biome-ignore lint/suspicious/noArrayIndexKey: immutable, ordered lines of a static code sample
               <span key={i}>
                 <span
                   className="select-none"

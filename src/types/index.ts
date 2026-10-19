@@ -26,4 +26,9 @@ export interface Project {
   gitLink?: string | string[];
   links?: ProjectLink[];
   featured?: boolean;
+  category?: string;
+  status?: string;
+  logo?: string;
+  banner?: string;
+  bannerAlt?: string;
 }

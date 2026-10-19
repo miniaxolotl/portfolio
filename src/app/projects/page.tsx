@@ -1,11 +1,25 @@
+import type { Metadata } from "next";
 import { PageShell } from "@/components/layout/PageShell";
 import { Section } from "@/components/layout/Section";
 import { OtherProjectsList } from "@/components/project/OtherProjectsList";
 import { ProjectsList } from "@/components/project/ProjectsList";
+import { Studio } from "@/components/project/Studio";
+
+export const metadata: Metadata = {
+  title: "Projects & writing | Elias Mawa",
+  description:
+    "Engineering notes and stories behind Fern, Grove, Fitr, Burrow, and earlier experiments.",
+  alternates: { canonical: "/projects" },
+};
 
 const BlogPage = () => (
   <PageShell hasSidebar>
-    <Section id="blog" title="Blog">
+    <Section
+      id="blog"
+      title="Projects & writing"
+      headingLevel="h1"
+      eyebrow="The work, and the thinking behind it"
+    >
       <div className="space-y-14">
         <div className="space-y-6">
           <p className="text-sm text-muted-foreground leading-relaxed max-w-2xl">
@@ -13,6 +27,7 @@ const BlogPage = () => (
             full-stack development.
           </p>
           <ProjectsList />
+          <Studio />
         </div>
 
         <div className="space-y-6">

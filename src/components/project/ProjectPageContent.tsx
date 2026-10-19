@@ -7,6 +7,7 @@ import {
   Calendar,
   Clock,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { LuGithub } from "react-icons/lu";
 import ReactMarkdown from "react-markdown";
@@ -18,7 +19,8 @@ import { ProjectTag } from "@/components/project/ProjectTag";
 import { TableOfContents } from "@/components/project/TableOfContents";
 import { capture } from "@/lib/analytics";
 import type { MarkdownHeading } from "@/lib/markdown";
-import { cn, ensureProtocol } from "@/lib/utils";
+import { normalizeGitLinks } from "@/lib/projects";
+import { cn, ensureProtocol, slugify } from "@/lib/utils";
 import type { Project } from "@/types";
 
 interface ProjectPageContentProps {
@@ -33,6 +35,11 @@ interface ProjectPageContentProps {
   headings: MarkdownHeading[];
   prevProject?: Project | null;
   nextProject?: Project | null;
+  liveLink?: string;
+  banner?: string;
+  bannerAlt?: string;
+  logo?: string;
+  status?: string;
 }
 
 export const ProjectPageContent = ({
@@ -47,11 +54,25 @@ export const ProjectPageContent = ({
   headings,
   prevProject,
   nextProject,
+  liveLink,
+  banner,
+  bannerAlt,
+  logo,
+  status,
 }: ProjectPageContentProps) => {
   let isFirstImage = true;
 
-  const gitLinks = Array.isArray(gitLink) ? gitLink : gitLink ? [gitLink] : [];
+  const gitLinks = normalizeGitLinks(gitLink);
   const allLinks = [
+    ...(liveLink
+      ? [
+          {
+            label: `Visit ${name}`,
+            url: liveLink,
+            icon: <ArrowUpRight size={14} aria-hidden="true" />,
+          },
+        ]
+      : []),
     ...(links?.map((l) => ({
       label: l.label,
       url: ensureProtocol(l.url),
@@ -66,12 +87,17 @@ export const ProjectPageContent = ({
 
   return (
     <PageShell hasSidebar>
-      <div className="px-4 py-8 sm:px-6 sm:py-12 md:py-16 md:px-8 lg:px-12">
-        <div className="max-w-6xl mx-auto">
+      <div className="px-5 py-12 sm:px-8 sm:py-16 lg:px-10 xl:px-14">
+        <div className="max-w-5xl mx-auto">
           {/* Hero */}
           <header className="mb-10 md:mb-14">
-            {/* Accent gradient bar */}
-            <div className="h-1 w-24 bg-gradient-to-r from-accent to-transparent rounded-full mb-6" />
+            <Link
+              href="/projects"
+              className="mb-8 inline-flex min-h-9 items-center gap-2 text-xs text-muted-foreground hover:text-foreground"
+            >
+              <ArrowLeft size={14} aria-hidden="true" />
+              All projects & writing
+            </Link>
 
             {/* Meta row */}
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted-foreground font-mono tracking-wide mb-4">
@@ -95,9 +121,21 @@ export const ProjectPageContent = ({
             </div>
 
             {/* Title */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4 text-foreground">
-              {name}
-            </h1>
+            <div className="mb-5 flex items-center gap-4">
+              {logo && (
+                <Image
+                  src={logo}
+                  alt=""
+                  width={64}
+                  height={64}
+                  className="rounded-2xl"
+                />
+              )}
+              <h1 className="font-serif text-5xl sm:text-6xl tracking-tight text-foreground">
+                {name}
+              </h1>
+            </div>
+            {status && <p className="section-kicker mb-4">{status}</p>}
 
             {/* Description */}
             <p className="text-[17px] sm:text-lg text-muted-foreground leading-[1.75] mb-6 max-w-2xl">
@@ -139,6 +177,16 @@ export const ProjectPageContent = ({
                 ))}
               </div>
             )}
+            {banner && (
+              <Image
+                src={banner}
+                alt={bannerAlt ?? ""}
+                width={1200}
+                height={628}
+                sizes="(min-width: 1024px) 70vw, 100vw"
+                className="mt-8 w-full max-w-3xl rounded-2xl border border-border"
+              />
+            )}
           </header>
 
           <div className="h-px bg-gradient-to-r from-transparent via-border/50 to-transparent mb-10" />
@@ -161,21 +209,14 @@ export const ProjectPageContent = ({
                         : Array.isArray(children)
                           ? children.join("")
                           : "";
-                    const id = text
-                      .toLowerCase()
-                      .replace(/[^\w\s-]/g, "")
-                      .replace(/\s+/g, "-")
-                      .replace(/-+/g, "-");
+                    const id = slugify(text);
                     return (
                       <h2
                         id={id}
-                        className="text-xl sm:text-2xl font-semibold tracking-tight mt-12 mb-6 flex items-center gap-4 group scroll-mt-24"
+                        className="text-2xl sm:text-3xl font-serif tracking-tight mt-12 mb-5 scroll-mt-24"
                         {...props}
                       >
-                        <span className="h-px flex-1 bg-gradient-to-r from-accent/50 to-transparent transition-all group-hover:from-accent/70" />
-                        <span className="text-foreground whitespace-nowrap">
-                          {children}
-                        </span>
+                        {children}
                       </h2>
                     );
                   },
@@ -189,11 +230,7 @@ export const ProjectPageContent = ({
                         : Array.isArray(children)
                           ? children.join("")
                           : "";
-                    const id = text
-                      .toLowerCase()
-                      .replace(/[^\w\s-]/g, "")
-                      .replace(/\s+/g, "-")
-                      .replace(/-+/g, "-");
+                    const id = slugify(text);
                     return (
                       <h3
                         id={id}
@@ -219,7 +256,10 @@ export const ProjectPageContent = ({
                     children,
                     ...props
                   }: React.HTMLAttributes<HTMLUListElement>) => (
-                    <ul className="my-6 space-y-3" {...props}>
+                    <ul
+                      className="my-6 space-y-3 list-disc pl-5 marker:text-accent"
+                      {...props}
+                    >
                       {children}
                     </ul>
                   ),
@@ -239,11 +279,10 @@ export const ProjectPageContent = ({
                     ...props
                   }: React.HTMLAttributes<HTMLLIElement>) => (
                     <li
-                      className="leading-relaxed flex items-start gap-3 text-[15px] text-muted-foreground"
+                      className="leading-relaxed text-[15px] text-muted-foreground"
                       {...props}
                     >
-                      <span className="mt-2.5 h-1 w-1 rounded-full bg-accent/50 shrink-0" />
-                      <span>{children}</span>
+                      {children}
                     </li>
                   ),
                   a: ({
@@ -259,6 +298,7 @@ export const ProjectPageContent = ({
                       {children}
                     </a>
                   ),
+                  pre: ({ children }) => <div>{children}</div>,
                   code: ({
                     children,
                     className,
@@ -299,8 +339,13 @@ export const ProjectPageContent = ({
                             />
                           </div>
                         </div>
+                        {/* biome-ignore lint/a11y/useSemanticElements: preserve preformatted code in this named scroll region */}
                         <pre
                           className="p-4 overflow-x-auto"
+                          // biome-ignore lint/a11y/noNoninteractiveTabindex: keyboard access to horizontally scrollable code
+                          tabIndex={0}
+                          role="region"
+                          aria-label="Code example"
                           style={{ backgroundColor: "var(--terminal-bg)" }}
                         >
                           <code

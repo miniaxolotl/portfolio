@@ -1,6 +1,6 @@
 import { ArrowDownUp, Box, Lock, Network, Shield, Zap } from "lucide-react";
 import { LuGithub } from "react-icons/lu";
-import { SiDocker, SiNpm } from "react-icons/si";
+import { SiNpm } from "react-icons/si";
 import { BadgeRow } from "@/components/project/BadgeRow";
 import { BurrowSetupSection } from "@/components/project/BurrowSetupSection";
 import { ProjectPageLayout } from "@/components/project/ProjectPageLayout";
@@ -18,13 +18,13 @@ const features = [
     icon: Lock,
     title: "TLS Out of the Box",
     description:
-      "Automatic Let's Encrypt certificates for every subdomain. Your traffic is encrypted end-to-end.",
+      "Share an HTTPS URL for your local HTTP app. TLS protects the public connection to the tunnel server.",
   },
   {
     icon: Network,
-    title: "More Than HTTP",
+    title: "Real Webhooks, Local Code",
     description:
-      "Expose databases, SSH, game servers, or any TCP service through the same tunnel.",
+      "Send provider test callbacks to your tunnel and inspect the requests while your app runs locally.",
   },
   {
     icon: Zap,
@@ -34,15 +34,15 @@ const features = [
   },
   {
     icon: Shield,
-    title: "Token-Based Auth",
+    title: "Owner-Scoped Management",
     description:
-      "Built-in admin tokens and team authentication. Control who can open tunnels on your server.",
+      "An automatically created owner credential protects your tunnel controls and logs. The shared app URL remains public.",
   },
   {
     icon: Box,
-    title: "Survives Restarts",
+    title: "Your Server, Your Choice",
     description:
-      "Redis-backed state means tunnels persist across server reboots without reconfiguration.",
+      "Use the hosted brmbl.dev server or run your own. Existing tunnel reconnections can retain their URL; new tunnels get a new one.",
   },
 ];
 
@@ -51,11 +51,6 @@ const burrowBadges = [
     label: "npm",
     url: "https://www.npmjs.com/package/@miniaxolotl/burrowctl",
     icon: <SiNpm size={12} />,
-  },
-  {
-    label: "Docker Hub",
-    url: "https://hub.docker.com/r/miniaxolotl/burrowd",
-    icon: <SiDocker size={12} />,
   },
   {
     label: "GitHub",
@@ -72,6 +67,7 @@ const burrowInstallTabs = [
 
 export const BurrowPageClient = () => (
   <ProjectPageLayout
+    projectSlug="burrow"
     name={burrowData.name}
     tagline={burrowData.tagline}
     description={burrowData.description}

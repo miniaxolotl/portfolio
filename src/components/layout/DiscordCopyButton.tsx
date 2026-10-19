@@ -58,7 +58,7 @@ export const DiscordCopyButton = ({
       type="button"
       onClick={handleCopy}
       className={cn(
-        "inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-xs font-mono transition-colors",
+        "inline-flex min-h-10 items-center gap-1.5 px-2 py-1 rounded-md text-xs font-mono transition-colors",
         copied
           ? "bg-accent/10 text-accent"
           : "bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground",

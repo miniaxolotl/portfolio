@@ -1,63 +1,54 @@
+import { Braces, Layers3, Workflow } from "lucide-react";
 import { Section } from "@/components/layout/Section";
-import { SkillBadge } from "@/components/SkillBadge";
-import skills from "@/data/skills.json";
 
-const skillCategories = [
+const capabilities = [
   {
-    name: "Languages",
-    description: "Type-safe and systems-level development across the stack",
-    skills: skills.filter((s) => s.category === "Languages"),
-  },
-  {
-    name: "Frontend",
-    description: "Modern frameworks, SSR, and responsive user interfaces",
-    skills: skills.filter((s) => s.category === "Frontend"),
-  },
-  {
-    name: "Backend",
+    icon: Layers3,
+    title: "The whole product",
     description:
-      "API design, service architecture, and server-side development",
-    skills: skills.filter((s) => s.category === "Backend"),
+      "Interfaces that feel considered, backed by a clear understanding of the people using them. Web and mobile, from interaction to implementation.",
+    tools: "React · Next.js · Flutter · TypeScript",
   },
   {
-    name: "Databases",
-    description: "Relational, NoSQL, and vector databases with schema design",
-    skills: skills.filter((s) => s.category === "Databases"),
+    icon: Braces,
+    title: "The systems underneath",
+    description:
+      "APIs, background jobs, and data models that hold up beyond the happy path. A practical approach to AI, search, and real-time workflows.",
+    tools: "Go · Node.js · PostgreSQL · Redis · pgvector",
   },
   {
-    name: "Cloud & DevOps",
-    description: "Infrastructure, containers, and automated deployments",
-    skills: skills.filter((s) => s.category === "Cloud & DevOps"),
-  },
-  {
-    name: "Architecture",
-    description: "Distributed systems, event-driven design, and SaaS platforms",
-    skills: skills.filter((s) => s.category === "Architecture"),
-  },
-  {
-    name: "AI/ML",
-    description: "Hardware-accelerated inference, RAG, and computer vision",
-    skills: skills.filter((s) => s.category === "AI/ML"),
+    icon: Workflow,
+    title: "The path to production",
+    description:
+      "Taking ownership of delivery: reliable releases, observable services, and migrations that keep things moving. Helping the team build with confidence.",
+    tools: "Docker · AWS · Vercel · CI/CD · OpenTelemetry",
   },
 ];
 
 export const Skills = () => (
-  <Section id="skills" title="Skills">
-    <div className="space-y-5 sm:space-y-6">
-      {skillCategories.map((category) => (
-        <div key={category.name}>
-          <div className="mb-2">
-            <h3 className="text-sm font-semibold">{category.name}</h3>
-            <p className="text-xs text-muted-foreground">
-              {category.description}
+  <Section
+    id="skills"
+    eyebrow="02 / Skills & approach"
+    title="From the interface to the infrastructure."
+    className="border-t border-border"
+  >
+    <div className="divide-y divide-border">
+      {capabilities.map(({ icon: Icon, title, description, tools }) => (
+        <div
+          key={title}
+          className="grid gap-3 py-7 first:pt-2 sm:grid-cols-[1fr_1.5fr] sm:gap-8"
+        >
+          <h3 className="flex items-start gap-3 text-base font-medium">
+            <Icon size={20} className="mt-0.5 text-accent" aria-hidden="true" />
+            {title}
+          </h3>
+          <div>
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              {description}
             </p>
-          </div>
-          <div className="flex flex-wrap gap-1.5">
-            {category.skills.map((skill) => (
-              <SkillBadge key={skill.name} variant={skill.variant}>
-                {skill.name}
-              </SkillBadge>
-            ))}
+            <p className="mt-3 text-xs leading-relaxed text-foreground">
+              {tools}
+            </p>
           </div>
         </div>
       ))}

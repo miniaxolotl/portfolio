@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Elias Mawa — portfolio
 
-## Getting Started
+[mawa.dev](https://mawa.dev) · Next.js 16 · React 19 · TypeScript · Tailwind CSS 4
 
-First, run the development server:
+A personal portfolio of apps, developer tools, and engineering write-ups.
+Features Fern, Grove, Fitr, Burrow, Bramble Labs, and earlier experiments.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Development
+
+Use **Bun** for package management. Dependency versions use `~` ranges.
+
+```sh
+bun install --frozen-lockfile
+bun run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open **http://localhost:6681**. Dark mode is the default; the theme switch stores
+your preference in a cookie. Fonts and portfolio artwork are served locally.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Checks
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```sh
+bun run lint
+bun run typecheck
+bun run build
+bunx playwright install chromium
+bun run test --workers=4
+```
 
-## Learn More
+Playwright runs desktop and mobile Chromium tests, including axe accessibility
+checks. It reuses an existing server on port 6681 and starts one if needed.
+For a local production preview, run `bun run start` after building.
 
-To learn more about Next.js, take a look at the following resources:
+## Editing content
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `src/data/profile.json` — personal bio and contact details
+- `src/data/projects.json` — project descriptions, current status, public links,
+  logos, banners, and featured placement
+- `public/content/posts/*.md` — engineering stories and historical explorations
+- `src/lib/projects.ts` — available article slugs, menu selection, shared ordering
+- `src/components/sections/Skills.tsx` — concise capability descriptions
+- `src/app/globals.css` — light/dark palette, typography, and motion preferences
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Project years describe historical work, not the latest release date. Check the
+live product before changing availability. Fern is coming soon, Fitr has an
+early-access waitlist, and Grove/Burrow are available open-source tools.
+Bramble Labs Inc. operates Fern, Grove, and Burrow; Fitr Technologies Inc. is a
+separate company.
 
-## Deploy on Vercel
+## Artwork
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Current marks and banners come from the supplied `Development/marketing` brand
+library. Optimized derivatives and provenance are in
+[`public/img/brands/`](public/img/brands/README.md). DM Sans and Instrument Serif
+are self-hosted with their licenses in `src/app/fonts/`. The pixel mascot's still
+frame keeps the existing personal identity without continuous animation.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Routes include `/`, `/projects`, `/projects/[slug]`, `/burrow`, and `/grove`.
+The older product URLs retain current installation guides and link to the
+dedicated product websites. Vercel hosts the `portfolio` project in the
+`bramble-labs-inc` team; its configured production branch is `production`.
+
+See [WORKSPACE.md](WORKSPACE.md) for architecture and [AGENTS.md](AGENTS.md) for
+contribution and planning requirements.
