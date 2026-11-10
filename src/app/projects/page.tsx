@@ -4,7 +4,6 @@ import { PageShell } from "@/components/layout/PageShell";
 import { Section } from "@/components/layout/Section";
 import { OtherProjectsList } from "@/components/project/OtherProjectsList";
 import { ProjectsList } from "@/components/project/ProjectsList";
-import { Studio } from "@/components/project/Studio";
 import { blogEnabled } from "@/lib/projects";
 
 export const generateMetadata = (): Metadata => {
@@ -34,7 +33,6 @@ const BlogPage = () => {
               full-stack development.
             </p>
             <ProjectsList />
-            <Studio />
           </div>
 
           <div className="space-y-6">

@@ -3,7 +3,7 @@
 [mawa.dev](https://mawa.dev) · Next.js 16 · React 19 · TypeScript · Tailwind CSS 4
 
 A personal portfolio of apps and developer tools, based in Calgary, AB.
-Features Fern, Grove, Fitr, Burrow, Bramble Labs, and earlier experiments.
+Features Fern, Grove, Fitr, Burrow, and earlier experiments.
 
 ## Development
 
@@ -50,8 +50,8 @@ separate company.
 
 ## Artwork
 
-Current marks and banners come from the supplied `Development/marketing` brand
-library. Optimized derivatives and provenance are in
+Current marks and banners come from the Bramble Labs marketing library's
+website-graphics set. Optimized derivatives and provenance are in
 [`public/img/brands/`](public/img/brands/README.md). The social-sharing image uses
 bundled sans fonts with licenses in `src/app/fonts/`. The pixel mascot's still
 frame keeps the existing personal identity without continuous animation.

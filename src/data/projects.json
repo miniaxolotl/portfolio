@@ -11,7 +11,7 @@
     "featured": true,
     "logo": "/img/brands/fern-mark.webp",
     "banner": "/img/brands/fern-banner.webp",
-    "bannerAlt": "Fern campaign photography: friends sitting shoulder to shoulder by the water"
+    "bannerAlt": "Fern website banner: two people on a car roof at sunset, friends around a campfire, and friends with sparklers at dusk"
   },
   {
     "title": "Grove",
@@ -24,7 +24,7 @@
     "status": "Open source",
     "logo": "/img/brands/grove-mark.webp",
     "banner": "/img/brands/grove-banner.webp",
-    "bannerAlt": "Grove campaign illustration: the sprout identity connecting four pieces of context",
+    "bannerAlt": "Grove website banner: hands drawing in a grid notebook beside a keyboard",
     "year": "2025",
     "featured": true
   },
@@ -39,7 +39,7 @@
     "status": "Early access waitlist",
     "logo": "/img/brands/fitr-mark.webp",
     "banner": "/img/brands/fitr-banner.webp",
-    "bannerAlt": "Fitr campaign composition: a rose hoodie, cream trousers, and silver sneakers",
+    "bannerAlt": "Fitr website banner: knitwear on a rail with a rose hoodie, olive shorts, and silver high tops",
     "year": "2024",
     "featured": true
   },
@@ -54,7 +54,7 @@
     "status": "Open source",
     "logo": "/img/brands/burrow-mark.webp",
     "banner": "/img/brands/burrow-banner.webp",
-    "bannerAlt": "Burrow campaign illustration: a local development laptop connected to the outside world",
+    "bannerAlt": "Burrow website banner: a white USB cable plugged into the side of a laptop",
     "year": "2024",
     "featured": true
   },
@@ -73,19 +73,6 @@
     "year": "2024",
     "status": "Archived exploration",
     "featured": false
-  },
-  {
-    "title": "Bramble Labs",
-    "slug": "bramble-labs",
-    "description": "The home for Fern, Grove, and Burrow. Independent apps and developer tools, brought together through a shared product identity.",
-    "tags": ["Product Design", "Next.js", "TypeScript"],
-    "liveLink": "https://bramblelabs.co",
-    "category": "Independent software",
-    "status": "Building",
-    "year": "2026",
-    "logo": "/img/brands/bramble-mark.webp",
-    "banner": "/img/brands/bramble-banner.webp",
-    "bannerAlt": "Bramble Labs campaign artwork featuring its botanical sprig identity"
   },
   {
     "title": "InkByte",
