@@ -5,6 +5,9 @@ interface SectionProps {
   title: string;
   titleClassName?: string;
   className?: string;
+  eyebrow?: string;
+  description?: string;
+  headingLevel?: "h1" | "h2";
   children: React.ReactNode;
 }
 
@@ -13,24 +16,33 @@ export const Section = ({
   title,
   titleClassName,
   className,
+  eyebrow,
+  description,
+  headingLevel: Heading = "h2",
   children,
 }: SectionProps) => (
   <section
     id={id}
     className={cn(
-      "px-4 py-8 sm:px-6 sm:py-12 md:py-16 md:px-8 lg:px-12",
+      "scroll-mt-20 px-5 py-12 sm:px-8 sm:py-16 lg:px-10 xl:px-14",
       className,
     )}
   >
-    <div className="max-w-4xl mx-auto">
-      <h2
+    <div className="max-w-5xl mx-auto">
+      {eyebrow && <p className="section-kicker mb-4">{eyebrow}</p>}
+      <Heading
         className={cn(
-          "text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8",
+          "text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-6",
           titleClassName,
         )}
       >
         {title}
-      </h2>
+      </Heading>
+      {description && (
+        <p className="mb-8 max-w-xl text-sm leading-relaxed text-muted-foreground">
+          {description}
+        </p>
+      )}
       {children}
     </div>
   </section>

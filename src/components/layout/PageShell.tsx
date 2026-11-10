@@ -14,12 +14,12 @@ export const PageShell = ({ children, hasSidebar = false }: PageShellProps) => (
     {hasSidebar && <Sidebar />}
     <main
       id="main-content"
-      className={cn("flex-1 pt-16", hasSidebar && "md:pl-72")}
+      className={cn("min-w-0 flex-1", hasSidebar && "lg:pl-64 xl:pl-72")}
       tabIndex={-1}
     >
       {children}
     </main>
-    <div className={cn(hasSidebar && "md:pl-72")}>
+    <div className={cn(hasSidebar && "lg:pl-64 xl:pl-72")}>
       <Footer />
     </div>
   </div>

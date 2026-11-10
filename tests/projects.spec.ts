@@ -1,142 +1,103 @@
 import { expect, test } from "@playwright/test";
 
-test.describe("Projects", () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto("/");
-  });
+const formerPosts = [
+  "fern",
+  "bramble-labs",
+  "grove",
+  "fitr",
+  "burrow",
+  "fashion-vision",
+  "inkbyte",
+  "gobox",
+  "paint-opengl",
+  "sorbet",
+  "snake-game",
+];
 
-  test("should display read more links for each project", async ({ page }) => {
-    const projectsSection = page.locator("#projects");
-    await expect(projectsSection).toBeVisible();
+test("featured project artwork and titles lead directly to the live products", async ({
+  page,
+}) => {
+  await page.goto("/");
+  for (const [name, url] of [
+    ["Fern", "https://usefern.app"],
+    ["Grove", "https://usegrove.cloud"],
+    ["Fitr", "https://fitr.ca"],
+    ["Burrow", "https://useburrow.app"],
+  ]) {
+    const card = page
+      .locator("#projects")
+      .getByRole("article", { name, exact: true });
+    await expect(card.getByRole("link", { name, exact: true })).toHaveAttribute(
+      "href",
+      url,
+    );
+    await expect(
+      card.getByRole("link", { name: `Open ${name} website` }),
+    ).toHaveAttribute("href", url);
+    await expect(
+      card.getByRole("link", { name: `Visit ${name}`, exact: true }),
+    ).toHaveAttribute("href", url);
+  }
+});
 
-    const readMoreLinks = projectsSection.getByRole("link", {
-      name: /read more/i,
-    });
-    await expect(readMoreLinks).toHaveCount(8);
-  });
+test("the blog index, every former post, and raw markdown are unavailable", async ({
+  request,
+}) => {
+  for (const path of [
+    "/projects",
+    ...formerPosts.map((slug) => `/projects/${slug}`),
+  ]) {
+    const response = await request.get(path);
+    expect(response.status(), path).toBe(404);
+    expect(await response.text(), path).toMatch(
+      /name="robots" content="noindex/,
+    );
+  }
+  for (const path of [
+    ...formerPosts.map((slug) => `/content/posts/${slug}.md`),
+    "/content/posts/.ignore/shrymp.md",
+    "/content/posts/.ignore/paint-opengl.md",
+  ]) {
+    expect((await request.get(path)).status(), path).toBe(404);
+  }
+});
 
-  test("should navigate to project detail page via read more", async ({
+test("desktop and mobile navigation offer the portfolio without blog links", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.goto("/");
+  await expect(page.locator('a[href^="/projects"]')).toHaveCount(0);
+  await expect(page.getByRole("button", { name: /blog/i })).toHaveCount(0);
+  await expect(
+    page.getByRole("link", { name: /read.*story|behind the website|posts/i }),
+  ).toHaveCount(0);
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.getByRole("button", { name: "Open navigation menu" }).click();
+  const drawer = page.locator("[data-vaul-drawer]");
+  await expect(
+    drawer.getByRole("link", { name: "Blog", exact: true }),
+  ).toHaveCount(0);
+  await expect(
+    drawer.getByRole("link", { name: "Projects", exact: true }),
+  ).toHaveAttribute("href", "/#projects");
+});
+
+for (const name of ["Grove", "Burrow"]) {
+  test(`${name} installation page stays available and returns to the portfolio`, async ({
     page,
   }) => {
-    const groveLink = page
-      .locator('#projects a[href="/projects/grove"]')
-      .first();
-    await groveLink.click();
-
-    await expect(page).toHaveURL(/\/projects\/grove/);
-    const heading = page.getByRole("heading", { name: /grove/i, level: 1 });
-    await expect(heading).toBeVisible();
+    await page.setViewportSize({ width: 1280, height: 900 });
+    const response = await page.goto(`/${name.toLowerCase()}`);
+    expect(response?.status()).toBe(200);
+    await expect(page.getByRole("heading", { level: 1, name })).toBeVisible();
+    await expect(
+      page.getByRole("heading", { name: "Features", exact: true }),
+    ).toBeVisible();
+    await expect(page.getByTestId("sidebar")).not.toBeVisible();
+    await expect(page.locator('a[href^="/projects"]')).toHaveCount(0);
+    await page.getByRole("link", { name: "All projects", exact: true }).click();
+    await expect(page).toHaveURL(/\/#projects$/);
+    await expect(page.locator("#projects > div > h2")).toBeInViewport();
   });
-});
-
-test.describe("Project Blog Posts", () => {
-  test("should render markdown content on blog project page", async ({
-    page,
-  }) => {
-    await page.goto("/projects/grove");
-
-    const heading = page.getByRole("heading", { name: /grove/i, level: 1 });
-    await expect(heading).toBeVisible();
-
-    const markdownHeading = page.getByRole("heading", {
-      name: /the problem i wanted to solve/i,
-    });
-    await expect(markdownHeading).toBeVisible();
-
-    const paragraph = page.locator("text=self-hosted MCP server").first();
-    await expect(paragraph).toBeVisible();
-  });
-
-  test("should display feature cards on featured project page", async ({
-    page,
-  }) => {
-    await page.goto("/burrow");
-
-    const heading = page.getByRole("heading", { name: /burrow/i, level: 1 });
-    await expect(heading).toBeVisible();
-
-    const featureCard = page.locator("text=Public URLs in Seconds").first();
-    await expect(featureCard).toBeVisible();
-  });
-
-  test("should have back to projects link", async ({ page }) => {
-    await page.goto("/projects/inkbyte");
-
-    const backLink = page.getByRole("link", { name: /back to projects/i });
-    await expect(backLink).toBeVisible();
-    await expect(backLink).toHaveAttribute("href", "/#projects");
-  });
-});
-
-test.describe("Project Sidebar", () => {
-  test.beforeEach(async ({ page }) => {
-    await page.setViewportSize({ width: 1280, height: 720 });
-  });
-
-  test("should show sidebar on blog project page", async ({ page }) => {
-    await page.goto("/projects/grove");
-
-    const sidebar = page.getByTestId("sidebar");
-    await expect(sidebar).toBeVisible();
-  });
-
-  test("should not show sidebar on burrow page", async ({ page }) => {
-    await page.goto("/burrow");
-
-    const sidebar = page.getByTestId("sidebar");
-    await expect(sidebar).not.toBeVisible();
-  });
-
-  test("should not show sidebar on grove page", async ({ page }) => {
-    await page.goto("/grove");
-
-    const sidebar = page.getByTestId("sidebar");
-    await expect(sidebar).not.toBeVisible();
-  });
-});
-
-test.describe("Header Blog Dropdown", () => {
-  test.beforeEach(async ({ page }) => {
-    await page.setViewportSize({ width: 1280, height: 720 });
-    await page.goto("/");
-  });
-
-  test("should open blog dropdown and show project links", async ({ page }) => {
-    const dropdownTrigger = page
-      .locator('nav[aria-label="Main navigation"]')
-      .getByRole("button", {
-        name: /blog/i,
-      });
-    await expect(dropdownTrigger).toBeVisible();
-
-    await dropdownTrigger.click();
-
-    const menu = page.getByRole("menu");
-    await expect(menu).toBeVisible();
-
-    const groveLink = menu.getByRole("menuitem", { name: /grove/i });
-    const fitrLink = menu.getByRole("menuitem", { name: /fitr/i });
-    await expect(groveLink).toBeVisible();
-    await expect(fitrLink).toBeVisible();
-
-    const inkbyteLink = menu.getByRole("menuitem", { name: /inkbyte/i });
-    await expect(inkbyteLink).not.toBeVisible();
-  });
-
-  test("should navigate to project from dropdown", async ({ page }) => {
-    const dropdownTrigger = page
-      .locator('nav[aria-label="Main navigation"]')
-      .getByRole("button", {
-        name: /blog/i,
-      });
-    await dropdownTrigger.click();
-
-    const menu = page.getByRole("menu");
-    const fitrLink = menu.getByRole("menuitem", { name: /fitr/i });
-    await fitrLink.click();
-
-    await expect(page).toHaveURL("/projects/fitr");
-    const heading = page.getByRole("heading", { name: /fitr/i, level: 1 });
-    await expect(heading).toBeVisible();
-  });
-});
+}
