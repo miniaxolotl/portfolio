@@ -67,10 +67,11 @@ were unbound; no Geist font was actually loaded. The layout does not load DM San
 or Instrument Serif. The sharing image uses bundled DM Sans with a bold sans
 treatment and the restored colours; font licenses remain bundled.
 
-`public/img/brands/README.md` records the source of all five current brand marks
-and banners from the marketing library. Artwork is optimized WebP with explicit
-dimensions and responsive Next Image sizing. Campaign compositions are not app
-screenshots. Legacy article screenshots remain identified as historical where
+`public/img/brands/README.md` records the source of all four current brand marks
+and banners from the marketing library's website-graphics set. Artwork is
+optimized WebP with explicit dimensions and responsive Next Image sizing.
+Website compositions are not app screenshots. Legacy article screenshots remain
+identified as historical where
 appropriate. Global reduced-motion rules remove transitions and smooth scrolling;
 the personal mascot uses a still frame of the original pixel art.
 

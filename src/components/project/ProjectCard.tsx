@@ -32,10 +32,10 @@ export const ProjectCard = ({ project }: { project: Project }) => {
             <Image
               src={project.banner}
               alt={project.bannerAlt ?? ""}
-              width={1200}
-              height={628}
+              width={1280}
+              height={480}
               sizes="(min-width: 1440px) 500px, (min-width: 1024px) 40vw, (min-width: 640px) 50vw, 100vw"
-              className="project-art aspect-[1200/628] w-full object-cover"
+              className="project-art aspect-[1920/720] w-full object-cover"
             />
           </a>
         )}

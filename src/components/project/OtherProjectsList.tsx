@@ -10,7 +10,7 @@ import type { Project } from "@/types";
 
 export const OtherProjectsList = () => {
   const other: Project[] = projects
-    .filter((p) => !p.featured && p.slug !== "bramble-labs")
+    .filter((p) => !p.featured)
     .sort(sortByYearDesc);
   return (
     <div className="divide-y divide-border border-y border-border">

@@ -1,7 +1,6 @@
 import { Section } from "@/components/layout/Section";
 import { OtherProjectsList } from "@/components/project/OtherProjectsList";
 import { ProjectsList } from "@/components/project/ProjectsList";
-import { Studio } from "@/components/project/Studio";
 
 export const Projects = () => (
   <Section
@@ -13,7 +12,6 @@ export const Projects = () => (
   >
     <div className="space-y-10">
       <ProjectsList />
-      <Studio />
 
       <div className="space-y-6">
         <div className="flex items-baseline gap-3">

@@ -32,7 +32,8 @@ test("current products have working local artwork and canonical public links", a
   }
   await expect(
     page.getByRole("link", { name: "Meet Bramble Labs" }),
-  ).toHaveAttribute("href", "https://bramblelabs.co");
+  ).toHaveCount(0);
+  await expect(page.getByText("Growing at Bramble Labs.")).toHaveCount(0);
   await expect(
     page.locator(
       'a[href*="celestialstag"], a[href*="theluckyegg"], a[href*="github.com/miniaxolotl/fashion-vision"], a[href*="github.com/bramble-labs/fern"]',
