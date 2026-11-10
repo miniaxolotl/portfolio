@@ -29,7 +29,7 @@ export const BadgeRow = ({ badges }: BadgeRowProps) => (
           })
         }
       >
-        {badge.icon}
+        <span aria-hidden="true">{badge.icon}</span>
         {badge.label}
       </a>
     ))}

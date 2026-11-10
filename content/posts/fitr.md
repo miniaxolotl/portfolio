@@ -1,6 +1,6 @@
 ---
 title: Fitr
-description: Building an AI wardrobe app with two friends. What co-founding taught me about Go backends, computer vision, and building something real.
+description: Co-founding a digital wardrobe and personal AI stylist with Adam and Mason. Building around real clothes, individual taste, and the work of making an idea into a product.
 year: "2024"
 tags:
   - System Design
@@ -16,9 +16,13 @@ gitLink: github.com/FITR-MAE
 
 ## The Question Behind the Project
 
+**Current status:** Fitr is in development for iOS and Android. [fitr.ca](https://fitr.ca) is live, with an [early-access waitlist](https://fitr.ca/waitlist). It is operated by **Fitr Technologies Inc.**, independently of Bramble Labs.
+
 Style is personal. I wanted to explore whether software could understand your aesthetic the way a good friend does. Not "you like black" but something closer to "you dress like someone who reads first editions and drinks their coffee too hot."
 
-I am a co-founder of Fitr. Two friends and I are building it together. It is active and ongoing. We are not prototyping for fun. We are trying to build something people actually use. That changes everything. When it is just you, you can rewrite the database on a Tuesday because you feel like it. When two other people depend on the code you wrote yesterday, you think harder.
+I am a co-founder of Fitr. Adam, Mason, and I are building it together, sharing development, content, marketing, and business work. The product brings together a digital wardrobe, SŌEN — an AI stylist working with clothes you own — and a place for style inspiration. It is active and ongoing. When two other people depend on the code you wrote yesterday, you think harder.
+
+The images below are earlier product and interface explorations. The live website reflects the current identity and public availability.
 
 <div class="flex flex-col sm:flex-row gap-4 my-8">
   <span class="flex-1">
@@ -39,7 +43,7 @@ For recommendations, I explored embeddings. Wardrobe items and preferences becom
 
 I also looked at how a machine sees clothing. A photo is just pixels. For software to understand it, those pixels need to be separated into body from background and upper from lower and garment from skin. We built computer vision pipelines that segment clothing from body and background. The model isolates upper body from lower body. It finds accessories. It figures out where the garment ends and the person begins. The segmentation strategy mirrors human perception.
 
-Running models locally changes the math. A compressed model on-device answers in milliseconds. The tradeoff is precision, but sometimes "this looks like a blue jacket" is more useful than a high-dimensional vector.
+The practical question is how to turn a clothing photo into useful wardrobe information. Model size, inference cost, and the quality of the result all affect whether that workflow feels usable.
 
 The backend is Go. I architected the core backend and API layer because the app needs to serve recommendations fast. It needs to handle wardrobe uploads and user sessions and outfit generation without falling over. Go felt right for that. It is fast and the concurrency model is clean.
 

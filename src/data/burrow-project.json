@@ -1,46 +1,5 @@
 {
   "name": "Burrow",
-  "tagline": "Permanent, secure URLs for local development",
-  "description": "Burrow is an open-source tunneling tool that gives you stable, HTTPS-accessible URLs for your local development environment. No more unreliable free tiers or expensive subscriptions - just run one command and share your localhost with the world.",
-  "client": {
-    "npmPackage": "@miniaxolotl/burrowctl",
-    "commands": {
-      "bun": "bun add -g @miniaxolotl/burrowctl",
-      "npm": "npm i -g @miniaxolotl/burrowctl",
-      "pnpm": "pnpm add -g @miniaxolotl/burrowctl"
-    }
-  },
-  "server": {
-    "dockerImage": "miniaxolotl/burrowd",
-    "commands": {
-      "docker": "docker compose up -d"
-    }
-  },
-  "links": [
-    {
-      "label": "GitHub",
-      "url": "https://github.com/miniaxolotl/burrow"
-    },
-    {
-      "label": "npm",
-      "url": "https://www.npmjs.com/package/@miniaxolotl/burrowctl"
-    }
-  ],
-  "features": [
-    "HTTPS subdomains with automatic certificate management via Let's Encrypt",
-    "TCP tunnel support for databases, SSH, and non-HTTP services",
-    "WebSocket multiplexing for efficient bandwidth and low latency",
-    "Redis-backed tunnel tracking with persistence across restarts",
-    "Token-based admin authentication for team environments",
-    "Cross-platform TUI client with real-time log viewing"
-  ],
-  "techStack": ["Go", "Redis", "WebSocket", "yamux"],
-  "tools": ["burrowd (server)", "burrowctl (CLI client)"],
-  "architecture": "burrowctl → WebSocket → burrowd → HTTPS/TCP → Internet",
-  "commands": {
-    "server": "burrowd serve --secret mysecret --domain burrow.example.com --port 25701",
-    "client": "burrowctl tunnel create --port 3000"
-  },
-  "guides": ["Installation", "Configuration", "Deployment", "Troubleshooting"],
-  "mcpTools": null
+  "tagline": "Localhost, shared.",
+  "description": "Public HTTPS tunnels for localhost, by Bramble Labs Inc. Share a local app, receive webhooks, and inspect requests from your terminal. Open source and self-hostable, with a CLI for macOS and Linux."
 }

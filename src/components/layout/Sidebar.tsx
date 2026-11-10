@@ -13,10 +13,15 @@ export const Sidebar = () => {
   return (
     <aside
       data-testid="sidebar"
-      className="hidden md:block fixed left-0 top-16 z-40 w-72 h-[calc(100vh-4rem)] bg-card border-r border-border"
+      className="hidden lg:block fixed left-0 top-16 z-40 w-64 xl:w-72 h-[calc(100dvh-4rem)] border-r border-border"
     >
-      <div className="flex flex-col h-full p-6 gap-6 overflow-y-auto">
+      <div className="flex flex-col h-full px-6 py-10 gap-7 overflow-y-auto">
         <ProfileSection imageSize={88} />
+        <p className="text-center text-sm leading-relaxed text-muted-foreground">
+          Curious by nature.
+          <br />
+          An engineer by practice.
+        </p>
 
         <nav className="flex flex-col gap-1" aria-label="Page sections">
           {navLinks.map((link) => (

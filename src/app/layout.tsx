@@ -5,6 +5,7 @@ import profile from "@/data/profile.json";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(profile.website),
   title: `${profile.name} | ${profile.role}`,
   description: profile.description,
   keywords: [
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
     "TypeScript",
     "PostgreSQL",
     "AWS",
-    "Calgary",
+    profile.location,
     "Alberta",
     "SaaS",
     "API Design",
@@ -57,7 +58,7 @@ const themeScript = `
   (function(){
     try{
       var m=document.cookie.match(/(?:^|; )theme=(dark|light)/);
-      var t=m?m[1]:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+      var t=m?m[1]:'dark';
       document.documentElement.classList.toggle('dark',t==='dark');
     }catch(e){}
   })();
@@ -68,27 +69,15 @@ const RootLayout = ({
 }: Readonly<{
   children: React.ReactNode;
 }>) => (
-  <html lang="en" suppressHydrationWarning>
+  <html lang="en" className="dark" suppressHydrationWarning>
     <head>
-      <link rel="preconnect" href="https://github.com" />
-      <link rel="preconnect" href="https://hub.docker.com" />
-      <link rel="preconnect" href="https://www.npmjs.com" />
-      <link rel="dns-prefetch" href="https://github.com" />
-      <link rel="dns-prefetch" href="https://hub.docker.com" />
-      <link rel="dns-prefetch" href="https://www.npmjs.com" />
-      <style
-        // biome-ignore lint/security/noDangerouslySetInnerHtml: static font-display rule
-        dangerouslySetInnerHTML={{
-          __html: "@font-face{font-display:swap}",
-        }}
-      />
       <script
         id="theme-script"
         // biome-ignore lint/security/noDangerouslySetInnerHtml: inline theme script, no user input
         dangerouslySetInnerHTML={{ __html: themeScript }}
       />
     </head>
-    <body className="min-h-full flex flex-col">
+    <body className="min-h-full flex flex-col font-sans antialiased">
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md focus:outline-none"

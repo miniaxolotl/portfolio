@@ -36,10 +36,10 @@ test.describe("Accessibility", () => {
       await expect(nav).toBeVisible();
 
       const links = nav.getByRole("link");
-      await expect(links).toHaveCount(1);
+      await expect(links).toHaveCount(3);
 
       const buttons = nav.getByRole("button");
-      await expect(buttons).toHaveCount(1);
+      await expect(buttons).toHaveCount(0);
     });
 
     test("should have aria-current on active nav link", async ({ page }) => {

@@ -23,7 +23,7 @@ export interface MarkdownHeading {
   level: number;
 }
 
-const contentDir = path.join(process.cwd(), "public", "content", "posts");
+const contentDir = path.join(process.cwd(), "content", "posts");
 
 export const loadProjectMarkdown = (slug: string): ProjectMarkdown => {
   const filePath = path.join(contentDir, `${slug}.md`);

@@ -9,18 +9,20 @@ import {
   extractHeadings,
   loadProjectMarkdown,
 } from "@/lib/markdown";
-import { blogSlugs, sortByYearDesc } from "@/lib/projects";
+import { blogEnabled, blogSlugs, sortByYearDesc } from "@/lib/projects";
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>;
 }
 
 export const generateStaticParams = () =>
-  Array.from(blogSlugs).map((slug) => ({ slug }));
+  blogEnabled ? Array.from(blogSlugs).map((slug) => ({ slug })) : [];
 
 export const generateMetadata = async ({
   params,
 }: ProjectPageProps): Promise<Metadata> => {
+  if (!blogEnabled) notFound();
+
   const { slug } = await params;
   const project = projects.find((p) => p.slug === slug);
 
@@ -33,9 +35,23 @@ export const generateMetadata = async ({
   return {
     title: `${frontmatter.title} | ${profile.name}`,
     description: frontmatter.description,
+    alternates: { canonical: `/projects/${slug}` },
     openGraph: {
       title: `${frontmatter.title} | ${profile.name}`,
       description: frontmatter.description,
+      url: `/projects/${slug}`,
+      ...("banner" in project && project.banner
+        ? {
+            images: [
+              {
+                url: project.banner,
+                width: 1200,
+                height: 628,
+                alt: project.bannerAlt,
+              },
+            ],
+          }
+        : {}),
     },
     twitter: {
       card: "summary_large_image",
@@ -46,6 +62,8 @@ export const generateMetadata = async ({
 };
 
 const ProjectPage = async ({ params }: ProjectPageProps) => {
+  if (!blogEnabled) notFound();
+
   const { slug } = await params;
 
   const project = projects.find((p) => p.slug === slug);
@@ -72,11 +90,16 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
       <ProjectPageContent
         name={frontmatter.title}
         description={frontmatter.description}
-        tags={frontmatter.tags ?? []}
+        tags={project.tags}
         year={frontmatter.year}
         readingTime={readingTime}
-        gitLink={frontmatter.gitLink}
-        links={frontmatter.links}
+        gitLink={"gitLink" in project ? project.gitLink : undefined}
+        links={"links" in project ? project.links : undefined}
+        liveLink={"liveLink" in project ? project.liveLink : undefined}
+        banner={"banner" in project ? project.banner : undefined}
+        bannerAlt={"bannerAlt" in project ? project.bannerAlt : undefined}
+        logo={"logo" in project ? project.logo : undefined}
+        status={"status" in project ? project.status : undefined}
         content={content}
         headings={headings}
         prevProject={prevProject}
